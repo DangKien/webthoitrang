@@ -1,0 +1,28 @@
+[class^=col-] {
+	width: 100%;
+	float: left;
+	box-sizing: border-box !important;
+	min-height: 1px;
+	position: relative;
+}
+  
+
+@mixin width-col-mixin($nameClass) {
+	@for $i from 1 through 12{
+		.col-#{$nameClass}-#{$i}{
+	    	width: 1% * ($i*100)/1200*100;
+		}
+    }
+}
+
+@media (min-width: 1200px) {
+	@include width-col-mixin("sm")
+}
+@media (min-width: 992px) {
+	@include width-col-mixin("md")
+}
+@media (min-width: 768px) {
+	@include width-col-mixin("lg")
+}
+
+@include width-col-mixin("xs")
