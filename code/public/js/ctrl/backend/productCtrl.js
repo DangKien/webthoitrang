@@ -22,7 +22,7 @@ ngApp.controller('productCtrl', function ($apply, $productService, $scope, chang
 			// var params = $cateService.filter (name, status, current_page , 10);
 			$productService.action.listProduct().then(function (resp) {
 				$scope.data.listProduct = resp.data.data;
-				$scope.data.pageProduct = resp.data;
+				$scope.data.pageProdcut = resp.data;
 
 			}, function (error) {
 				console.log(error);

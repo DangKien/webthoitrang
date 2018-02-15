@@ -20,7 +20,7 @@ class CreateProductTable extends Migration
             $table->text('description');
             $table->integer('start')->default(3);
             $table->string('slug');
-            $table->string('cate_id');
+            $table->integer('cate_id');
             $table->string('sale_description');
             $table->integer('cate_sale');
             $table->string('tag')->nullable();

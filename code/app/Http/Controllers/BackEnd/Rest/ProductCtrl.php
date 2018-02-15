@@ -12,12 +12,16 @@ use Storage, DB;
 
 class ProductCtrl extends Controller
 {
-    public function getList(){
-    	return 123;
+    public function getList(ProductModel $product, ProductDetailModel $detail) {
+    	$result = $product->with('cates')
+                          ->orderBy('id', 'desc')
+                          ->paginate(10);
+
+        return response()->json($result);
     }	
 
     public function getInsert(ProductModel $product, ProductDetailModel $detail
-    						, Request $request){
+    						, Request $request) {
         DB::beginTransaction();
 
     	try {

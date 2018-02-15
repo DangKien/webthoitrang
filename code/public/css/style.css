@@ -174,5 +174,40 @@
 }
 
 .fix-upload{
-	min-height: 1500px;
+	min-height: 1500px !important;
+}
+ 
+
+.width-fix-table .width-100 {
+	max-width: 100px;
+}
+.width-fix-table .width-50 {
+	max-width: 50px;
+}
+.width-fix-table .width-70 {
+	max-width: 70px;
+}
+.width-fix-table .width-80 {
+	max-width: 80px;
+}
+.width-fix-table .width-90 {
+	max-width: 90px;
+}
+.width-fix-table .width-120 {
+	max-width: 120px;
+}
+.width-fix-table .width-150 {
+	max-width: 150px;
+}
+.width-fix-table .width-170 {
+	max-width: 170px;
+}
+.width-fix-table .width-200 {
+	max-width: 200px;
+}
+.width-fix-table .width-250 {
+	max-width: 250px;
+}
+.width-fix-table .width-300 {
+	max-width: 300px;
 }

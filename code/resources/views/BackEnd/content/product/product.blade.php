@@ -89,21 +89,21 @@
 								<table class="table table-striped">
 									<thead>
 										<tr>
-											<th>Tên loại tin</th>
-											<th>Loại tin cha</th>
-											<th>Tag</th>
-											<th>Đường dẫn</th>
-											<th>Người sửa</th>
+											<th>Tên sản phẩm</th>
+											<th>Loại</th>
+											<th>Ảnh</th>
+											<th>Mô tả</th>
+											<th>Thẻ gắn</th>
 											<th>Thao tác</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr ng-repeat="(key, cate) in data.listCate">
-											<td> @{{ cate.name }} </td>
-											<td> @{{ cate.cate_id }} </td>
-											<td> @{{ cate.tag }} </td>
-											<td> @{{ cate.url_link }} </td>
-											<td> @{{ cate.users.name }} </td>
+										<tr class="width-fix-table" ng-repeat="(key, product) in data.listProduct">
+											<td class="width-100"> @{{ product.name }} </td>
+											<td> @{{ product.cate_id }} </td>
+											<td> <img ng-src=" {{ url('../storage/app') }}/@{{ product.url_image }}" alt="" style="width: 100px; height: 100px"> </td>
+											<td class="width-250"> <span ng-bind-html="product.description"></span> </td>
+											<td class="width-80"> @{{ product.tag }} </td>
 											<td> 
 												<button ng-click= "actions.showModal(cate.id)" class="btn btn-default btn-icon btn-circle icon-lg fa fa-edit"></button>
 												<button ng-click= "actions.deleteCate(cate.id)" class="btn btn-danger btn-icon btn-circle icon-lg fa fa-trash"></button>
