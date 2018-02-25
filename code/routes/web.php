@@ -20,7 +20,10 @@ Route::get('/modal/{view}', 'BackEnd\Modal\ModalCtrl@modal');
 
 Route::group(['prefix'=>'backend'], function (){
 	Route::get('/category', 'BackEnd\Cate\CateCtrl@category')->name('category');
-	Route::get('/product', 'BackEnd\Product\ProductCtrl@product')->name('product');
+	Route::get('/product', 'BackEnd\Product\ProductCtrl@main')->name('product');
+	Route::get('/product-main', 'BackEnd\Product\ProductCtrl@product');
+	Route::get('/detail-product', 'BackEnd\Product\ProductCtrl@detailProduct');
+	// Route::get('/product', 'BackEnd\Product\ProductCtrl@product');
 });
 
 Route::group(['prefix' => 'rest/backend'], function() {
@@ -37,6 +40,12 @@ Route::group(['prefix' => 'rest/backend'], function() {
     Route::get('/product/{id}', 'BackEnd\Rest\ProductCtrl@getEdit');
 	Route::put('/product/{id}', 'BackEnd\Rest\ProductCtrl@getUpdate');
 	Route::delete('/product/{id}', 'BackEnd\Rest\ProductCtrl@getDelete');
+	Route::get('product-detail/{id}', 'BackEnd\Rest\ProductCtrl@detailProduct');
+	Route::post('product-detail/{id}', 'BackEnd\Rest\ProductCtrl@insertDetailProduct');
+	Route::get('product-detail-edit/{id}', 'BackEnd\Rest\ProductCtrl@editDetailProduct');
+	Route::post('product-detail-update/{id}', 'BackEnd\Rest\ProductCtrl@updateDetailProduct');
+	Route::get('product-detail-delete/{id}', 'BackEnd\Rest\ProductCtrl@deleteDetailProduct');
+	
 
 
 });

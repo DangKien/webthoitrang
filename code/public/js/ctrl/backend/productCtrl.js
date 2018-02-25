@@ -67,15 +67,15 @@ ngApp.controller('productCtrl', function ($apply, $productService, $scope, chang
 		save: function (data, conf) {
 			if (data == true) {
 				if (!$scope.data.idCate) {
-					$conf.confirmNotifi('success', 'Thêm mới thành công');
+					$conf.confirmNotifi('success', 'Thêm mới sản phẩm thành công');
 				}
 				else {
-					$conf.confirmNotifi('success', 'Cập nhật thành công');			
+					$conf.confirmNotifi('success', 'Cập nhật sản phẩm thành công');			
 				}
 				$apply(function () {
 					$scope.actions.allListCate();
 					$scope.actions.listCate();
-					$($scope.domCateModal).modal('hide');
+					$($scope.domProductModal).modal('hide');
 				});
 				
 			} else {
@@ -88,3 +88,23 @@ ngApp.controller('productCtrl', function ($apply, $productService, $scope, chang
 	
 
 });
+
+ngApp.config(['$routeProvider','$locationProvider',
+    function($routeProvider, $locationProvider) {
+        var urlProduct = SiteUrl + "/backend/product-main";
+        var urlDetail = SiteUrl + "/backend/detail-product";
+        $routeProvider.
+        when('/', {
+            templateUrl: urlProduct,
+            controller: 'productCtrl'
+        }).
+        when('/:id', {
+            templateUrl: urlDetail,
+            controller: 'detailProductCtrl'
+        }).
+        otherwise({
+            redirectTo: '/'
+        });
+        $locationProvider.hashPrefix('');
+        //$locationProvider.html5Mode(true);
+}]);

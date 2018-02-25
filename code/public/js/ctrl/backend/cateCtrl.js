@@ -80,16 +80,16 @@ ngApp.controller('cateCtrl', function ($apply, $cateService, $scope, changStatus
 		},
 
 		deleteCate: function (idCate) {
-			$conf.confirmDelete ('small', 'Bạn muốn xóa loại tin này?', function (resp) {
+			$conf.confirmDelete ('small', 'Bạn muốn xóa loại sản phẩm này?', function (resp) {
 				if (resp == true){
 					$cateService.action.deleteCate(idCate).then(function (resp) {
 						if (resp) {
 							$scope.actions.listCate();
 							$scope.actions.allListCate();
-							$conf.confirmNotifi('success', 'Xóa loại tin thành công');
+							$conf.confirmNotifi('success', 'Xóa loại sản phẩm thành công');
 						}
 					}, function (error) {
-							$conf.confirmNotifi('error', 'Xóa loại tin thất bại', "fa fa-ban");
+							$conf.confirmNotifi('error', 'Xóa loại sản phẩm thất bại', "fa fa-ban");
 					});
 				}
 			});
@@ -106,7 +106,7 @@ ngApp.controller('cateCtrl', function ($apply, $cateService, $scope, changStatus
 					status: 1,
 					parent_id: 0,
 				};
-				$scope.data.title = "Thêm mới loại tin";
+				$scope.data.title = "Thêm mới loại sản phẩm";
 			} else {
 				$cateService.action.editCate(idCate).then (function (resp) {
 					$scope.data.params = resp.data;
@@ -114,17 +114,17 @@ ngApp.controller('cateCtrl', function ($apply, $cateService, $scope, changStatus
 				}, function (error) {
 					console.log(error);
 				});
-				$scope.data.title = "Cập nhật loại tin";
+				$scope.data.title = "Cập nhật loại sản phẩm";
 			}
 		},
 
 		save: function (data, conf) {
 			if (data == true) {
 				if (!$scope.data.idCate) {
-					$conf.confirmNotifi('success', 'Thêm mới thành công');
+					$conf.confirmNotifi('success', 'Thêm mới sản phẩm thành công');
 				}
 				else {
-					$conf.confirmNotifi('success', 'Cập nhật thành công');			
+					$conf.confirmNotifi('success', 'Cập nhật sản phẩm thành công');			
 				}
 				$apply(function () {
 					$scope.actions.allListCate();

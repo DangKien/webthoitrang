@@ -23,6 +23,17 @@ ngApp.factory('$productService', function ($http, $httpParamSerializer){
 		return params;
 	};
 
+	service.dataDetail = function (color, size, quantily, price) {
+		var params = {
+			color: color || '',
+			size: size || '',
+			quantily: quantily,
+			price: price || '1',
+		};
+		
+		return params;
+	};
+
 	service.filter = function (name, status, page = 1 , perPage = 10) {
 		var params = {
 			name: name || '',
@@ -60,6 +71,8 @@ ngApp.factory('$productService', function ($http, $httpParamSerializer){
         return $http.get(url);
 	};
 
+	
+
 	service.action.updateProduct = function (idProduct, params) {
 		var url = SiteUrl + "/rest/backend/product/" + idProduct;
         return $http.post(url, params);
@@ -69,6 +82,33 @@ ngApp.factory('$productService', function ($http, $httpParamSerializer){
 		var url = SiteUrl + "/rest/backend/product/" + idProduct;
         return $http.delete(url);
 	};
+
+	service.action.listDetailProduct = function (idProduct, filter) {
+		var url = SiteUrl + "/rest/backend/product-detail/" + idProduct + "?" + $httpParamSerializer(filter);
+        return $http.get(url);
+	};
+
+	service.action.insertDetailProduct = function (idProduct, params) {
+		var url = SiteUrl + "/rest/backend/product-detail/" + idProduct;
+        return $http.post(url, params);
+	};
+
+	service.action.editDetailProduct = function (idProduct) {
+		var url = SiteUrl + "/rest/backend/product-detail-edit/" + idProduct;
+        return $http.get(url);
+	};
+
+	service.action.updateDetailProduct = function (idProduct, params) {
+		var url = SiteUrl + "/rest/backend/product-detail-update/" + idProduct;
+        return $http.post(url, params);
+	};
+
+	service.action.deleteDetailProduct = function (idProduct) {
+		var url = SiteUrl + "/rest/backend/product-detail-delete/" + idProduct;
+        return $http.get(url);
+	};
+
+	
 
 
 

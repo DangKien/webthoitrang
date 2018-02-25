@@ -49,7 +49,7 @@ class ProductCtrl extends Controller
                 $images->save();
             }
             DB::commit();
-            return 123;
+            return response()->json(['message'=>true], 200);
 
     	} catch (Exception $e) {
     		DB::rollback();
@@ -67,5 +67,87 @@ class ProductCtrl extends Controller
 
     public function getDelete(){
 
+    }
+
+    public function detailProduct(ProductModel $product, ProductDetailModel $detail, $id) {
+        $result = $detail->where('product_id', $id)
+                         ->orderBy('id', 'desc')
+                         ->paginate(10);
+
+        return response()->json($result);
+    }
+
+    public function insertDetailProduct(ProductModel $product, ProductDetailModel $detail, $id, 
+                                Request $request) {
+        DB::beginTransaction();
+        try {
+
+            $detail->color = $request->color;
+            $detail->size = $request->size;
+            $detail->quantily = $request->quantily;
+            $detail->price = $request->price;
+            $detail->product_id = $id;
+            $detail->save();
+            DB::commit();
+            return response()->json(['message'=>true], 200);
+        } catch (Exception $e) {
+            DB::rollback();
+            return response()->json(['message'=>'Lỗi hệ thống không thể thêm mới'], 200);
+        }
+    }
+
+    public function editDetailProduct(ProductModel $product, ProductDetailModel $detail, $id, 
+                                Request $request) {
+        if ($id) {
+            try {
+                $result = $detail->find($id);
+                return response()->json($result);
+            } catch (Exception $e) {
+                return response()->json(['message'=>'Lỗi hệ thống không thể thêm mới'], 200);
+            }
+        }
+    }
+
+    public function updateDetailProduct(ProductModel $product, ProductDetailModel $detail, $id, 
+                                Request $request) {
+        if ($id) {
+            DB::beginTransaction();
+            try {
+                $detailProduct = $detail->find($id);
+                if (empty($detailProduct)) {
+                    return response()->json(['message'=>'Lỗi hệ thống không thể sửa chữa'], 200);
+                }
+                $detailProduct->color = $request->color;
+                $detailProduct->price = $request->price;
+                $detailProduct->size = $request->size;
+                $detailProduct->quantily = $request->quantily;
+                $detailProduct->save();
+
+                DB::commit();
+                return response()->json(['message'=>true], 200);
+                
+            } catch (Exception $e) {
+                DB::rollback();
+                return response()->json(['message'=>'Lỗi hệ thống không thể thêm mới'], 200);
+            }
+        }
+    }
+
+    public function deleteDetailProduct(ProductModel $product, ProductDetailModel $detail, $id, 
+                                Request $request) {
+        DB::beginTransaction();
+        try {
+            if ($id) {
+                $result = $detail::find($id);
+                if (empty($result))  {
+                    return response()->json(['message'=>'Lỗi hệ thống không thể xóa'], 200);
+                } else {
+                    $result->delete();
+                }
+            }
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollback();
+        }
     }
 }

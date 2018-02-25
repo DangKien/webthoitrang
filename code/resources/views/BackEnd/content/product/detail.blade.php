@@ -80,24 +80,24 @@
 							<table class="table table-striped">
 								<thead>
 									<tr>
-										<th>Tên sản phẩm</th>
-										<th>Loại</th>
-										<th>Ảnh</th>
-										<th>Mô tả</th>
-										<th>Thẻ gắn</th>
+										<th>Màu sản phẩm</th>
+										<th>Kích cỡ</th>
+										<th>Giá</th>
+										<th>Số lượng</th>
 										<th>Thao tác</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr class="width-fix-table" ng-repeat="(key, product) in data.listProduct">
-										<td class="width-100"> @{{ product.name }} </td>
-										<td> @{{ product.cate_id }} </td>
-										<td> <img ng-src=" {{ url('../storage/app') }}/@{{ product.url_image }}" alt="" style="width: 100px; height: 100px"> </td>
-										<td class="width-250"> <span ng-bind-html="product.description"></span> </td>
-										<td class="width-80"> @{{ product.tag }} </td>
+									<tr class="width-fix-table" ng-repeat="(key, product) in data.listDetailProduct">
+										<td class="width-100 text-center">
+											<p class="color-table" style="background:  @{{ product.color }}"></p>
+										</td>
+										<td> @{{ product.size }} </td>
+										<td> @{{ product.price }} vnđ/cái </td>
+										<td> @{{ product.quantily }}</td>
 										<td> 
-											<button ng-click= "actions.showModal(cate.id)" class="btn btn-default btn-icon btn-circle icon-lg fa fa-edit"></button>
-											<button ng-click= "actions.deleteCate(cate.id)" class="btn btn-danger btn-icon btn-circle icon-lg fa fa-trash"></button>
+											<button ng-click= "actions.showModal(product.id)" class="btn btn-default btn-icon btn-circle icon-lg fa fa-edit"></button>
+											<button ng-click= "actions.deleteDetail(product.id)" class="btn btn-danger btn-icon btn-circle icon-lg fa fa-trash"></button>
 										</td>
 									</tr>
 								</tbody>
@@ -107,9 +107,9 @@
 						<div class="row text-center">
 						   <div class="page-oum">
 						       <div paging
-						           page="data.pageProdcut.current_page"
-						           page-size = "data.pageProdcut.per_page"
-						           total="data.pageProdcut.total"
+						           page="data.pageDetailProdcut.current_page"
+						           page-size = "data.pageDetailProdcut.per_page"
+						           total="data.pageDetailProdcut.total"
 						           paging-action="actions.changePage(page)">
 						       </div>
 						   </div>
@@ -130,5 +130,5 @@
 	ng-click="actions.showModal()"
 	>
 	</button>
-	<product-modal product-data="data" product-save="actions.save(data)" dom-product-form="domProductForm" dom-product-modal="domProductModal"> </product-modal>	
+	<detail-product-modal product-data="data" product-save="actions.save(data)" dom-product-form="domProductForm" dom-detail-product-modal="domDetailProductModal"> </detail-product-modal>	
 </div>
