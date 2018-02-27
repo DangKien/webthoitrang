@@ -75,8 +75,15 @@ ngApp.factory('$productService', function ($http, $httpParamSerializer){
 	
 
 	service.action.updateProduct = function (idProduct, params) {
+		var config = {
+			headers : {
+                    'Content-Type': undefined,
+                    'processData': false,
+                    'contentType': false,
+            },
+		};
 		var url = SiteUrl + "/rest/backend/product/" + idProduct;
-        return $http.post(url, params);
+        return $http.post(url, params, config);
 	};
 
 	service.action.deleteProduct = function (idProduct) {

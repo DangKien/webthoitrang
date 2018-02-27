@@ -65,13 +65,24 @@
 							<div class="form-group">
 								<label class="control-label" for="imageMain">Ảnh chính: </label>
 								<div>
-									<input required name="fileImg" type="file" placeholder="Tên người dùng" class="form-control input-sm image-support" id="imageMain">
-									<img class="image-support img-responsive" src="{{ url('Nifty') }}/img/av6.png" alt="..." style="margin-top: 5px; width: 140px; height: 150px;">
-									<p class="text-danger" style="margin-top: 5px;"
-										ng-repeat="er in data.errors.file"
-									>
-									    @{{ er }}
-									</p>
+									<input name="fileImg" type="file" placeholder="Tên người dùng" class="form-control input-sm image-support" id="imageMain">
+									<div ng-if="data.show">
+										<img class="image-support img-responsive" src="{{ url('Nifty') }}/img/av6.png" alt="..." style="margin-top: 5px; width: 140px; height: 150px;">
+										<p class="text-danger" style="margin-top: 5px;"
+											ng-repeat="er in data.errors.file"
+										>
+										    @{{ er }}
+										</p>	
+									</div>	
+									<div ng-if="!data.show">
+										<img class="image-support img-responsive" ng-src="{{ url('../storage/app') }}/@{{ data.params.url_image }}" alt="..." style="margin-top: 5px; width: 140px; height: 150px;">
+										<p class="text-danger" style="margin-top: 5px;"
+											ng-repeat="er in data.errors.file"
+										>
+										    @{{ er }}
+										</p>	
+									</div>
+										
 								</div>
 							</div>
 
@@ -83,7 +94,7 @@
 								</div>
 							</div>
 
-							<div class="form-group">
+							<div class="form-group" ng-if="data.show">
 								<label class="control-label">Ảnh sản phẩm: </label>
 								<div class="row">
 									<div class="col-sm-12">

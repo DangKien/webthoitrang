@@ -5,6 +5,7 @@ ngApp.controller('productCtrl', function ($apply, $productService, $scope, chang
 		listProduct: {},
 		nameCate: [],
 		mutiImage: [],
+		show: true,
 	};
 
 	$scope.actions = {
@@ -47,17 +48,17 @@ ngApp.controller('productCtrl', function ($apply, $productService, $scope, chang
 			});
 		},
 
-		showModal: function (idPro) {
-			$scope.data.idPro = idPro;
+		showModal: function (idProduct) {
+			$scope.data.idProduct = idProduct;
 			$($scope.domProductModal).modal('show');
 			// $($scope.domCateForm).parsley().reset();
 			$scope.data.errors = {};
-			if (!idPro) {
+			if (!idProduct) {
 				$scope.data.title = "Thêm mới sản phẩm";
 			} else {
-				$productService.action.editProduct(idPro).then (function (resp) {
+				$scope.data.show = false;
+				$productService.action.editProduct(idProduct).then (function (resp) {
 					$scope.data.params = resp.data;
-					console.log($scope.data.params)
 				}, function (error) {
 					console.log(error);
 				});
@@ -66,7 +67,7 @@ ngApp.controller('productCtrl', function ($apply, $productService, $scope, chang
 		},
 		save: function (data, conf) {
 			if (data == true) {
-				if (!$scope.data.idCate) {
+				if (!$scope.data.idProduct) {
 					$conf.confirmNotifi('success', 'Thêm mới sản phẩm thành công');
 				}
 				else {
@@ -74,7 +75,7 @@ ngApp.controller('productCtrl', function ($apply, $productService, $scope, chang
 				}
 				$apply(function () {
 					$scope.actions.allListCate();
-					$scope.actions.listCate();
+					$scope.actions.listProduct();
 					$($scope.domProductModal).modal('hide');
 				});
 				

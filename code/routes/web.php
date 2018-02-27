@@ -38,7 +38,7 @@ Route::group(['prefix' => 'rest/backend'], function() {
 	Route::get('product', 'BackEnd\Rest\ProductCtrl@getList');
     Route::post('/product', 'BackEnd\Rest\ProductCtrl@getInsert');
     Route::get('/product/{id}', 'BackEnd\Rest\ProductCtrl@getEdit');
-	Route::put('/product/{id}', 'BackEnd\Rest\ProductCtrl@getUpdate');
+	Route::post('/product/{id}', 'BackEnd\Rest\ProductCtrl@getUpdate');
 	Route::delete('/product/{id}', 'BackEnd\Rest\ProductCtrl@getDelete');
 	Route::get('product-detail/{id}', 'BackEnd\Rest\ProductCtrl@detailProduct');
 	Route::post('product-detail/{id}', 'BackEnd\Rest\ProductCtrl@insertDetailProduct');

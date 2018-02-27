@@ -69,26 +69,29 @@ class ProductCtrl extends Controller
         }
     }
 
-    public function getUpdate(){
+    public function getUpdate(ProductModel $product, ProductDetailModel $detail, $id, 
+                               Request $request ){
         if ($id) {
             DB::beginTransaction();
             try {
+                $product_update = $product->find($id);
                 if ($request->hasFile('url_image')) {
                     $url_image     = Storage::putFile('images/main_prodcut', $request->url_image);
+                } else {
+                    $url_image = $product_update->url_image;
                 }
-                $productId = $product->insertGetId([
-                    'name'             => $request->name,
-                    'url_image'        => $url_image,
-                    'description'      => $request->description,
-                    'slug'             => $request->name,
-                    'cate_id'          => $request->cate_id,
-                    'sale_description' => $request->sale_description,
-                    'cate_sale'        => $request->cate_sale,
-                    'tag'              => $request->tag,
-                    'created_at'       => Date('Y-m-d H:i:s'),
-                    'updated_at'       => Date('Y-m-d H:i:s')
-                ]);
+                $product_update->name             = $request->name;
+                $product_update->url_image        = $url_image;
+                $product_update->description      = $request->description;
+                $product_update->slug             = $request->name;
+                $product_update->cate_id          = $request->cate_id;
+                $product_update->sale_description = $request->sale_description;
+                $product_update->cate_sale        = $request->cate_sale;
+                $product_update->tag              = $request->tag;
                 
+                $product_update->save();
+                DB::commit();
+                return response()->json(['status'=>true], 200);
             } catch (Exception $e) {
                 DB::rollback();
                 return response()->json(['message'=>'Lỗi hệ thống không thể thêm mới'], 422);
@@ -148,9 +151,9 @@ class ProductCtrl extends Controller
                 if (empty($detailProduct)) {
                     return response()->json(['message'=>'Lỗi hệ thống không thể sửa chữa'], 422);
                 }
-                $detailProduct->color = $request->color;
-                $detailProduct->price = $request->price;
-                $detailProduct->size = $request->size;
+                $detailProduct->color    = $request->color;
+                $detailProduct->price    = $request->price;
+                $detailProduct->size     = $request->size;
                 $detailProduct->quantily = $request->quantily;
                 $detailProduct->save();
 

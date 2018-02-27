@@ -30,9 +30,9 @@ ngApp.directive('productModal', function($apply, $productService){
 					});
 			},
 
-			updateProduct: function (idCate) {
+			updateProduct: function (idProduct) {
 				var params = scope.dataParams();
-				$productService.action.updateCate(idCate, params).then( function (resp) {
+				$productService.action.updateProduct(idProduct, params).then( function (resp) {
 						if (resp) {
 							scope.onSave({data : true});
 						}
@@ -43,20 +43,18 @@ ngApp.directive('productModal', function($apply, $productService){
 
 			saveProduct: function () {
 				var params = scope.dataParams();
-			
-				if (!scope.data.idCate) {
+				if (!scope.data.idProduct) {
 					if ($(scope.productForm).parsley().validate())
 					{
 						scope.actions.insertProduct();
 					}
 				}
-				// else {
-				// 	if ($(scope.cateForm).parsley().validate())
-				// 	{
-				// 		scope.actions.updateProduct(scope.data.idCate);
-				// 	}
-					
-				// }
+				else {
+					if ($(scope.productForm).parsley().validate())
+					{
+						scope.actions.updateProduct(scope.data.idProduct);
+					}
+				}
 			}
 		}
 
