@@ -51,13 +51,41 @@ ngApp.controller('cateCtrl', function ($apply, $cateService, $scope, changStatus
 			});
 		},
 
-		menuBarLevel: function (data, parent = 0, str = " -- ") {
-			angular.forEach(data, function(item, key) {
-				if (item.parent_id == parent) {
-					$scope.data.nameCate.push({'name': str + item.name + str, id: item.id});
-					$scope.actions.menuBarLevel(data, item.id, str + " -- ");  
-				} 
+		allListCateRule: function (idSeft) {
+			var params = $cateService.filter('', '', '', 0);
+			$cateService.action.allListCate(params).then(function (resp) {
+				$scope.data.allListCate = resp.data;
+				$scope.data.nameCate = [];
+				$scope.actions.menuBarLevel($scope.data.allListCate, idSeft);
+			}, function (error) {
+				console.log(error);
 			});
+		},
+
+		menuBarLevel: function (data, idSeft ='', parent = 0, str = " -- ") {
+			if (idSeft) {
+
+				angular.forEach(data, function(item, key) {
+					if (idSeft != item.id){
+						if (item.parent_id == parent) {
+							$scope.data.nameCate.push({'name': str + item.name + str, id: item.id});
+							$scope.actions.menuBarLevel(data, idSeft, item.id, str + " -- ");  
+						} 
+					}
+					
+				});
+			} else {
+
+				angular.forEach(data, function(item, key) {
+				
+					if (item.parent_id == parent) {
+						$scope.data.nameCate.push({'name': str + item.name + str, id: item.id});
+						$scope.actions.menuBarLevel(data, idSeft, item.id, str + " -- ");  
+					} 
+				});
+				
+			}
+			
 		},
 
 		// chuyen id loai tin cha thanh ten tieng viet
@@ -107,10 +135,11 @@ ngApp.controller('cateCtrl', function ($apply, $cateService, $scope, changStatus
 					parent_id: 0,
 				};
 				$scope.data.title = "Thêm mới loại sản phẩm";
+				$scope.actions.allListCate();
 			} else {
 				$cateService.action.editCate(idCate).then (function (resp) {
 					$scope.data.params = resp.data;
-					
+					$scope.actions.allListCateRule($scope.data.params.id);
 				}, function (error) {
 					console.log(error);
 				});

@@ -55,13 +55,13 @@ ngApp.controller('productCtrl', function ($apply, $productService, $scope, chang
 			if (!idPro) {
 				$scope.data.title = "Thêm mới sản phẩm";
 			} else {
-				// $cateService.action.editCate(idPro).then (function (resp) {
-				// 	$scope.data.params = resp.data;
-					
-				// }, function (error) {
-				// 	console.log(error);
-				// });
-				// $scope.data.title = "Cập nhật loại tin";
+				$productService.action.editProduct(idPro).then (function (resp) {
+					$scope.data.params = resp.data;
+					console.log($scope.data.params)
+				}, function (error) {
+					console.log(error);
+				});
+				$scope.data.title = "Cập nhật sản phẩm";
 			}
 		},
 		save: function (data, conf) {

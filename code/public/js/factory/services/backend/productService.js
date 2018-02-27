@@ -19,6 +19,7 @@ ngApp.factory('$productService', function ($http, $httpParamSerializer){
 		params.append('description', description || '');
 		angular.forEach(multiImage, function(image, key){
 			params.append('imageDetail['+ key +']', image);
+			console.log(image);
 		});
 		return params;
 	};

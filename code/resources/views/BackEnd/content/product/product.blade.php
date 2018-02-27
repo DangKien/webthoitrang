@@ -96,8 +96,8 @@
 										<td class="width-250"> <span ng-bind-html="product.description"></span> </td>
 										<td class="width-80"> @{{ product.tag }} </td>
 										<td> 
-											<button ng-click= "actions.showModal(cate.id)" class="btn btn-default btn-icon btn-circle icon-lg fa fa-edit"></button>
-											<button ng-click= "actions.deleteCate(cate.id)" class="btn btn-danger btn-icon btn-circle icon-lg fa fa-trash"></button>
+											<button ng-click= "actions.showModal(product.id)" class="btn btn-default btn-icon btn-circle icon-lg fa fa-edit"></button>
+											<button ng-click= "actions.deleteCate(product.id)" class="btn btn-danger btn-icon btn-circle icon-lg fa fa-trash"></button>
 										</td>
 									</tr>
 								</tbody>

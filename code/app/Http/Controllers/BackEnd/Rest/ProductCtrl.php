@@ -53,16 +53,47 @@ class ProductCtrl extends Controller
 
     	} catch (Exception $e) {
     		DB::rollback();
+            return response()->json(['message'=>'Đã có lỗi trên hệ thống'], 422);
     	}
 
     }
 
-    public function getEdit(){
-
+    public function getEdit(ProductModel $product, ProductDetailModel $detail, $id) {
+        if ($id) {
+            $result = $product->where('id', $id)->with('cates')->first();
+            if (empty($result)) {
+                return response()->json(['message'=>'Không tìm thấy dữ liệu phù hợp'], 422);
+            } else {
+                return response()->json($result);
+            }
+        }
     }
 
     public function getUpdate(){
-
+        if ($id) {
+            DB::beginTransaction();
+            try {
+                if ($request->hasFile('url_image')) {
+                    $url_image     = Storage::putFile('images/main_prodcut', $request->url_image);
+                }
+                $productId = $product->insertGetId([
+                    'name'             => $request->name,
+                    'url_image'        => $url_image,
+                    'description'      => $request->description,
+                    'slug'             => $request->name,
+                    'cate_id'          => $request->cate_id,
+                    'sale_description' => $request->sale_description,
+                    'cate_sale'        => $request->cate_sale,
+                    'tag'              => $request->tag,
+                    'created_at'       => Date('Y-m-d H:i:s'),
+                    'updated_at'       => Date('Y-m-d H:i:s')
+                ]);
+                
+            } catch (Exception $e) {
+                DB::rollback();
+                return response()->json(['message'=>'Lỗi hệ thống không thể thêm mới'], 422);
+            }
+        }
     }
 
     public function getDelete(){
@@ -92,7 +123,7 @@ class ProductCtrl extends Controller
             return response()->json(['message'=>true], 200);
         } catch (Exception $e) {
             DB::rollback();
-            return response()->json(['message'=>'Lỗi hệ thống không thể thêm mới'], 200);
+            return response()->json(['message'=>'Lỗi hệ thống không thể thêm mới'], 422);
         }
     }
 
@@ -103,7 +134,7 @@ class ProductCtrl extends Controller
                 $result = $detail->find($id);
                 return response()->json($result);
             } catch (Exception $e) {
-                return response()->json(['message'=>'Lỗi hệ thống không thể thêm mới'], 200);
+                return response()->json(['message'=>'Lỗi hệ thống không thể thêm mới'], 422);
             }
         }
     }
@@ -115,7 +146,7 @@ class ProductCtrl extends Controller
             try {
                 $detailProduct = $detail->find($id);
                 if (empty($detailProduct)) {
-                    return response()->json(['message'=>'Lỗi hệ thống không thể sửa chữa'], 200);
+                    return response()->json(['message'=>'Lỗi hệ thống không thể sửa chữa'], 422);
                 }
                 $detailProduct->color = $request->color;
                 $detailProduct->price = $request->price;
@@ -128,7 +159,7 @@ class ProductCtrl extends Controller
                 
             } catch (Exception $e) {
                 DB::rollback();
-                return response()->json(['message'=>'Lỗi hệ thống không thể thêm mới'], 200);
+                return response()->json(['message'=>'Lỗi hệ thống không thể thêm mới'], 422);
             }
         }
     }
@@ -140,7 +171,7 @@ class ProductCtrl extends Controller
             if ($id) {
                 $result = $detail::find($id);
                 if (empty($result))  {
-                    return response()->json(['message'=>'Lỗi hệ thống không thể xóa'], 200);
+                    return response()->json(['message'=>'Lỗi hệ thống không thể xóa'], 422);
                 } else {
                     $result->delete();
                 }

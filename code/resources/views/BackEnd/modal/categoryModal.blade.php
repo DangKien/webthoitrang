@@ -34,10 +34,10 @@
 								<label class="col-sm-3 control-label fix-form-cate" for="demo-is-inputsmall">Loại sản phẩm cha*: </label>
 								<div class="col-sm-8">
 									<select id = "idCate" class="form-control">
-										<option ng-selected="data.params.cate_id == '0'" value="0">Loại tin cha </option>
+										<option value="0">Loại tin cha </option>
 										<option ng-repeat="(key, cate) in data.nameCate" 
-												ng-selected="(cate.id == data.params.cate_id)"
-												value="@{{ cate.id }}">@{{ cate.name }}
+												ng-selected="(cate.id == data.params.parent_id)"
+												value="@{{ cate.id }}"> @{{ cate.name }}
 										</option>
 									</select>
 								</div>
@@ -58,10 +58,6 @@
 									id="demo-is-inputsmall" ng-model = "data.params.tag">
 								</div>
 							</div>
-
-							
-
-						
 					</div>
 				</div>
 				<div class="modal-footer">
