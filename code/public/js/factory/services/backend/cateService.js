@@ -36,6 +36,8 @@ ngApp.factory('$cateService', function ($http, $httpParamSerializer){
         return $http.get(url);
 	};
 
+	
+
 	service.action.insertCate = function (params) {
 		var url = SiteUrl + "/rest/backend/cate";
         return $http.post(url, params);

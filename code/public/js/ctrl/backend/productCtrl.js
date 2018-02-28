@@ -48,9 +48,20 @@ ngApp.controller('productCtrl', function ($apply, $productService, $scope, chang
 			});
 		},
 
+		listPromotion: function () {
+			
+			$productService.action.listPromotion().then(function (resp) {
+				$scope.data.allPromotion = resp.data;
+				console.log($scope.data.allPromotion);
+			}, function (error) {
+				console.log(error);
+			});
+		},
+
 		showModal: function (idProduct) {
 			$scope.data.idProduct = idProduct;
 			$($scope.domProductModal).modal('show');
+			$scope.actions.listPromotion();
 			// $($scope.domCateForm).parsley().reset();
 			$scope.data.errors = {};
 			if (!idProduct) {
@@ -86,8 +97,6 @@ ngApp.controller('productCtrl', function ($apply, $productService, $scope, chang
 	};
 	$scope.actions.allListCate();
 	$scope.actions.listProduct();
-	
-
 });
 
 ngApp.config(['$routeProvider','$locationProvider',

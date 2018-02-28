@@ -8,6 +8,7 @@ use App\Models\ProductModel;
 use App\Models\ProductDetailModel;
 use App\Models\ProductImageModel;
 use App\Models\CategoryModel;
+use App\Models\PromotionModel;
 use Storage, DB;
 
 class ProductCtrl extends Controller
@@ -19,6 +20,12 @@ class ProductCtrl extends Controller
 
         return response()->json($result);
     }	
+
+
+    public function getPromotion(PromotionModel $promotion) {
+            $result = $promotion->all();
+            return response()->json($result);
+    }
 
     public function getInsert(ProductModel $product, ProductDetailModel $detail
     						, Request $request) {

@@ -55,6 +55,11 @@ ngApp.factory('$productService', function ($http, $httpParamSerializer){
         return $http.get(url);
 	};
 
+	service.action.listPromotion = function (filter) {
+		var url = SiteUrl + "/rest/backend/promotion/?" + $httpParamSerializer(filter);
+        return $http.get(url);
+	};
+
 	service.action.insertProduct = function (params) {
 		var config = {
 			headers : {
