@@ -3,6 +3,8 @@ ngApp.controller('detailProductCtrl', function ($apply, $productService, $scope,
     $scope.domDetailProductModal;
     $scope.data = {
         listProduct: {},
+        pageDetailProdcut:{},
+        filter:{},
         nameCate: [],
         mutiImage: [],
         params: {},
@@ -14,16 +16,15 @@ ngApp.controller('detailProductCtrl', function ($apply, $productService, $scope,
 
         changePage: function (page) {
             $scope.data.pageDetailProdcut.current_page = page;
-            $scope.actions.listProduct();
+            $scope.actions.listDetailProduct();
         },
 
         // Danh sach loai tin
         listDetailProduct: function () {
-            // var name   = $scope.data.filter.name;
-            // var status = $('#statusFilter').val();
-            // var current_page =  $scope.data.pageCate.current_page;
-            // var params = $cateService.filter (name, status, current_page , 10);
-            $productService.action.listDetailProduct($scope.data.idProduct).then(function (resp) {
+            var name         = $scope.data.filter.name;
+            var current_page =  $scope.data.pageDetailProdcut.current_page;
+            var params       = $productService.filterDetail (name, current_page , 10);
+            $productService.action.listDetailProduct($scope.data.idProduct, params).then(function (resp) {
                 $scope.data.listDetailProduct = resp.data.data;
                 $scope.data.pageDetailProdcut = resp.data;
             }, function (error) {

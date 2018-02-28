@@ -12,7 +12,7 @@
 							<label class=" control-label" for="demo-is-inputsmall"></label>
 							<div>
 								<div class="text-danger" style="margin-top: 5px;">
-								    @{{ data.errors.messages }}
+								    @{{ data.errors.message }}
 								</div>
 							</div>
 						</div>
@@ -39,6 +39,11 @@
 												value="@{{ cate.id }}">@{{ cate.name }}
 										</option>
 									</select>
+									<p class="text-danger" style="margin-top: 5px;"
+										ng-repeat="er in data.errors.cate_id"
+									>
+									    @{{ er }}
+									</p>
 								</div>
 							</div>
 
@@ -50,6 +55,11 @@
 												ng-selected="(promotion.id == data.params.cate_sale)"
 												value="@{{ promotion.id }}">@{{ promotion.name }}
 										</option>
+										<p class="text-danger" style="margin-top: 5px;"
+											ng-repeat="er in data.errors.cate_sale"
+										>
+										    @{{ er }}
+										</p>
 									</select>
 								</div>
 							</div>
@@ -69,7 +79,7 @@
 									<div ng-if="data.show">
 										<img class="image-support img-responsive" src="{{ url('Nifty') }}/img/av6.png" alt="..." style="margin-top: 5px; width: 140px; height: 150px;">
 										<p class="text-danger" style="margin-top: 5px;"
-											ng-repeat="er in data.errors.file"
+											ng-repeat="er in data.errors.url_image"
 										>
 										    @{{ er }}
 										</p>	
@@ -77,7 +87,7 @@
 									<div ng-if="!data.show">
 										<img class="image-support img-responsive" ng-src="{{ url('../storage/app') }}/@{{ data.params.url_image }}" alt="..." style="margin-top: 5px; width: 140px; height: 150px;">
 										<p class="text-danger" style="margin-top: 5px;"
-											ng-repeat="er in data.errors.file"
+											ng-repeat="er in data.errors.url_image"
 										>
 										    @{{ er }}
 										</p>	
@@ -91,6 +101,11 @@
 								<div>
 									<input type="text" placeholder="tag 1, tag 2,..." class="form-control input-sm " 
 									id="tag" ng-model = "data.params.tag">
+									<p class="text-danger" style="margin-top: 5px;"
+										ng-repeat="er in data.errors.tag"
+									>
+									    @{{ er }}
+									</p>
 								</div>
 							</div>
 
@@ -108,14 +123,12 @@
 							</div>
 
 							<div class="clearfix"></div>
-							
-
 							<div class="form-group">
 								<label required class="control-label " for="demo-is-inputsmall">Mô tả: </label>
 								<div>
 									<textarea ng-model="data.params.description" class="my-ckeditor" name="description"></textarea>
 									<p class="text-danger" style="margin-top: 5px;"
-										ng-repeat="er in data.errors.content"
+										ng-repeat="er in data.errors.description"
 									>
 									    @{{ er }}
 									</p>

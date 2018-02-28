@@ -29,6 +29,7 @@ class ProductCtrl extends Controller
 
     public function getInsert(ProductModel $product, ProductDetailModel $detail
     						, Request $request) {
+        $this->validateInsert($request);
         DB::beginTransaction();
 
     	try {
@@ -78,6 +79,7 @@ class ProductCtrl extends Controller
 
     public function getUpdate(ProductModel $product, ProductDetailModel $detail, $id, 
                                Request $request ){
+        $this->validateUpdate($request);
         if ($id) {
             DB::beginTransaction();
             try {
@@ -130,13 +132,14 @@ class ProductCtrl extends Controller
 
     public function insertDetailProduct(ProductModel $product, ProductDetailModel $detail, $id, 
                                 Request $request) {
+        $this->validateDetailInsert($request);
         DB::beginTransaction();
         try {
 
-            $detail->color = $request->color;
-            $detail->size = $request->size;
-            $detail->quantily = $request->quantily;
-            $detail->price = $request->price;
+            $detail->color      = $request->color;
+            $detail->size       = $request->size;
+            $detail->quantily   = $request->quantily;
+            $detail->price      = $request->price;
             $detail->product_id = $id;
             $detail->save();
             DB::commit();
@@ -161,6 +164,7 @@ class ProductCtrl extends Controller
 
     public function updateDetailProduct(ProductModel $product, ProductDetailModel $detail, $id, 
                                 Request $request) {
+        $this->validateDetailUpdate($request);
         if ($id) {
             DB::beginTransaction();
             try {
@@ -201,4 +205,68 @@ class ProductCtrl extends Controller
             DB::rollback();
         }
     }
+
+
+    public function validateInsert($request){
+        return $this->validate($request, [
+            'name'             => 'required|unique:category,name',
+            'url_image'        => 'required',
+            'cate_id'          => 'required',
+            'cate_sale'        => 'required',
+            ], [
+            'name.required'             => 'Tên sản phẩm không được để trống',
+            'name.unique'               => 'Đã có tên tiêu đề này',
+            'url_image.required'        => 'Ảnh chính không được để trống',
+            'cate_id.required'          => 'Loại sản phẩm không được để trống',
+            'cate_sale.required'        => 'Loại khuyến mãi không được để trống',
+            ]
+        );
+    }
+
+    public function validateUpdate($request){
+        return $this->validate($request, [
+            'name'             => 'required|unique:products,name',
+            'url_image'        => 'required',
+            'cate_id'          => 'required',
+            'cate_sale'        => 'required',
+            ], [
+            'name.required'             => 'Tên tiêu đề không được để trống',
+            'name.unique'               => 'Đã có tên tiêu đề này',
+            'url_image.required'        => 'Ảnh chính không được để trống',
+            'cate_id.required'          => 'Loại sản phẩm không được để trống',
+            'cate_sale.required'        => 'Loại khuyến mãi không được để trống',
+            ]
+        );
+    }
+
+    public function validateDetailInsert($request){
+        return $this->validate($request, [
+            'color'      => 'required',
+            'size'       => 'required',
+            'price'      => 'required',
+            'quantily'   => 'required',
+            ], [
+            'color.required'      => 'Màu sắc không được để trống',
+            'size.required'       => 'Kích thước không được để trống',
+            'price.required'      => 'Giá không được để trống',
+            'quantily.required'   => 'Số lượng không được để trống',
+            ]
+        );
+    }
+
+    public function validateDetailUpdate($request){
+        return $this->validate($request, [
+            'color'      => 'required',
+            'size'       => 'required',
+            'price'      => 'required',
+            'quantily'   => 'required',
+            ], [
+            'color.required'    => 'Màu sắc không được để trống',
+            'size.required'     => 'Kích thước không được để trốn',
+            'price.required'    => 'Giá không được để trống',
+            'quantily.required' => 'Số lượng không được để trống',
+            ]
+        );
+    }
+
 }

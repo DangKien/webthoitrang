@@ -113,18 +113,22 @@ class CateCtrl extends Controller
 
 	public function validateInsert($request){
 	    return $this->validate($request, [
-			'name'          => 'required|unique:category,name',
+			'name'               => 'required|unique:category,name',
+			'parent_id'          => 'required',
 			], [
-			'name.required' => 'Tên tiêu đề không được để trống',
-			'name.unique'   => 'Đã có tên tiêu đề này',
+			'name.required'      => 'Tên tiêu đề không được để trống',
+			'name.unique'        => 'Đã có tên tiêu đề này',
+			'parent_id.required' => 'Loại sản phẩm cha không được để trống',
 	    	]
 		);
 	}
 	public function validateUpdate($request){
 	    return $this->validate($request, [
 			'name'          => 'required',
+			'parent_id'          => 'required',
 			], [
 			'name.required' => 'Tên tiêu đề không được để trống',
+			'parent_id.required' => 'Loại sản phẩm cha không được để trống',
 	    	]
 		);
 	}

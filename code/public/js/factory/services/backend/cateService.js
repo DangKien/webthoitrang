@@ -17,7 +17,7 @@ ngApp.factory('$cateService', function ($http, $httpParamSerializer){
 		return params;
 	};
 
-	service.filter = function (name, status, page = 1 , perPage = 10) {
+	service.filter = function (name, status, page, perPage = 10) {
 		var params = {
 			name: name || '',
 			status: status || '',

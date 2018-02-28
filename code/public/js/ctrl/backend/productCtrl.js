@@ -3,28 +3,28 @@ ngApp.controller('productCtrl', function ($apply, $productService, $scope, chang
 	$scope.domProductModal;
 	$scope.data = {
 		listProduct: {},
+		pageProdcut: {},
 		nameCate: [],
 		mutiImage: [],
 		show: true,
+		filter: {},
 	};
 
 	$scope.actions = {
 
 		changePage: function (page) {
-			$scope.data.pageCate.current_page = page;
+			$scope.data.pageProdcut.current_page = page;
 			$scope.actions.listProduct();
 		},
 
 		// Danh sach loai tin
 		listProduct: function () {
-			// var name   = $scope.data.filter.name;
-			// var status = $('#statusFilter').val();
-			// var current_page =  $scope.data.pageCate.current_page;
-			// var params = $cateService.filter (name, status, current_page , 10);
-			$productService.action.listProduct().then(function (resp) {
+			var name   = $scope.data.filter.name;
+			var current_page =  $scope.data.pageProdcut.current_page;
+			var params = $productService.filter (name, current_page , 10);
+			$productService.action.listProduct(params).then(function (resp) {
 				$scope.data.listProduct = resp.data.data;
 				$scope.data.pageProdcut = resp.data;
-
 			}, function (error) {
 				console.log(error);
 			});
@@ -49,7 +49,6 @@ ngApp.controller('productCtrl', function ($apply, $productService, $scope, chang
 		},
 
 		listPromotion: function () {
-			
 			$productService.action.listPromotion().then(function (resp) {
 				$scope.data.allPromotion = resp.data;
 				console.log($scope.data.allPromotion);
@@ -62,8 +61,9 @@ ngApp.controller('productCtrl', function ($apply, $productService, $scope, chang
 			$scope.data.idProduct = idProduct;
 			$($scope.domProductModal).modal('show');
 			$scope.actions.listPromotion();
-			// $($scope.domCateForm).parsley().reset();
+			$($scope.domProductForm).parsley().reset();
 			$scope.data.errors = {};
+			$scope.data.params = {};
 			if (!idProduct) {
 				$scope.data.title = "Thêm mới sản phẩm";
 			} else {

@@ -35,10 +35,18 @@ ngApp.factory('$productService', function ($http, $httpParamSerializer){
 		return params;
 	};
 
-	service.filter = function (name, status, page = 1 , perPage = 10) {
+	service.filter = function (name, page, perPage = 10) {
 		var params = {
 			name: name || '',
-			status: status || '',
+			per_page: perPage,
+			page: page || '1',
+		};
+		return params;
+	};
+
+	service.filterDetail = function (name, page, perPage = 10) {
+		var params = {
+			name: name || '',
 			per_page: perPage,
 			page: page || '1',
 		};
