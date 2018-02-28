@@ -99,8 +99,18 @@ class ProductCtrl extends Controller
         }
     }
 
-    public function getDelete(){
-
+    public function getDelete(ProductModel $product, ProductDetailModel $detail, ProductImageModel $images, $id){
+        DB::beginTransaction();
+        try {
+            if ($id) {
+                $result = $detail::where('product_id', $id)->delete();
+                $product->find($id)->delete();
+                $images->where('product_id', $id)->delete();
+            }
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollback();
+        }
     }
 
     public function detailProduct(ProductModel $product, ProductDetailModel $detail, $id) {
