@@ -7,14 +7,8 @@
     .ptb-350 {
       padding: 240px 0;
     }
-    
-    
-    
-    
-    
 }
 /* Normal desktop :992px. */
-
 @media (min-width: 992px) and (max-width: 1200px) {
     .main-menu nav > ul > li > a {
         padding: 25px 13px;
@@ -574,13 +568,6 @@
     .shopping-cart > span {
         top: 7px;
     }    
-    
-    
-    
-    
-    
-    
-    
 }
 /* Large Mobile :480px. */
 

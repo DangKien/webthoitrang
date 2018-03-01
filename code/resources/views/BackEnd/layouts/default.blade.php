@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <!-- Chrome, Firefox OS and Opera -->
+        <meta name="theme-color" content="#75C7C3">
+        <!-- Windows Phone -->
+        <meta name="msapplication-navbutton-color" content="#75C7C3">
+        <!-- iOS Safari -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="#75C7C3">
         <title> @yield('title') </title>
         <link rel="icon" href="{{ url('Frontend/img/logo_title1.png') }}" type="image/gif" sizes="32x32">
         <script>
