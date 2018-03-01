@@ -24,8 +24,23 @@ Route::group(['prefix'=>'backend'], function (){
 	Route::get('/product-main', 'BackEnd\Product\ProductCtrl@product');
 	Route::get('/detail-product', 'BackEnd\Product\ProductCtrl@detailProduct');
 	// Route::get('/product', 'BackEnd\Product\ProductCtrl@product');
+	Route::get('/image', function (){
+		return view('vendor.laravel-filemanager.index');
+	});
 });
 
+// frontend route
+Route::group(['prefix'=>''], function (){
+	Route::get('/', 'FrontEnd\Home\HomeCtrl@index');
+
+});
+
+Route::group(['prefix'=>''], function (){
+	Route::get('/', 'FrontEnd\Home\HomeCtrl@index');
+
+});
+
+// backend route rest API
 Route::group(['prefix' => 'rest/backend'], function() {
     // loại tin
     Route::get('/cate', 'BackEnd\Rest\CateCtrl@getList');
@@ -46,6 +61,4 @@ Route::group(['prefix' => 'rest/backend'], function() {
 	Route::post('product-detail-update/{id}', 'BackEnd\Rest\ProductCtrl@updateDetailProduct');
 	Route::get('product-detail-delete/{id}', 'BackEnd\Rest\ProductCtrl@deleteDetailProduct');
 	Route::get('promotion', 'BackEnd\Rest\ProductCtrl@getPromotion');
-
-
 });

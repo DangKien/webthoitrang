@@ -14,6 +14,7 @@ class PromotionSeed extends Seeder
         DB::table('promotions')->insert([
                     ['name' => 'Giảm giá'],
                     ['name' => 'Tặng Kèm'],
+                    ['name' => 'Hàng mới'],
                 ]);
     }
 }
