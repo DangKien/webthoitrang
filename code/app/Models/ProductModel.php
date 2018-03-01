@@ -12,4 +12,19 @@ class ProductModel extends MyModel
     public function cates() {
     	return $this->hasOne('App\Models\CategoryModel', 'id', 'cate_id');
     }
+
+
+    public function images() {
+    	return $this->hasMany('App\Models\ProductImageModel', 'product_id', 'id');
+    }
+
+    public function getProductCategory($idCategory, $limit) {
+    	$product = $this->where('cate_id', $idCategory)
+    					->limit($limit)
+    					->orderBy('id', 'desc')
+    					->with('cates')
+    					->with('images')
+    					->get();
+    	return $product;
+    }
 }

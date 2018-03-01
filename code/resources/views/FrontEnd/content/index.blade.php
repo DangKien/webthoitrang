@@ -13,7 +13,11 @@
             <div class="portfolio-all">
                 <div class="shop-menu text-left mb-50">
                     <button>Dresses</button>
-                </div>          
+                </div>  
+                <?php 
+                    $productModel = new App\Models\ProductModel();
+                    $products     = $productModel->getProductCategory(3, 8);
+                ?>        
                 <div class="row portfolio-style-2">
                     <div class="grid">
                         <div class="col-md-3 col-sm-6 col-xs-12 grid-item mb-50">
@@ -82,59 +86,63 @@
                 </div>          
                 <div class="row portfolio-style-2">
                     <div class="grid">
-                        <div class="col-md-3 col-sm-6 col-xs-12 grid-item mb-50">
-                            <div class="single-shop">
-                                <div class="shop-img">
-                                    <a href="#"><img src="assets/img/shop/equal/1.jpg" alt="" /></a>
-                                    <div class="shop-quick-view">
-                                        <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                                            <i class="pe-7s-look"></i>
+                        @foreach ($products as $key => $product)
+                            <div class="col-md-3 col-sm-6 col-xs-12 grid-item mb-50">
+                                <div class="single-shop">
+                                    <div class="shop-img">
+                                        <a href="#">
+                                            <img src="{{ url('../storage/app') }}/{{ $product->url_image }}" alt="" />
                                         </a>
+                                        <div class="shop-quick-view">
+                                            <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                <i class="pe-7s-look"></i>
+                                            </a>
+                                        </div>
+                                        <div class="price-up-down">
+                                            <span class="sale-new">sale</span>
+                                        </div>
+                                        <div class="button-group">
+                                            <a href="#" title="Add to Cart">
+                                                <i class="pe-7s-cart"></i>
+                                                add to cart
+                                            </a>
+                                            <a class="wishlist" href="#" title="Wishlist">
+                                                <i class="pe-7s-like"></i>
+                                                Wishlist
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div class="price-up-down">
-                                        <span class="sale-new">sale</span>
-                                    </div>
-                                    <div class="button-group">
-                                        <a href="#" title="Add to Cart">
-                                            <i class="pe-7s-cart"></i>
-                                            add to cart
-                                        </a>
-                                        <a class="wishlist" href="#" title="Wishlist">
-                                            <i class="pe-7s-like"></i>
-                                            Wishlist
-                                        </a>
-                                    </div>
+                                    <div class="shop-text-all">
+                                        <div class="title-color fix">
+                                            <div class="shop-title f-left">
+                                                <h3><a href="#">{{ $product->name }}</a></h3>
+                                            </div>
+                                            <div class="pro-color f-right">
+                                                <ul>
+                                                    <li class="blue">b</li>
+                                                    <li class="orange">o</li>
+                                                    <li class="purple">p</li>
+                                                    <li class="pink">p</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="price-ratting fix">
+                                            <span class="price f-left">
+                                                <span class="new">$120.00</span>
+                                                <span class="old">$130.00</span>
+                                            </span>
+                                            <span class="ratting f-right">
+                                                <i class="fa fa-star active"></i>
+                                                <i class="fa fa-star active"></i>
+                                                <i class="fa fa-star active"></i>
+                                                <i class="fa fa-star active"></i>
+                                                <i class="fa fa-star active"></i>
+                                            </span>
+                                        </div>
+                                    </div>                                  
                                 </div>
-                                <div class="shop-text-all">
-                                    <div class="title-color fix">
-                                        <div class="shop-title f-left">
-                                            <h3><a href="#">Product Title</a></h3>
-                                        </div>
-                                        <div class="pro-color f-right">
-                                            <ul>
-                                                <li class="blue">b</li>
-                                                <li class="orange">o</li>
-                                                <li class="purple">p</li>
-                                                <li class="pink">p</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="price-ratting fix">
-                                        <span class="price f-left">
-                                            <span class="new">$120.00</span>
-                                            <span class="old">$130.00</span>
-                                        </span>
-                                        <span class="ratting f-right">
-                                            <i class="fa fa-star active"></i>
-                                            <i class="fa fa-star active"></i>
-                                            <i class="fa fa-star active"></i>
-                                            <i class="fa fa-star active"></i>
-                                            <i class="fa fa-star active"></i>
-                                        </span>
-                                    </div>
-                                </div>                                  
                             </div>
-                        </div>                  
+                        @endforeach                  
                     </div>      
                 </div>
                 <div class="view-more text-center">
