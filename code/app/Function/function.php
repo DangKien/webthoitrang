@@ -28,5 +28,42 @@
         return $string;
     } 
 
-
+    function showCategories($categories, $parent_id = 0, $stt = 0) {
+        $cate_child = array();
+        foreach ($categories as $key => $item) {
+            if ($item['parent_id'] == $parent_id)
+            {
+                $cate_child[] = $item;
+                unset($categories[$key]);
+            }
+        }
+        if (empty(!$cate_child) ) {
+            if ($stt == 0){
+            foreach ($cate_child as $key => $item) {
+                echo '<li><a href="blog-page.html">'.$item['name'].'</a>';
+                showCategories($categories, $item['id'], ++$stt);
+                echo '</li>';
+            }
+        }
+        else if ($stt == 1){
+            echo '<ul class="dropdown">';
+            foreach ($cate_child as $key => $item) {
+                echo '<li><a href="blog-page.html">'.$item['name'].'</a>';
+                showCategories($categories, $item['id'], ++$stt);
+                echo '</li>';
+            }
+            echo '</ul>';
+        } else {
+            echo '<ul class="dropdown fix-ul">';
+            foreach ($cate_child as $key => $item) {
+                echo '<li><a href="blog-page.html">'.$item['name'].'</a>';
+                showCategories($categories, $item['id'], ++$stt);
+                echo '</li>';
+            }
+            echo '</ul>';
+        }
+        }
+        
+        
+    }
  ?>

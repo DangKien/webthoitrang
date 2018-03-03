@@ -12,9 +12,12 @@ class HomeCtrl extends Controller
     public function index(CategoryModel $category, ProductModel $product) {
     	$title = "Trang chủ";
     	
+    	$categories = $category ->select('name','slug', 'id', 'url_link', 'parent_id')
+    						   	->get()->toArray();
     	return view('FrontEnd.content.index',
     	[
     		'title' => $title,
+    		'categories'=> $categories,
     	]);
     }
 

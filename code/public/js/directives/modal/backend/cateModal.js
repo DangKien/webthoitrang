@@ -9,7 +9,6 @@ ngApp.directive('cateModal', function($apply, $cateService){
 			var tag    = scope.data.params.tag;
 			var urlLink= scope.data.params.url_link;
 			var params = $cateService.data(name, status, cateId, tag, urlLink);
-
 			return params;
 		};
 

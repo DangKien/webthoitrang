@@ -30,11 +30,10 @@
 								</div>
 							</div>
 
-							<div class="form-group">
+							<div class="form-group" ng-if="(data.params.parent_id != 0)">
 								<label class="col-sm-3 control-label fix-form-cate" for="demo-is-inputsmall">Loại sản phẩm cha*: </label>
 								<div class="col-sm-8">
 									<select id = "idCate" class="form-control">
-										<option value="0">Loại tin cha </option>
 										<option ng-repeat="(key, cate) in data.nameCate" 
 												ng-selected="(cate.id == data.params.parent_id)"
 												value="@{{ cate.id }}"> @{{ cate.name }}
@@ -42,15 +41,14 @@
 									</select>
 								</div>
 							</div>
-
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label class="col-sm-3 control-label fix-form-cate" for="demo-is-inputsmall">Link Sản Phẩm: </label>
 								<div class="col-sm-8">
 									<input type="text" placeholder="" class="form-control input-sm"
 									id="demo-is-inputsmall" ng-model = "data.params.url_link">
 								</div>
 							</div>
-
+ -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label fix-form-cate" for="demo-is-inputsmall">Tag: </label>
 								<div class="col-sm-8">

@@ -39,6 +39,9 @@
     font-size: 13px;
     text-transform: capitalize;
 }
+.product-type {
+    margin-bottom: 70px;
+}
 .currence > ul {
     display: inline-block;
     float: right;
@@ -299,7 +302,7 @@ a.top-cart {
     visibility: hidden;
     left: 0;
 }
-.main-menu nav > ul > li:hover .dropdown {
+.main-menu nav  ul  li:hover>ul {
     opacity: 1;
     visibility: visible;
     top: 100%;
@@ -307,16 +310,21 @@ a.top-cart {
 .main-menu nav > ul > li > ul > li {
     display: block;
 }
-.main-menu nav > ul > li > ul > li > a {
+.main-menu nav > ul > li > ul li a {
     color: #333;
     display: block;
     font-weight: normal;
     padding: 7px 0;
     text-transform: capitalize;
 }
-.main-menu nav > ul > li > ul > li > a:hover {
+.main-menu nav  ul  li ul  a:hover {
     color: #666;
     padding-left: 5px;
+}
+.main-menu nav  ul  li:hover .fix-ul {
+    top: 0px;
+    left: 100%;
+    position: absolute;
 }
 /* main-menu (mega manu) start */
 

@@ -26,10 +26,12 @@ class CateCtrl extends Controller
 	}
 
 	public function getInsert(Request $request, CategoryModel $cate) { 
-
 		$this->validateInsert($request);
-
 		DB::beginTransaction();
+		if ($request->cate_id == 0) {
+			return response()->json(['message' => 'Không thể thêm loại sản phẩm cha'], 422);
+		}
+
 		try {
 			if (empty($request->url_link)) {
 				$url_link = url('')."/category/".sanitizeTitle($request->name);
@@ -48,6 +50,7 @@ class CateCtrl extends Controller
 
 		} catch (Exception $e) {
 			DB::rollback();
+			return response()->json(['message' => 'Lỗi từ hệ thống'], 422);
 		}
 	}
 
@@ -57,7 +60,7 @@ class CateCtrl extends Controller
 			$category = $cate::find($id);
 			return response()->json($category);
 		} else {
-			return response()->json(['messages' => 'Id không tồn tại'], 422); 
+			return response()->json(['message' => 'Id không tồn tại'], 422); 
 		}
 	}
 
@@ -65,28 +68,33 @@ class CateCtrl extends Controller
 		if (isset($id) && !empty($id)) {
 			$this->validateUpdate($request);
 			DB::beginTransaction();
+			$url_link = url('')."/category/".sanitizeTitle($request->name);
 			try {
 				$cate = $category::find($id);
-
-				$url_link = url('')."/category/".sanitizeTitle($request->name);
-				$cate->name        = $request->name;
-				$cate->slug        = sanitizeTitle($request->name);
-				$cate->tag         = $request->tag;
-				$cate->url_link    = $url_link;
-				$cate->parent_id   = $request->cate_id;
-				$cate->user_create = 1;
-
+				if ($cate->parent_id == 0) {
+					$cate->name        = $request->name;
+					$cate->tag         = $request->tag;
+					$cate->slug        = sanitizeTitle($request->name);
+					$cate->url_link    = $url_link;
+				} else {	
+					$cate->name        = $request->name;
+					$cate->slug        = sanitizeTitle($request->name);
+					$cate->tag         = $request->tag;
+					$cate->url_link    = $url_link;
+					$cate->parent_id   = $request->cate_id;
+					$cate->user_create = 1;
+				}
 				$cate->save();
 
 				DB::commit();
 
 				return response()->json(['status' => true], 200);
-
 			} catch (Exception $e) {
 				DB::rollback();
+				return response()->json(['message' => 'Lỗi từ hệ thống'], 422);
 			}
 		}else {
-			return response()->json(['messages' => 'Id không tồn tại'], 422); 
+			return response()->json(['message' => 'Id không tồn tại'], 422); 
 		}
 	}
 	
@@ -102,11 +110,12 @@ class CateCtrl extends Controller
 
 			} catch (Exception $e) {
 				DB::rollback();
+				return response()->json(['message' => 'Lỗi từ hệ thống'], 422);
 			}
 			
 
 		} else {
-			return response()->json(['messages' => 'Id không tồn tại'], 422); 
+			return response()->json(['message' => 'Id không tồn tại'], 422); 
 		}
 	}
 
@@ -114,21 +123,21 @@ class CateCtrl extends Controller
 	public function validateInsert($request){
 	    return $this->validate($request, [
 			'name'               => 'required|unique:category,name',
-			'parent_id'          => 'required',
+			'cate_id'          => 'required',
 			], [
 			'name.required'      => 'Tên tiêu đề không được để trống',
 			'name.unique'        => 'Đã có tên tiêu đề này',
-			'parent_id.required' => 'Loại sản phẩm cha không được để trống',
+			'cate_id.required' => 'Loại sản phẩm cha không được để trống',
 	    	]
 		);
 	}
 	public function validateUpdate($request){
 	    return $this->validate($request, [
 			'name'          => 'required',
-			'parent_id'          => 'required',
+			'cate_id'          => 'required',
 			], [
 			'name.required' => 'Tên tiêu đề không được để trống',
-			'parent_id.required' => 'Loại sản phẩm cha không được để trống',
+			'cate_id.required' => 'Loại sản phẩm cha không được để trống',
 	    	]
 		);
 	}

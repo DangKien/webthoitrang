@@ -31,14 +31,10 @@ Route::group(['prefix'=>'backend'], function (){
 
 // frontend route
 Route::group(['prefix'=>''], function (){
-	Route::get('/', 'FrontEnd\Home\HomeCtrl@index');
+	Route::get('/', 'FrontEnd\Home\HomeCtrl@index')->name('home');
 
 });
 
-Route::group(['prefix'=>''], function (){
-	Route::get('/', 'FrontEnd\Home\HomeCtrl@index');
-
-});
 
 // backend route rest API
 Route::group(['prefix' => 'rest/backend'], function() {

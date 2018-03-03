@@ -132,7 +132,7 @@ ngApp.controller('cateCtrl', function ($apply, $cateService, $scope, changStatus
 			if (!idCate) {
 				$scope.data.params = {
 					status: 1,
-					parent_id: 0,
+					parent_id: -1,
 				};
 				$scope.data.title = "Thêm mới loại sản phẩm";
 				$scope.actions.allListCate();
