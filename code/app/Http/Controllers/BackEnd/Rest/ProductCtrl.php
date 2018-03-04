@@ -141,7 +141,6 @@ class ProductCtrl extends Controller
         $this->validateDetailInsert($request);
         DB::beginTransaction();
         try {
-
             $detail->color      = $request->color;
             $detail->size       = $request->size;
             $detail->quantily   = $request->quantily;
@@ -215,7 +214,7 @@ class ProductCtrl extends Controller
 
     public function validateInsert($request){
         return $this->validate($request, [
-            'name'             => 'required|unique:category,name',
+            'name'             => 'required|unique:name,name',
             'url_image'        => 'required',
             'cate_id'          => 'required',
             'cate_sale'        => 'required',
@@ -231,7 +230,7 @@ class ProductCtrl extends Controller
 
     public function validateUpdate($request){
         return $this->validate($request, [
-            'name'             => 'required|unique:products,name',
+            'name'             => 'required',
             'url_image'        => 'required',
             'cate_id'          => 'required',
             'cate_sale'        => 'required',

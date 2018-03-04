@@ -114,7 +114,7 @@
 								<div class="row">
 									<div class="col-sm-12">
 										<div class="image-file upload-multi-image" ng-model="data.params.multiImage">
-											<input required id="image-multi" type="file" name="imageMulti[]" multiple accept="image/*">
+											<input id="image-multi" type="file" name="imageMulti[]" multiple accept="image/*">
 										</div>
 										<div id="images">
 										</div>

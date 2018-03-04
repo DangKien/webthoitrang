@@ -23,7 +23,7 @@ ngApp.factory('$productService', function ($http, $httpParamSerializer){
 
 	service.dataDetail = function (color, size, quantily, price) {
 		var params = {
-			color: color || '',
+			color: color || '#000000',
 			size: size || '',
 			quantily: quantily,
 			price: price || '1',

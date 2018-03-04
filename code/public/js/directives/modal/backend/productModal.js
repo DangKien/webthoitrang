@@ -11,7 +11,6 @@ ngApp.directive('productModal', function($apply, $productService){
 			var tag              = scope.data.params.tag			
 			var description      = scope.data.params.description;
 			var multiImage       = scope.data.params.multiImage;
-			console.log(scope.data.params.multiImage);
 			var params = $productService.data(name, cate_id, cate_sale, sale_description, url_image, tag, description, multiImage);
 			return params;
 	};
