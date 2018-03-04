@@ -34,7 +34,7 @@ class CateCtrl extends Controller
 
 		try {
 			if (empty($request->url_link)) {
-				$url_link = url('')."/category/".sanitizeTitle($request->name);
+				$url_link = url('')."/categories/".sanitizeTitle($request->name);
 			}
 			$cate->name        = $request->name;
 			$cate->slug        = sanitizeTitle($request->name);
@@ -68,7 +68,7 @@ class CateCtrl extends Controller
 		if (isset($id) && !empty($id)) {
 			$this->validateUpdate($request);
 			DB::beginTransaction();
-			$url_link = url('')."/category/".sanitizeTitle($request->name);
+			$url_link = url('')."/categories/".sanitizeTitle($request->name);
 			try {
 				$cate = $category::find($id);
 				if ($cate->parent_id == 0) {

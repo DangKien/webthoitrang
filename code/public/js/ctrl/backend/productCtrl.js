@@ -51,7 +51,6 @@ ngApp.controller('productCtrl', function ($apply, $productService, $scope, chang
 		listPromotion: function () {
 			$productService.action.listPromotion().then(function (resp) {
 				$scope.data.allPromotion = resp.data;
-				console.log($scope.data.allPromotion);
 			}, function (error) {
 				console.log(error);
 			});
@@ -66,6 +65,7 @@ ngApp.controller('productCtrl', function ($apply, $productService, $scope, chang
 			$scope.data.params = {};
 			if (!idProduct) {
 				$scope.data.title = "Thêm mới sản phẩm";
+				$scope.data.show = true;
 			} else {
 				$scope.data.show = false;
 				$productService.action.editProduct(idProduct).then (function (resp) {
@@ -76,6 +76,20 @@ ngApp.controller('productCtrl', function ($apply, $productService, $scope, chang
 				$scope.data.title = "Cập nhật sản phẩm";
 			}
 		},
+		deleteProduct: function(idProduct) {
+            $conf.confirmDelete ('small', 'Bạn muốn xóa sản phẩm này?', function (resp) {
+                if (resp == true){
+                    $productService.action.deleteProduct(idProduct).then(function (resp) {
+                        if (resp) {
+                            $scope.actions.listProduct();
+                            $conf.confirmNotifi('success', 'Xóa sản phẩm thành công');
+                        }
+                    }, function (error) {
+                            $conf.confirmNotifi('error', 'Xóa sản phẩm thất bại', "fa fa-ban");
+                    });
+                }
+            });
+        },
 		save: function (data, conf) {
 			if (data == true) {
 				if (!$scope.data.idProduct) {

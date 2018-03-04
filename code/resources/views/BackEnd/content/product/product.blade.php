@@ -98,7 +98,7 @@
 										<td> 
 											<a href="#/@{{ product.id }}" class="btn btn-default btn-icon btn-circle icon-lg fa fa-list-alt"></a>
 											<button ng-click= "actions.showModal(product.id)" class="btn btn-default btn-icon btn-circle icon-lg fa fa-edit"></button>
-											<button ng-click= "actions.deleteCate(product.id)" class="btn btn-danger btn-icon btn-circle icon-lg fa fa-trash"></button>
+											<button ng-click= "actions.deleteProduct(product.id)" class="btn btn-danger btn-icon btn-circle icon-lg fa fa-trash"></button>
 										</td>
 									</tr>
 								</tbody>

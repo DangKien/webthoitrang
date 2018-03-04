@@ -63,7 +63,42 @@
             echo '</ul>';
         }
         }
-        
-        
+    }
+
+
+    function showCategoriesLeft($categories, $parent_id = 0, $stt = 0) {
+        $cate_child = array();
+        foreach ($categories as $key => $item) {
+            if ($item['parent_id'] == $parent_id)
+            {
+                $cate_child[] = $item;
+                unset($categories[$key]);
+            }
+        }
+        if (empty(!$cate_child) ) {
+            if ($stt == 0) {
+                foreach ($cate_child as $key => $item) {
+                    echo '<h3 class="sidebar-title"><a href="'.$item['url_link'].'">'.$item['name'].'</a></h3>';
+                    showCategoriesLeft($categories, $item['id'], ++$stt);
+                }
+            }
+        else if ($stt == 1){
+            echo '<div class="sidebar-list mtb-20"><ul>';
+            foreach ($cate_child as $key => $item) {
+                echo '<li><input type="checkbox"><a href="'.$item['url_link'].'">'.$item['name'].'</a>';
+                showCategoriesLeft($categories, $item['id'], ++$stt);
+                echo '</li>';
+            }
+            echo '</ul></div>';
+        } else {
+            echo '<div class="sidebar-list ml-20"><ul>';
+            foreach ($cate_child as $key => $item) {
+                echo '<li><input type="checkbox"><a href="'.$item['url_link'].'">'.$item['name'].'</a>';
+                showCategoriesLeft($categories, $item['id'], ++$stt);
+                echo '</li>';
+            }
+            echo '</ul></div>';
+        }
+        }
     }
  ?>

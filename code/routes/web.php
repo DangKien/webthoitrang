@@ -33,6 +33,7 @@ Route::group(['prefix'=>'backend'], function (){
 Route::group(['prefix'=>''], function (){
 	Route::get('/', 'FrontEnd\Home\HomeCtrl@index')->name('home');
 
+	Route::get('/categories/{slug}', 'FrontEnd\Category\CategoryCtrl@index');
 });
 
 

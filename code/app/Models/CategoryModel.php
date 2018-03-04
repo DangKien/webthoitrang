@@ -27,4 +27,10 @@ class CategoryModel extends MyModel
 
         return $this;
     }
+
+    public static function listCategories(){
+        return  self::select('name','slug', 'id', 'url_link', 'parent_id')
+                    ->get()
+                    ->toArray();
+    }
 }

@@ -49,13 +49,19 @@ class ProductCtrl extends Controller
 				'updated_at'       => Date('Y-m-d H:i:s')
     		]);
 
-            foreach ($request->imageDetail as $key => $value){
-                $url_image_detail   = Storage::putFile('images/product_detail', $value);
-                $images             = new ProductImageModel();
-                $images->url_image  = $url_image_detail;
-                $images->product_id = $productId;
-                $images->save();
+            if (empty($request->imageDetail)) {
+                return response()->json(['message'=>'Đã có lỗi trên hệ thống'], 422);
+            } else {
+                foreach ($request->imageDetail as $key => $value){
+                    $url_image_detail   = Storage::putFile('images/product_detail', $value);
+                    $images             = new ProductImageModel();
+                    $images->url_image  = $url_image_detail;
+                    $images->product_id = $productId;
+                    $images->save();
+                }
             }
+            
+            
             DB::commit();
             return response()->json(['message'=>true], 200);
 

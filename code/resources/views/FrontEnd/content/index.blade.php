@@ -4,6 +4,7 @@
     
 @endsection
 @section ('content')
+@includeif ('FrontEnd.layouts.partial._slideshow')
     <!-- shop area start -->
     <div class="home-product-area ptb-100">
         <div class="container">

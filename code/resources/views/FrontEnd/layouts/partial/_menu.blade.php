@@ -8,6 +8,7 @@
                             <ul>
                                 <li><a href="{{ route('home') }}"><i style="font-size: 20px;" class="fa fa-home"></i> Trang chủ</a></li>
                                <?php 
+                                    $categories = App\Models\CategoryModel::listCategories();
                             		showCategories($categories);
                             	?>
 	                            <li><a href="contact.html">Tin tức</a></li>

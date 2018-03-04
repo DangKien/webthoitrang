@@ -17,7 +17,6 @@
             <div>
                 @includeif ('FrontEnd.layouts.partial._header')
                 @includeif ('FrontEnd.layouts.partial._menu')
-                @includeif ('FrontEnd.layouts.partial._slideshow')
                 @yield('content')
             </div>
             @includeif ('FrontEnd.layouts.partial._footer')
