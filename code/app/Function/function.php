@@ -40,7 +40,7 @@
         if (empty(!$cate_child) ) {
             if ($stt == 0){
             foreach ($cate_child as $key => $item) {
-                echo '<li><a href="blog-page.html">'.$item['name'].'</a>';
+                echo '<li><a href="'.$item['url_link'].'">'.$item['name'].'</a>';
                 showCategories($categories, $item['id'], ++$stt);
                 echo '</li>';
             }
@@ -48,7 +48,7 @@
         else if ($stt == 1){
             echo '<ul class="dropdown">';
             foreach ($cate_child as $key => $item) {
-                echo '<li><a href="blog-page.html">'.$item['name'].'</a>';
+                echo '<li><a href="'.$item['url_link'].'">'.$item['name'].'</a>';
                 showCategories($categories, $item['id'], ++$stt);
                 echo '</li>';
             }
@@ -56,7 +56,7 @@
         } else {
             echo '<ul class="dropdown fix-ul">';
             foreach ($cate_child as $key => $item) {
-                echo '<li><a href="blog-page.html">'.$item['name'].'</a>';
+                echo '<li><a href="'.$item['url_link'].'">'.$item['name'].'</a>';
                 showCategories($categories, $item['id'], ++$stt);
                 echo '</li>';
             }
