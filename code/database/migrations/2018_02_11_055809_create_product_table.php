@@ -21,8 +21,9 @@ class CreateProductTable extends Migration
             $table->integer('start')->default(3);
             $table->string('slug');
             $table->integer('cate_id');
-            $table->string('sale_description');
+            $table->string('sale_description')->nullable();
             $table->integer('cate_sale');
+            $table->double('order')->default(0);
             $table->string('tag')->nullable();
             $table->timestamps();
         });

@@ -14,21 +14,28 @@
                 <button><h3><b>Sản phẩm mới</b></h3></button>
                 </div>
                 <?php 
-                    $productModel = new App\Models\ProductModel();
-                    $products     = $productModel->getProductCategory(3, 8);
+                    
+                    $products_new  = App\Models\ProductModel::getProductNew(8);
+                    
                 ?>
                 <div class="row">
                     <div class="product-curosel product-curosel-style owl-carousel">
-                        @foreach($products as $product)
+                        @foreach($products_new as $product)
                             @if (count($product->details) != 0)
                                 <div class="col-md-3 col-sm-6 col-xs-12">
                                     <div class="single-shop">
                                         <div class="shop-img">
                                             <a href="#"><img src="{{ url('../storage/app') }}/{{ $product->url_image }}" alt="" /></a>
                                             <div class="price-up-down">
-                                                <span class="sale-new">
-                                                    New
+                                                @if ($product->cate_sale != 0) 
+                                                    <span class="sale-new" title="{{ $product->cate_sales->name }} {{ $product->sale_description }}"">
+                                                    {{ $product->cate_sales->name }} - {!! \Illuminate\Support\Str::words($product->sale_description, 3,'....')  !!}
                                                 </span>
+                                                @else
+                                                    <span class="sale-new" title="Mới">
+                                                        Mới
+                                                    </span>
+                                                @endif
                                             </div>
                                             <div class="button-group">
                                                 <a href="#" title="Add to Cart">
@@ -80,26 +87,29 @@
                 <button><h3><b>Sản phẩm giảm giá</b></h3></button>
                 </div>
                 <?php 
-                    $productModel = new App\Models\ProductModel();
-                    $products     = $productModel->getProductCategory(3, 8);
+                $products_sale = App\Models\ProductModel::getProductSale(config('fashion.promotion.sale'), 8);
                 ?>
                 <div class="row">
                     <div class="product-curosel product-curosel-style owl-carousel">
-                        @foreach($products as $product)
+                        @foreach($products_sale as $product)
                             @if (count($product->details) != 0)
+
                                 <div class="col-md-3 col-sm-6 col-xs-12">
                                     <div class="single-shop">
                                         <div class="shop-img">
                                             <a href="#"><img src="{{ url('../storage/app') }}/{{ $product->url_image }}" alt="" /></a>
                                             <div class="price-up-down">
-                                                <span class="sale-new">
-                                                    New
+                                                @if ($product->cate_sale != 0) 
+                                                    <span class="sale-new" title="{{ $product->cate_sales->name }} {{ $product->sale_description }}"">
+                                                    {{ $product->cate_sales->name }} - {!! \Illuminate\Support\Str::words($product->sale_description, 3,'....')  !!}
                                                 </span>
+                                                @endif
+                                                
                                             </div>
                                             <div class="button-group">
                                                 <a href="#" title="Add to Cart">
                                                     <i class="pe-7s-cart"></i>
-                                                        Thêm vào giỏ hàng
+                                                        Thêm vào giỏ hàng 
                                                 </a>
                                             </div>
                                         </div>
@@ -146,21 +156,22 @@
                 <button><h3><b>Sản phẩm nổi bật</b></h3></button>
                 </div>
                 <?php 
-                    $productModel = new App\Models\ProductModel();
-                    $products     = $productModel->getProductCategory(3, 8);
+                    $products_hightlight = App\Models\ProductModel::getProductHightlight(8);
                 ?>
                 <div class="row">
                     <div class="product-curosel product-curosel-style owl-carousel">
-                        @foreach($products as $product)
+                        @foreach($products_hightlight as $product)
                             @if (count($product->details) != 0)
                                 <div class="col-md-3 col-sm-6 col-xs-12">
                                     <div class="single-shop">
                                         <div class="shop-img">
                                             <a href="#"><img src="{{ url('../storage/app') }}/{{ $product->url_image }}" alt="" /></a>
                                             <div class="price-up-down">
-                                                <span class="sale-new">
-                                                    New
-                                                </span>
+                                                @if ($product->cate_sale != 0) 
+                                                    <span class="sale-new" title="{{ $product->cate_sales->name }} {{ $product->sale_description }}">
+                                                       {{ $product->cate_sales->name }} - {!! \Illuminate\Support\Str::words($product->sale_description, 3,'....')  !!}
+                                                    </span>
+                                                @endif
                                             </div>
                                             <div class="button-group">
                                                 <a href="#" title="Add to Cart">

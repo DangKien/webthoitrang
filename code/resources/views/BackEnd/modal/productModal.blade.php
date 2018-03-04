@@ -51,6 +51,8 @@
 								<label class=" control-label fix-form-cate" for="idSale">Loại huyến mãi: </label>
 								<div>
 									<select id="idSale" class="form-control">
+										<option value = "0">Loại khuyến mãi
+										</option>
 										<option ng-repeat="(key, promotion) in data.allPromotion" 
 												ng-selected="(promotion.id == data.params.cate_sale)"
 												value="@{{ promotion.id }}">@{{ promotion.name }}
