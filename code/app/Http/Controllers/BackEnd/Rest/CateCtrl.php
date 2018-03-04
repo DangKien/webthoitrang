@@ -38,7 +38,7 @@ class CateCtrl extends Controller
 			}
 			$cate->name        = $request->name;
 			$cate->slug        = sanitizeTitle($request->name);
-			$cate->tag         = $request->tag;
+			$cate->tag         = trim($request->tag, ',');
 			$cate->url_link    = $url_link;
 			$cate->parent_id   = $request->cate_id;
 			$cate->user_create = 1;
@@ -73,7 +73,7 @@ class CateCtrl extends Controller
 				$cate = $category::find($id);
 				if ($cate->parent_id == 0) {
 					$cate->name        = $request->name;
-					$cate->tag         = $request->tag;
+					$cate->tag         = trim($request->tag, ',');
 					$cate->slug        = sanitizeTitle($request->name);
 					$cate->url_link    = $url_link;
 				} else {	

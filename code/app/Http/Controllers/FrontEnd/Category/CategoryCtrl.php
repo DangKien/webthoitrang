@@ -10,7 +10,7 @@ use App\Models\CategoryModel;
 class CategoryCtrl extends Controller
 {
     public function index(CategoryModel $category, ProductModel $product) {
-    	$title = "Trang chủ";
+    	$title = "Loại sản phẩm";
     	return view('FrontEnd.content.category.category',
     	[
     		'title' => $title,

@@ -40,11 +40,11 @@ class ProductCtrl extends Controller
 				'name'             => $request->name,
 				'url_image'        => $url_image,
 				'description'      => $request->description,
-				'slug'             => $request->name,
+				'slug'             => sanitizeTitle($request->name),
 				'cate_id'          => $request->cate_id,
 				'sale_description' => $request->sale_description,
 				'cate_sale'        => $request->cate_sale,
-				'tag'              => $request->tag,
+				'tag'              => trim($request->tag, ','),
 				'created_at'       => Date('Y-m-d H:i:s'),
 				'updated_at'       => Date('Y-m-d H:i:s')
     		]);
@@ -98,11 +98,11 @@ class ProductCtrl extends Controller
                 $product_update->name             = $request->name;
                 $product_update->url_image        = $url_image;
                 $product_update->description      = $request->description;
-                $product_update->slug             = $request->name;
+                $product_update->slug             = sanitizeTitle($request->name);
                 $product_update->cate_id          = $request->cate_id;
                 $product_update->sale_description = $request->sale_description;
                 $product_update->cate_sale        = $request->cate_sale;
-                $product_update->tag              = $request->tag;
+                $product_update->tag              = trim($request->tag, ',');
                 
                 $product_update->save();
                 DB::commit();
@@ -214,7 +214,7 @@ class ProductCtrl extends Controller
 
     public function validateInsert($request){
         return $this->validate($request, [
-            'name'             => 'required|unique:name,name',
+            'name'             => 'required|unique:products,name',
             'url_image'        => 'required',
             'cate_id'          => 'required',
             'cate_sale'        => 'required',

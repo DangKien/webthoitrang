@@ -13,11 +13,7 @@
                 <div class="shop-menu text-left mb-50">
                 <button><h3><b>Sản phẩm mới</b></h3></button>
                 </div>
-                <?php 
-                    
-                    $products_new  = App\Models\ProductModel::getProductNew(8);
-                    
-                ?>
+                <?php $products_new  = App\Models\ProductModel::getProductNew(8);   ?>
                 <div class="row">
                     <div class="product-curosel product-curosel-style owl-carousel">
                         @foreach($products_new as $product)
@@ -25,7 +21,7 @@
                                 <div class="col-md-3 col-sm-6 col-xs-12">
                                     <div class="single-shop">
                                         <div class="shop-img">
-                                            <a href="#"><img src="{{ url('../storage/app') }}/{{ $product->url_image }}" alt="" /></a>
+                                            <a href="{{ url('product') }}/{{ $product->slug.'-'.$product->id }}"><img src="{{ url('../storage/app') }}/{{ $product->url_image }}" alt="" /></a>
                                             <div class="price-up-down">
                                                 @if ($product->cate_sale != 0) 
                                                     <span class="sale-new" title="{{ $product->cate_sales->name }} {{ $product->sale_description }}"">
@@ -47,7 +43,7 @@
                                         <div class="shop-text-all">
                                             <div class="title-color fix">
                                                 <div class="shop-title f-left">
-                                                    <h3><a href="#" title="{{ $product->name }}">
+                                                    <h3><a href="{{ url('product') }}/{{ $product->slug.'-'.$product->id }}" title="{{ $product->name }}">
                                                         {!! \Illuminate\Support\Str::words($product->name, 5,'....')  !!}
                                                     </a></h3>
                                                 </div>
@@ -86,9 +82,7 @@
                 <div class="shop-menu text-left mb-50">
                 <button><h3><b>Sản phẩm giảm giá</b></h3></button>
                 </div>
-                <?php 
-                $products_sale = App\Models\ProductModel::getProductSale(config('fashion.promotion.sale'), 8);
-                ?>
+                <?php $products_sale = App\Models\ProductModel::getProductSale(config('fashion.promotion.sale'), 8); ?>
                 <div class="row">
                     <div class="product-curosel product-curosel-style owl-carousel">
                         @foreach($products_sale as $product)
@@ -97,7 +91,7 @@
                                 <div class="col-md-3 col-sm-6 col-xs-12">
                                     <div class="single-shop">
                                         <div class="shop-img">
-                                            <a href="#"><img src="{{ url('../storage/app') }}/{{ $product->url_image }}" alt="" /></a>
+                                            <a href="{{ url('product') }}/{{ $product->slug.'-'.$product->id }}"><img src="{{ url('../storage/app') }}/{{ $product->url_image }}" alt="" /></a>
                                             <div class="price-up-down">
                                                 @if ($product->cate_sale != 0) 
                                                     <span class="sale-new" title="{{ $product->cate_sales->name }} {{ $product->sale_description }}"">
@@ -116,7 +110,7 @@
                                         <div class="shop-text-all">
                                             <div class="title-color fix">
                                                 <div class="shop-title f-left">
-                                                    <h3><a href="#" title="{{ $product->name }}">
+                                                    <h3><a href="{{ url('product') }}/{{ $product->slug.'-'.$product->id }}" title="{{ $product->name }}">
                                                         {!! \Illuminate\Support\Str::words($product->name, 5,'....')  !!}
                                                     </a></h3>
                                                 </div>
@@ -155,9 +149,7 @@
                 <div class="shop-menu text-left mb-50">
                 <button><h3><b>Sản phẩm nổi bật</b></h3></button>
                 </div>
-                <?php 
-                    $products_hightlight = App\Models\ProductModel::getProductHightlight(8);
-                ?>
+                <?php $products_hightlight = App\Models\ProductModel::getProductHightlight(8); ?>
                 <div class="row">
                     <div class="product-curosel product-curosel-style owl-carousel">
                         @foreach($products_hightlight as $product)
@@ -165,7 +157,7 @@
                                 <div class="col-md-3 col-sm-6 col-xs-12">
                                     <div class="single-shop">
                                         <div class="shop-img">
-                                            <a href="#"><img src="{{ url('../storage/app') }}/{{ $product->url_image }}" alt="" /></a>
+                                            <a href="{{ url('product') }}/{{ $product->slug.'-'.$product->id }}"><img src="{{ url('../storage/app') }}/{{ $product->url_image }}" alt="" /></a>
                                             <div class="price-up-down">
                                                 @if ($product->cate_sale != 0) 
                                                     <span class="sale-new" title="{{ $product->cate_sales->name }} {{ $product->sale_description }}">
@@ -183,7 +175,7 @@
                                         <div class="shop-text-all">
                                             <div class="title-color fix">
                                                 <div class="shop-title f-left">
-                                                    <h3><a href="#" title="{{ $product->name }}">
+                                                    <h3><a href="{{ url('product') }}/{{ $product->slug.'-'.$product->id }}" title="{{ $product->name }}">
                                                         {!! \Illuminate\Support\Str::words($product->name, 5,'....')  !!}
                                                     </a></h3>
                                                 </div>
