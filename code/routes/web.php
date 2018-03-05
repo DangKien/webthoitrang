@@ -61,3 +61,10 @@ Route::group(['prefix' => 'rest/backend'], function() {
 	Route::get('product-detail-delete/{id}', 'BackEnd\Rest\ProductCtrl@deleteDetailProduct');
 	Route::get('promotion', 'BackEnd\Rest\ProductCtrl@getPromotion');
 });
+
+// rest frontend 
+Route::group(['prefix' => 'rest/frontend'], function() {
+    // loại tin
+    Route::get('/product', 'FrontEnd\Rest\ProductCtrl@getRecord'); // lay 1 san pham
+
+});

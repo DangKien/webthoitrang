@@ -14,6 +14,8 @@ class ProductCtrl extends Controller
     	return view('FrontEnd.content.product.product',
     	[
     		'title' => $title,
+    		'slug'  => $slug,
+    		'id'    => $id,
     	]);
     }
 

@@ -5,8 +5,7 @@
 <link rel="stylesheet" href="{{ url('css/frontend/css/') }}/pe-icon-7-stroke.css">
 <link rel="stylesheet" href="{{ url('css/frontend/css/') }}/nivo-slider.css" type="text/css" />
 <link rel="stylesheet" href="{{ url('css/frontend/css/') }}/preview.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="{{ url('css/frontend/css/') }}/animate.css">
+
 <link rel="stylesheet" href="{{ url('css/frontend/css/') }}/meanmenu.min.css">
 <link rel="stylesheet" href="{{ url('css/frontend/css/') }}/bundle.css">
 <link rel="stylesheet" href="{{ url('css/frontend/css/') }}/style.css">
-<link rel="stylesheet" href="{{ url('css/frontend/css/') }}/responsive.css">

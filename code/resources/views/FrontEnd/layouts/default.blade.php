@@ -13,7 +13,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
     <body>
-        <div id="container" class="effect mainnav-lg">
+        <div id="container" class="effect mainnav-lg" ng-app="ngApp" ng-cloak>
             <div>
                 @includeif ('FrontEnd.layouts.partial._header')
                 @includeif ('FrontEnd.layouts.partial._menu')

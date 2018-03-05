@@ -1,15 +1,16 @@
 @extends('FrontEnd.layouts.default')
 @section ('title', 'Trang chủ')
 @section ('myJs')
-    
+	<script>
+		var productId = "@if (isset($id)) {{ $id }} @endif";
+		var slug      = "@if (isset($slug)) {{ $slug }} @endif";
+	</script>
+    <script src="{{ url('js/ctrl/frontend') }}/productDetailCtrl.js"></script>
+	<script src="{{ url('/js/factory/services/frontend') }}/productDetailService.js"></script>
 @endsection
 @section ('content')
 @include('FrontEnd.layouts.partial._breadcrumb')
-<div class="text-center pt-20">
-    <h2>{{ 'name' }}</h2>
-</div>
-
-<div class="single-product-area ptb-100">
+<div class="single-product-area ptb-100" ng-controller="productDetailCtrl">
     <div class="container">
         <div class="row">
             <div class="col-md-5">
@@ -61,7 +62,7 @@
             <div class="col-md-7">
                 <div class="single-product-content">
                     <div class="single-product-dec pb-30  for-pro-border">
-                        <h2>Product Title</h2>
+                        <h2>@{{ data.productRecord.name  }}</h2>
                         <span class="ratting">
                             <i class="fa fa-star active"></i>
                             <i class="fa fa-star active"></i>
