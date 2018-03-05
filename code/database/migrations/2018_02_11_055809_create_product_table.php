@@ -24,6 +24,7 @@ class CreateProductTable extends Migration
             $table->string('sale_description')->nullable();
             $table->integer('cate_sale');
             $table->double('order')->default(0);
+            $table->string('price');
             $table->string('tag')->nullable();
             $table->timestamps();
         });

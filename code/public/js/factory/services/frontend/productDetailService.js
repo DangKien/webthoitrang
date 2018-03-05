@@ -6,10 +6,9 @@ ngApp.factory('$productDetailService', function ($http, $httpParamSerializer){
 		filter: {},
 	};
 
-	service.data.filterProduct = function (productId, slug) {
+	service.data.filterProduct = function (slug) {
 		return {
-			productId: productId,
-			slug: slug,
+			'slug': slug,
 		}
 	};
 

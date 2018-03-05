@@ -2,7 +2,6 @@
 @section ('title', 'Trang chủ')
 @section ('myJs')
 	<script>
-		var productId = "@if (isset($id)) {{ $id }} @endif";
 		var slug      = "@if (isset($slug)) {{ $slug }} @endif";
 	</script>
     <script src="{{ url('js/ctrl/frontend') }}/productDetailCtrl.js"></script>
@@ -63,39 +62,33 @@
                 <div class="single-product-content">
                     <div class="single-product-dec pb-30  for-pro-border">
                         <h2>@{{ data.productRecord.name  }}</h2>
-                        <span class="ratting">
-                            <i class="fa fa-star active"></i>
-                            <i class="fa fa-star active"></i>
-                            <i class="fa fa-star active"></i>
-                            <i class="fa fa-star active"></i>
-                            <i class="fa fa-star active"></i>
+                        <span class="ratting" ng-repeat="n in [0, 1, 2, 3, 4]"> 
+                            <i class="fa" ng-class=" n < data.productRecord.start ? 'fa-star' : 'fa-star-o'"></i>
                         </span>
-                        <h3>$200</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes Cum sociis natoque penatibus et magnis dis parturient montes consectetuer adipiscing.</p>
+                        <h3>@{{ data.productRecord.start }}</h3>
+                        <p ng-bind-html="data.productRecord.description"></p>
                     </div>
                     <div class="single-cart-color for-pro-border">
-                        <p>availability : <span>in stock</span></p>
+                        <p>availability : 
+                            <span>
+                                Còn hàng
+                            </span>
+                        </p>
                         <div class="pro-color pro-color-style-2">
                             <p>color :</p>
                             <ul>
-                                <li class="blue">b</li>
-                                <li class="orange">o</li>
-                                <li class="purple">p</li>
-                                <li class="pink">p</li>
+                                <li ng-repeat="(key, detail) in data.productRecord.details"
+                                    style="background: @{{ detail.color }}"
+                                ></li>
                             </ul>
                         </div>
                         <div class="pro-color-size">
                             <p>size :</p>
                             <ul>
-                                <li><a href="#">xs</a></li>
-                                <li><a href="#">s</a></li>
-                                <li><a href="#">m</a></li>
-                                <li><a href="#">l</a></li>
-                                <li><a href="#">xl</a></li>
+                                <li ng-repeat="(key, detail) in data.productRecord.details"
+                                    style="background: @{{ detail.color }}"
+                                ></li>
                             </ul>
-                        </div>
-                        <div class="model">
-                            <p>model : <span>nms005</span></p>
                         </div>
                         <div class="pro-quality">
                             <p>Quantity:</p>
@@ -106,40 +99,20 @@
                                 <i class="pe-7s-cart"></i>
                                 add to cart
                             </a>
-                            <a href="#" title="wishlist">
-                                <i class="pe-7s-like"></i>
-                                wishlist
-                            </a>
                         </div>
                     </div>
                     <div class="pro-category-tag ptb-30 for-pro-border">
                         <div class="pro-category">
-                            <p>categories :</p>
+                            <p>Loại sản phẩm :</p>
                             <ul>
-                                <li><a href="#">fashion</a></li>
-                                <li><a href="#">kid</a></li>
-                                <li><a href="#">men</a></li>
-                                <li><a href="#">women</a></li>
-                                <li><a href="#">Watche</a></li>
+                                <li><a href="#">@{{ data.productRecord.cates.name }}</a></li>
                             </ul>
                         </div>
                         <div class="pro-tag">
-                            <p>tags :</p>
+                            <p>Tags :</p>
                             <ul>
                                 <li>
                                     <a href="#">Clothing</a>
-                                </li>
-                                <li>
-                                    <a href="#">accessories</a>
-                                </li>
-                                <li>
-                                    <a href="#">fashion</a>
-                                </li>
-                                <li>
-                                    <a href="#">footwear</a>
-                                </li>
-                                <li>
-                                    <a href="#">kid</a>
                                 </li>
                             </ul>
                         </div>

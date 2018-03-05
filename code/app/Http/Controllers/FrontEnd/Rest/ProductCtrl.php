@@ -10,8 +10,7 @@ use App\Models\CategoryModel;
 class ProductCtrl extends Controller
 {
     public function getRecord(ProductModel $product, Request $request) {
-    	$result =   $product->where([ ['slug', $request->slug],
-    							    ['id', $request->productId], ])
+    	$result =   $product->where('slug', $request->slug)
     						->with('cates')
     						->with('images')
     						->with('details')

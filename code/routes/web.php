@@ -35,7 +35,7 @@ Route::group(['prefix'=>''], function (){
 
 	Route::get('/categories/{slug}', 'FrontEnd\Category\CategoryCtrl@index');
 
-	Route::get('/product/{slug}-{id}', 'FrontEnd\Product\ProductCtrl@index');
+	Route::get('/product/{slug}', 'FrontEnd\Product\ProductCtrl@index');
 });
 
 
