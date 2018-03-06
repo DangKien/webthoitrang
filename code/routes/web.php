@@ -60,6 +60,8 @@ Route::group(['prefix' => 'rest/backend'], function() {
 	Route::post('product-detail-update/{id}', 'BackEnd\Rest\ProductCtrl@updateDetailProduct');
 	Route::get('product-detail-delete/{id}', 'BackEnd\Rest\ProductCtrl@deleteDetailProduct');
 	Route::get('promotion', 'BackEnd\Rest\ProductCtrl@getPromotion');
+	Route::get('size', 'BackEnd\Rest\ProductCtrl@getSize');
+
 });
 
 // rest frontend 

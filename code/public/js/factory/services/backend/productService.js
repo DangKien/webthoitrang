@@ -6,7 +6,8 @@ ngApp.factory('$productService', function ($http, $httpParamSerializer){
 		filter: {},
 	};
 
-	service.data = function (name, cate_id, cate_sale, sale_description, url_image, tag, description, multiImage) {
+	service.data = function (name, cate_id, cate_sale, sale_description, url_image, tag, description, price,
+							multiImage) {
 		var params = new FormData();
 		params.append('name', name || '');
 		params.append('cate_id', cate_id || '');
@@ -15,17 +16,17 @@ ngApp.factory('$productService', function ($http, $httpParamSerializer){
 		params.append('url_image', url_image || '');
 		params.append('tag', tag || '');
 		params.append('description', description || '');
+		params.append('price', price || '');
 		angular.forEach(multiImage, function(image, key){
 			params.append('imageDetail[]', image);
 		});
 		return params;
 	};
 
-	service.dataDetail = function (color, size, quantily, price) {
+	service.dataDetail = function (color, size, price) {
 		var params = {
 			color: color || '#000000',
-			size: size || '',
-			quantily: quantily,
+			size: size,
 			price: price || '1',
 		};
 		
@@ -123,6 +124,11 @@ ngApp.factory('$productService', function ($http, $httpParamSerializer){
 
 	service.action.deleteDetailProduct = function (idProduct) {
 		var url = SiteUrl + "/rest/backend/product-detail-delete/" + idProduct;
+        return $http.get(url);
+	};
+
+	service.action.listSize = function (filter) {
+		var url = SiteUrl + "/rest/backend/size";
         return $http.get(url);
 	};
 

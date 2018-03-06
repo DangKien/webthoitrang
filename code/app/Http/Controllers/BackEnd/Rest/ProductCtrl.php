@@ -9,6 +9,9 @@ use App\Models\ProductDetailModel;
 use App\Models\ProductImageModel;
 use App\Models\CategoryModel;
 use App\Models\PromotionModel;
+use App\Models\SizeModel;
+use App\MyModel\ProductSizeModel;
+
 use Storage, DB;
 
 class ProductCtrl extends Controller
@@ -23,8 +26,13 @@ class ProductCtrl extends Controller
 
 
     public function getPromotion(PromotionModel $promotion) {
-            $result = $promotion->all();
-            return response()->json($result);
+        $result = $promotion->all();
+        return response()->json($result);
+    }
+
+    public function getSize(SizeModel $size) {
+        $result = $size->all();
+        return response()->json($result);
     }
 
     public function getInsert(ProductModel $product, ProductDetailModel $detail
@@ -44,6 +52,7 @@ class ProductCtrl extends Controller
 				'cate_id'          => $request->cate_id,
 				'sale_description' => $request->sale_description,
 				'cate_sale'        => $request->cate_sale,
+                'price'            => $request->price,
 				'tag'              => trim($request->tag, ','),
 				'created_at'       => Date('Y-m-d H:i:s'),
 				'updated_at'       => Date('Y-m-d H:i:s')
@@ -131,22 +140,28 @@ class ProductCtrl extends Controller
     public function detailProduct(ProductModel $product, ProductDetailModel $detail, $id) {
         $result = $detail->where('product_id', $id)
                          ->orderBy('id', 'desc')
+                         ->with('sizes')
                          ->paginate(10);
 
         return response()->json($result);
     }
 
-    public function insertDetailProduct(ProductModel $product, ProductDetailModel $detail, $id, 
+    public function insertDetailProduct(ProductModel $product, SizeModel $sizeModel, ProductDetailModel $detail, $id,
                                 Request $request) {
         $this->validateDetailInsert($request);
         DB::beginTransaction();
         try {
-            $detail->color      = $request->color;
-            $detail->size       = $request->size;
-            $detail->quantily   = $request->quantily;
-            $detail->price      = $request->price;
-            $detail->product_id = $id;
-            $detail->save();
+            $product_detail_id = $detail->insertGetId([
+                'color'      => $request->color,
+                'product_id' => $id,
+            ]);
+
+            if (isset($request->size)) {
+                foreach ($request->size as $key => $value) {
+                    $insert[] = ['product_detail_id' => $product_detail_id, 'size_id' => $value];
+                }
+            }
+            DB::table('product_size')->insert($insert);
             DB::commit();
             return response()->json(['message'=>true], 200);
         } catch (Exception $e) {
@@ -159,7 +174,7 @@ class ProductCtrl extends Controller
                                 Request $request) {
         if ($id) {
             try {
-                $result = $detail->find($id);
+                $result = $detail->where('id', $id)->with('sizes')->first();
                 return response()->json($result);
             } catch (Exception $e) {
                 return response()->json(['message'=>'Lỗi hệ thống không thể thêm mới'], 422);
@@ -177,10 +192,12 @@ class ProductCtrl extends Controller
                 if (empty($detailProduct)) {
                     return response()->json(['message'=>'Lỗi hệ thống không thể sửa chữa'], 422);
                 }
+                $detailProduct->sizes()->detach();
+
                 $detailProduct->color    = $request->color;
-                $detailProduct->price    = $request->price;
-                $detailProduct->size     = $request->size;
-                $detailProduct->quantily = $request->quantily;
+
+                $detailProduct->sizes()->sync($request->size);
+
                 $detailProduct->save();
 
                 DB::commit();
@@ -218,12 +235,14 @@ class ProductCtrl extends Controller
             'url_image'        => 'required',
             'cate_id'          => 'required',
             'cate_sale'        => 'required',
+            'price'            => 'required',
             ], [
             'name.required'             => 'Tên sản phẩm không được để trống',
             'name.unique'               => 'Đã có tên tiêu đề này',
             'url_image.required'        => 'Ảnh chính không được để trống',
             'cate_id.required'          => 'Loại sản phẩm không được để trống',
             'cate_sale.required'        => 'Loại khuyến mãi không được để trống',
+            'price.required'            => 'Giá sản phẩm không được để trống',
             ]
         );
     }
@@ -234,12 +253,14 @@ class ProductCtrl extends Controller
             'url_image'        => 'required',
             'cate_id'          => 'required',
             'cate_sale'        => 'required',
+            'price'            => 'required',
             ], [
             'name.required'             => 'Tên tiêu đề không được để trống',
             'name.unique'               => 'Đã có tên tiêu đề này',
             'url_image.required'        => 'Ảnh chính không được để trống',
             'cate_id.required'          => 'Loại sản phẩm không được để trống',
             'cate_sale.required'        => 'Loại khuyến mãi không được để trống',
+            'price.required'            => 'Giá sản phẩm không được để trống',
             ]
         );
     }
@@ -248,12 +269,9 @@ class ProductCtrl extends Controller
         return $this->validate($request, [
             'color'      => 'required',
             'size'       => 'required',
-            'price'      => 'required',
-            'quantily'   => 'required',
             ], [
             'color.required'      => 'Màu sắc không được để trống',
             'size.required'       => 'Kích thước không được để trống',
-            'price.required'      => 'Giá không được để trống',
             'quantily.required'   => 'Số lượng không được để trống',
             ]
         );
@@ -263,12 +281,9 @@ class ProductCtrl extends Controller
         return $this->validate($request, [
             'color'      => 'required',
             'size'       => 'required',
-            'price'      => 'required',
-            'quantily'   => 'required',
             ], [
             'color.required'    => 'Màu sắc không được để trống',
-            'size.required'     => 'Kích thước không được để trốn',
-            'price.required'    => 'Giá không được để trống',
+            'size.required'     => 'Kích thước không được để trống',
             'quantily.required' => 'Số lượng không được để trống',
             ]
         );

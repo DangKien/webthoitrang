@@ -57,7 +57,7 @@
                                             </div>
                                             <div class="price-ratting fix">
                                                 <span class="price f-left">
-                                                    <span class="new">{{ $product->details[0]->price }} Vnđ</span>
+                                                    <span class="new">{{ $product->price }} Vnđ</span>
                                                 </span>
                                                 <span class="ratting f-right">
                                                     @for ($i = 0; $i < 5; $i++)
@@ -124,7 +124,7 @@
                                             </div>
                                             <div class="price-ratting fix">
                                                 <span class="price f-left">
-                                                    <span class="new">{{ $product->details[0]->price }} Vnđ</span>
+                                                    <span class="new">{{ $product->price }} Vnđ</span>
                                                 </span>
                                                 <span class="ratting f-right">
                                                     @for ($i = 0; $i < 5; $i++)
@@ -189,7 +189,7 @@
                                             </div>
                                             <div class="price-ratting fix">
                                                 <span class="price f-left">
-                                                    <span class="new">{{ $product->details[0]->price }} Vnđ</span>
+                                                    <span class="new">{{ $product->price }} Vnđ</span>
                                                 </span>
                                                 <span class="ratting f-right">
                                                     @for ($i = 0; $i < 5; $i++)

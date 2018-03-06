@@ -83,6 +83,7 @@
 										<th>Tên sản phẩm</th>
 										<th>Loại</th>
 										<th>Ảnh</th>
+										<th>Giá sản phẩm</th>
 										<th>Mô tả</th>
 										<th>Thẻ gắn</th>
 										<th>Thao tác</th>
@@ -93,6 +94,7 @@
 										<td class="width-100"> @{{ product.name }} </td>
 										<td> @{{ product.cate_id }} </td>
 										<td> <img ng-src=" {{ url('../storage/app') }}/@{{ product.url_image }}" alt="" style="width: 100px; height: 100px"> </td>
+										<td class="width-80"> @{{ product.price }} </td>
 										<td class="width-250"> <span ng-bind-html="product.description"></span> </td>
 										<td class="width-80"> @{{ product.tag }} </td>
 										<td> 

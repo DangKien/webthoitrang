@@ -3,13 +3,17 @@ ngApp.directive('detailProductModal', function($apply, $productService){
 	var link = function (scope) {
 
 		scope.dataParams = function () {
-			var color = scope.data.params.color;
-			var size = scope.data.params.size;
-			var price = scope.data.params.price;
-			var quantily = scope.data.params.quantily;
+			var color    = scope.data.params.color;
+			var price    = scope.data.params.price;
+			var size     = [];
 
-			var params = $productService.dataDetail(color, size, quantily, price);
-			console.log(params);
+			angular.forEach(scope.data.checkSize, function(value, key) {
+			
+			  	if (value == true) {
+			  		size.push(key);
+			  	}
+			});
+			var params = $productService.dataDetail(color, size, price);
 			return params;
 	};
 
@@ -18,9 +22,6 @@ ngApp.directive('detailProductModal', function($apply, $productService){
 				scope.data.params.quantily = FormatNumber(quantily);
 			},
 
-			formatPrice: function (price){
-				scope.data.params.price = FormatNumber(price);
-			},
 			insertDetailProduct : function () {
 				var params = scope.dataParams();
 				$productService.action.insertDetailProduct(scope.data.idProduct, params).then( function (resp) {
@@ -44,7 +45,6 @@ ngApp.directive('detailProductModal', function($apply, $productService){
 			},
 
 			saveDetailProduct: function () {
-				console.log(scope.data.idDetailProduct);
 				if (!scope.data.idDetailProduct) {
 					if ($(scope.productForm).parsley().validate())
 					{

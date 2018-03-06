@@ -67,6 +67,14 @@
 							</div>
 
 							<div class="form-group">
+								<label class=" control-label fix-form-cate" for="price">Giá sản phẩm: </label>
+								<div>
+									<input required type="text" placeholder="Giá sản phẩm" class="form-control input-sm " 
+										id="price" ng-model = "data.params.price" ng-change="actions.formatPrice(data.params.price)">
+								</div>
+							</div>
+
+							<div class="form-group">
 								<label class=" control-label fix-form-cate" for="sale_description">Mô tả khuyến mãi: </label>
 								<div>
 									<input type="text" placeholder="Mô tả khuyến mãi" class="form-control input-sm " 

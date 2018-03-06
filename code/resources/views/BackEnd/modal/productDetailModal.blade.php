@@ -7,45 +7,34 @@
 				</div>
 				<div class="modal-body">
 					<!-- insert cate -->
-					<div class="form-horizontal ">
-						
-						<div class="col-sm-12">
-							<div class="row">
-								<div class="form-group col-sm-6">
-									<label class="control-label fix-form-cate" for="color">Màu: </label>
-									<div>
-										<input required  type="color" class="form-control input-sm " 
-										id="color" ng-model = "data.params.color">
-									</div>
-								</div>
+					<div class="form-horizontal clearfix">
 
-								<div class="form-group col-sm-6 pull-right">
-									<label class="control-label fix-form-cate" for="demo-is-inputsmall">Kích cỡ: </label>
-									<div>
-										<input required type="text" placeholder="Kích cỡ" class="form-control input-sm " 
-										id="demo-is-inputsmall" ng-model = "data.params.size">
-									</div>
-								</div>
+						<div class="form-group col-sm-6">
+							<label class="control-label fix-form-cate" for="color">Màu: </label>
+							<div>
+								<input required  type="color" class="form-control input-sm " 
+								id="color" ng-model = "data.params.color">
 							</div>
-
-							<div class="row">
-								<div class="form-group col-sm-6">
-									<label class="control-label fix-form-cate" for="quantily">Số lượng: </label>
-									<div>
-										<input required type="text" placeholder="Số lượng sản phẩm" class="form-control input-sm " 
-										id="quantily" ng-model = "data.params.quantily" ng-change="actions.formatQuantily(data.params.quantily)">
+						</div>
+					
+						<div class="form-group col-sm-12">
+							<label class="control-label fix-form-cate" for="idSize">Kích cỡ: </label>
+							<br><hr>
+							<div>
+								<div class="col-sm-3" ng-repeat="(key, size) in data.listSize">
+									<div class="checkbox">
+									    <label>
+									    	<input ng-model="data.checkSize[size.id]" type="checkbox" value="" > @{{ size.name }}
+									    </label>
 									</div>
 								</div>
-
-								<div class="form-group col-sm-6 pull-right">
-									<label class="control-label fix-form-cate" for="price">Giá: </label>
-									<div>
-										<input required type="text" placeholder="Giá sản phẩm" class="form-control input-sm " 
-										id="price" ng-model = "data.params.price" ng-change="actions.formatPrice(data.params.price)">
-									</div>
-								</div>
+								<p class="text-danger" style="margin-top: 5px;"
+									ng-repeat="er in data.errors.cate_id"
+								>
+								    @{{ er }}
+								</p>
 							</div>
-						</div>				
+						</div>			
 					</div>
 				</div>
 				<div class="modal-footer">

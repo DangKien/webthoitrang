@@ -11,11 +11,16 @@ ngApp.directive('productModal', function($apply, $productService){
 			var tag              = scope.data.params.tag			
 			var description      = scope.data.params.description;
 			var multiImage       = scope.data.params.multiImage;
-			var params = $productService.data(name, cate_id, cate_sale, sale_description, url_image, tag, description, multiImage);
+			var price            = scope.data.params.price;
+			var params = $productService.data(name, cate_id, cate_sale, sale_description, url_image, tag, description, price
+						, multiImage);
 			return params;
 	};
 
 		scope.actions = {
+			formatPrice: function (price){
+				scope.data.params.price = FormatNumber(price);
+			},
 
 			insertProduct : function () {
 				var params = scope.dataParams();

@@ -11,7 +11,7 @@ class SizeSeed extends Seeder
      */
     public function run()
     {
-        DB::table('promotions')->insert([
+        DB::table('size')->insert([
                     ['name' => 'S'],
                     ['name' => 'M'],
                     ['name' => 'L'],

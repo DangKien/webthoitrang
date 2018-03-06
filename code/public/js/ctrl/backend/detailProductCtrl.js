@@ -6,9 +6,11 @@ ngApp.controller('detailProductCtrl', function ($apply, $productService, $scope,
         pageDetailProdcut:{},
         filter:{},
         nameCate: [],
-        mutiImage: [],
+        checkSize: [],
         params: {},
         pageDetailProdcut:{},
+        listSize: {},
+
     };
     $scope.data.idProduct = $routeParams.id;
 
@@ -17,6 +19,19 @@ ngApp.controller('detailProductCtrl', function ($apply, $productService, $scope,
         changePage: function (page) {
             $scope.data.pageDetailProdcut.current_page = page;
             $scope.actions.listDetailProduct();
+        },
+
+        listSize: function (){
+            $productService.action.listSize().then(function (resp) {
+                $scope.data.listSize = resp.data;
+            }, function (error){
+                
+            });
+        },
+        checkSize: function (data){
+            angular.forEach(data, function(value, key){
+                $scope.data.checkSize[value.id] = true;
+            });
         },
 
         // Danh sach loai tin
@@ -37,10 +52,13 @@ ngApp.controller('detailProductCtrl', function ($apply, $productService, $scope,
             // $($scope.domCateForm).parsley().reset();
             $scope.data.errors = {};
             if (!idDetailProduct) {
+                $scope.data.checkSize = [];
                 $scope.data.title = "Thêm mới sản phẩm";
             } else {
                 $productService.action.editDetailProduct(idDetailProduct).then (function (resp) {
-                 $scope.data.params = resp.data;
+                    $scope.data.params = resp.data;
+                    $scope.actions.checkSize(resp.data.sizes);
+                    console.log($scope.data.checkSize)
                 }, function (error) {
                  console.log(error);
                 });
@@ -81,6 +99,6 @@ ngApp.controller('detailProductCtrl', function ($apply, $productService, $scope,
         }
     };
     $scope.actions.listDetailProduct();
-    
+    $scope.actions.listSize();
 
 });

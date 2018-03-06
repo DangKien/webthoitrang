@@ -82,8 +82,6 @@
 									<tr>
 										<th>Màu sản phẩm</th>
 										<th>Kích cỡ</th>
-										<th>Giá</th>
-										<th>Số lượng</th>
 										<th>Thao tác</th>
 									</tr>
 								</thead>
@@ -92,9 +90,12 @@
 										<td class="width-100 text-center">
 											<p class="color-table" style="background:  @{{ product.color }}"></p>
 										</td>
-										<td> @{{ product.size }} </td>
-										<td> @{{ product.price }} vnđ/cái </td>
-										<td> @{{ product.quantily }}</td>
+										<td>
+											<span ng-repeat="(key, value) in product.sizes">
+												@{{ value.name }}
+												<br>  
+											</span>
+										</td>
 										<td> 
 											<button ng-click= "actions.showModal(product.id)" class="btn btn-default btn-icon btn-circle icon-lg fa fa-edit"></button>
 											<button ng-click= "actions.deleteDetail(product.id)" class="btn btn-danger btn-icon btn-circle icon-lg fa fa-trash"></button>
