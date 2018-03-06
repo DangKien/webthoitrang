@@ -49,7 +49,7 @@
                         <span class="ratting" ng-repeat="n in [0, 1, 2, 3, 4]"> 
                             <i class="fa" ng-class=" n < data.productRecord.start ? 'fa-star' : 'fa-star-o'"></i>
                         </span>
-                        <h3>@{{ data.productRecord.start }}</h3>
+                        <h3>Giá: @{{ data.productRecord.price }}</h3>
                         <p ng-bind-html="data.productRecord.description"></p>
                     </div>
                     <div class="single-cart-color for-pro-border">
