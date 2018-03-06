@@ -78,27 +78,6 @@
     $('.video-popup').magnificPopup({
         type: 'iframe'
     });
-    /* details-tab */
-    $('.details-tab').owlCarousel({
-        loop: true,
-        nav: true,
-        items: 4,
-        margin: 10,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
-        responsive: {
-            0: {
-                items: 3
-            },
-            768: {
-                items: 4
-            },
-            1000: {
-                items: 4
-            }
-        }
-    })
-    
-    
     /* product curosel */
     $('.product-curosel').owlCarousel({
         loop: true,

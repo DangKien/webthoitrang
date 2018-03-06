@@ -11,4 +11,11 @@ class ProductDetailModel extends MyModel
     public function sizes() {
     	return $this->belongsToMany('App\Models\SizeModel', 'product_size', 'product_detail_id', 'size_id' );
     }
+
+
+    public function getDetail($id) {
+    	return $this->where('product_id', $id)
+    				->with('sizes')
+    				->get();
+    }
 }

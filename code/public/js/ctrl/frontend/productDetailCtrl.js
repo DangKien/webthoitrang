@@ -3,6 +3,8 @@ ngApp.controller('productDetailCtrl', function($apply, $productDetailService, $s
 	$scope.data = {
 		slug: slug.trim(),
 		productRecord: {},
+		key: 0,
+		detail: {},
 		filter: function () {
 			var slug      = $scope.data.slug;
 			var params    = $productDetailService.data.filterProduct(slug);
@@ -11,10 +13,10 @@ ngApp.controller('productDetailCtrl', function($apply, $productDetailService, $s
 		productDetail: function () {
 			var filter = $scope.data.filter();
 			$productDetailService.action.product(filter).then(function (resp) {
-				console.log(resp.data);
 					$apply(function () {
-						$scope.data.productRecord = resp.data;
-						console.log($scope.data.productRecord);
+						$scope.data.productRecord = resp.data.product;
+						$scope.data.detail = resp.data.detail;
+						console.log(resp.data);
 					});
 			}, function (error) {
 

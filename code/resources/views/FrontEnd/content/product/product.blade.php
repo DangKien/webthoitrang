@@ -16,45 +16,29 @@
                 <div class="product-details-tab">
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div class="tab-pane active" id="product1">
+                        <div class="tab-pane active" id="productmain">
                             <div class="large-img">
-                                <img src="assets/img/shop/3.jpg" alt="" />
+                                <img src="{{ url('../storage/app') }}/@{{ data.productRecord.url_image }}" alt="" style="height: 550px;" />
                             </div>
                         </div>
-                        <div class="tab-pane" id="product2">
+                        <div ng-repeat="(key, images) in data.productRecord.images" class="tab-pane" id="product@{{ images.id }}">
                             <div class="large-img">
-                                <img src="assets/img/shop/4.jpg" alt="" />
-                            </div>							
-                        </div>
-                        <div class="tab-pane" id="product3">
-                            <div class="large-img">
-                                <img src="assets/img/shop/5.jpg" alt="" />
-                            </div>							
-                        </div>
-                        <div class="tab-pane" id="product4">
-                            <div class="large-img">
-                                <img src="assets/img/shop/6.jpg" alt="" />
-                            </div>							
-                        </div>
-                        <div class="tab-pane" id="product5">
-                            <div class="large-img">
-                                <img src="assets/img/shop/3.jpg" alt="" />
-                            </div>							
-                        </div>
-                        <div class="tab-pane" id="product6">
-                            <div class="large-img">
-                                <img src="assets/img/shop/4.jpg" alt="" />
-                            </div>							
+                                <img ng-src="{{ url('../storage/app') }}/@{{ images.url_image }}" alt="" style="height: 550px;" />
+                            </div>                          
                         </div>
                     </div>
                     <!-- Nav tabs -->
                     <div class="details-tab owl-carousel">
-                        <div class="active"><a href="#product1" data-toggle="tab"><img src="assets/img/shop/3.jpg" alt="" /></a></div>
-                        <div><a href="#product2" data-toggle="tab"><img src="assets/img/shop/4.jpg" alt="" /></a></div>
-                        <div><a href="#product3" data-toggle="tab"><img src="assets/img/shop/5.jpg" alt="" /></a></div>
-                        <div><a href="#product4" data-toggle="tab"><img src="assets/img/shop/6.jpg" alt="" /></a></div>
-                        <div><a href="#product5" data-toggle="tab"><img src="assets/img/shop/3.jpg" alt="" /></a></div>
-                        <div><a href="#product6" data-toggle="tab"><img src="assets/img/shop/4.jpg" alt="" /></a></div>
+                        <div class="active">
+                            <a href="#productmain" data-toggle="tab">
+                                <img ng-src="{{ url('../storage/app') }}/@{{ data.productRecord.url_image }}" alt="" style="height: 190px;"  />
+                            </a>
+                        </div>
+                        <div owl-carousel-item ng-repeat="(key, images) in data.productRecord.images">
+                            <a href="#product@{{ images.id }}" data-toggle="tab" >
+                                <img ng-src="{{ url('../storage/app') }}/@{{ images.url_image }}" alt="" style="height: 190px;" />
+                            </a>
+                        </div>
                     </div>	
                 </div>
             </div>
@@ -82,12 +66,11 @@
                                 ></li>
                             </ul>
                         </div>
-                        <div class="pro-color-size">
+                        <div class="pro-color-size mb-30">
                             <p>size :</p>
                             <ul>
-                                <li ng-repeat="(key, detail) in data.productRecord.details"
-                                    style="background: @{{ detail.color }}"
-                                ></li>
+                                <li ng-repeat="(key, detailSize) in data.detail[data.key].sizes"
+                                > <a href="">@{{ detailSize.name }}</a> </li>
                             </ul>
                         </div>
                         <div class="pro-quality">
@@ -105,14 +88,14 @@
                         <div class="pro-category">
                             <p>Loại sản phẩm :</p>
                             <ul>
-                                <li><a href="#">@{{ data.productRecord.cates.name }}</a></li>
+                                <li><a href="{{ url('categories') }}/@{{ data.productRecord.cates.slug }}">@{{ data.productRecord.cates.name }}</a></li>
                             </ul>
                         </div>
                         <div class="pro-tag">
                             <p>Tags :</p>
                             <ul>
                                 <li>
-                                    <a href="#">Clothing</a>
+                                    <a href="#">@{{ data.productRecord.tag }}</a>
                                 </li>
                             </ul>
                         </div>
