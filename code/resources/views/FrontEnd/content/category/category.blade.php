@@ -1,5 +1,5 @@
 @extends('FrontEnd.layouts.default')
-@section ('title', 'Trang chủ')
+@section ('title', 'Sản phẩm')
 @section ('myJs')
     
 @endsection

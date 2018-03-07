@@ -1,16 +1,26 @@
 @extends('FrontEnd.layouts.default')
-@section ('title', 'Trang chủ')
+@section ('title', 'Chi tiết sản phẩm')
 @section ('myJs')
 	<script>
-		var slug      = "@if (isset($slug)) {{ $slug }} @endif";
+		var slug = "@if (isset($slug)) {{ $slug }} @endif";
+
 	</script>
     <script src="{{ url('js/ctrl/frontend') }}/productDetailCtrl.js"></script>
 	<script src="{{ url('/js/factory/services/frontend') }}/productDetailService.js"></script>
 @endsection
 @section ('content')
-@include('FrontEnd.layouts.partial._breadcrumb')
-<div class="single-product-area ptb-100" ng-controller="productDetailCtrl">
+
+<div class="single-product-area" ng-controller="productDetailCtrl">
     <div class="container">
+        <ol class="breadcrumb">
+            <li>
+                <a href="{{ route('home') }}">
+                 Trang chủ</a>
+            </li>
+            <li ng-repeat="(key, value) in data.categories">
+                <a href="{{ url('categories') }}/@{{ value.slug }}"> @{{ value.name }} </a>
+            </li>
+        </ol>
         <div class="row">
             <div class="col-md-5">
                 <div class="product-details-tab">
