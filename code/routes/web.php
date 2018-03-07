@@ -39,6 +39,7 @@ Route::group(['prefix'=>''], function (){
 });
 
 
+
 // backend route rest API
 Route::group(['prefix' => 'rest/backend'], function() {
     // loại tin
