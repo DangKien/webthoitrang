@@ -27,6 +27,8 @@ Route::group(['prefix'=>'backend'], function (){
 	Route::get('/image', function (){
 		return view('vendor.laravel-filemanager.index');
 	});
+
+
 });
 
 // frontend route
@@ -36,6 +38,8 @@ Route::group(['prefix'=>''], function (){
 	Route::get('/categories/{slug}', 'FrontEnd\Category\CategoryCtrl@index');
 
 	Route::get('/product/{slug}', 'FrontEnd\Product\ProductCtrl@index');
+
+
 });
 
 
@@ -68,5 +72,7 @@ Route::group(['prefix' => 'rest/backend'], function() {
 Route::group(['prefix' => 'rest/frontend'], function() {
     // loại tin
     Route::get('/product', 'FrontEnd\Rest\ProductCtrl@getRecord'); // lay 1 san pham
+
+    Route::get('/category/{id}', 'FrontEnd\Rest\CategoryCtrl@getList'); // lay san pham theo id
 
 });

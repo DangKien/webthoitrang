@@ -66,7 +66,7 @@
     }
 
 
-    function showCategoriesLeft($categories, $parent_id = 0, $stt = 0) {
+    function showCategoriesLeft($categories, $slug_f ,$parent_id = 0, $stt = 0) {
         $cate_child = array();
         foreach ($categories as $key => $item) {
             if ($item['parent_id'] == $parent_id)
@@ -79,22 +79,22 @@
             if ($stt == 0) {
                 foreach ($cate_child as $key => $item) {
                     echo '<h3 class="sidebar-title"><a href="'.$item['url_link'].'">'.$item['name'].'</a></h3>';
-                    showCategoriesLeft($categories, $item['id'], ++$stt);
+                    showCategoriesLeft($categories, $slug_f, $item['id'], ++$stt, $slug_f);
                 }
             }
         else if ($stt == 1){
             echo '<div class="sidebar-list mtb-20"><ul>';
             foreach ($cate_child as $key => $item) {
-                echo '<li><input type="checkbox"><a href="'.$item['url_link'].'">'.$item['name'].'</a>';
-                showCategoriesLeft($categories, $item['id'], ++$stt);
+                echo '<li><a href="'.$item['url_link'].'">'.$item['name'].'</a>';
+                showCategoriesLeft($categories, $slug_f, $item['id'], ++$stt);
                 echo '</li>';
             }
             echo '</ul></div>';
         } else {
             echo '<div class="sidebar-list ml-20"><ul>';
             foreach ($cate_child as $key => $item) {
-                echo '<li><input type="checkbox"><a href="'.$item['url_link'].'">'.$item['name'].'</a>';
-                showCategoriesLeft($categories, $item['id'], ++$stt);
+                echo '<li><a href="'.$item['url_link'].'">'.$item['name'].'</a>';
+                showCategoriesLeft($categories, $slug_f, $item['id'], ++$stt);
                 echo '</li>';
             }
             echo '</ul></div>';

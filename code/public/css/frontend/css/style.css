@@ -1816,7 +1816,8 @@ h3.sidebar-title::before {
     padding-left: 0;
 }
 .sidebar-list ul li {
-    padding-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;  
     display: block;
     overflow: hidden;
 }
@@ -1832,6 +1833,7 @@ h3.sidebar-title::before {
 .sidebar-list ul li a {
     letter-spacing: 1px;
     padding-left: 10px;
+    margin-top: 10px;
     text-transform: capitalize;
 }
 .sidebar-list ul li a:hover {

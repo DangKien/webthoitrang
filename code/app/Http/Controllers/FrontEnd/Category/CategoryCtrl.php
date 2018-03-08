@@ -9,11 +9,12 @@ use App\Models\CategoryModel;
 
 class CategoryCtrl extends Controller
 {
-    public function index(CategoryModel $category, ProductModel $product) {
+    public function index(CategoryModel $category, ProductModel $product, $slug) {
     	$title = "Loại sản phẩm";
     	return view('FrontEnd.content.category.category',
     	[
     		'title' => $title,
+    		'slug'  => $slug,
     	]);
     }
 
