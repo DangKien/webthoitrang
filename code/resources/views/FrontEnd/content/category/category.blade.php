@@ -47,13 +47,18 @@
                                 <div class="tab-pane active" id="grid"> 
                                     <div class="row">
                                         <div class="col-md-6 col-lg-4 col-sm-6">
-                                            <div class="single-shop">
+                                            <div class="single-shop" ng-repeat="(key, products) in data.categories">
                                                 <div class="shop-img">
-                                                    <a href="#"><img src="{{ url('../storage/app') }}/images/main_prodcut/8FopHqduvY509gj3eV338mBbozvkg7XUgBpMyurS.jpeg" alt=""/></a>
+                                                    <a href="{{ url('product') }}/@{{ products.slug }}"><img ng-src="{{ url('../storage/app') }}/@{{ products.url_image }}" alt=""/></a>
                                                     <div class="price-up-down">
-                                                        <span class="sale-new">
+                                                        <span class="sale-new" ng-if="products.cate_sale == 0">
                                                             New
                                                         </span>
+
+                                                        <span class="sale-new" ng-if="products.cate_sale != 0">
+                                                            @{{ products.sales.name }}
+                                                        </span>
+
                                                     </div>
                                                     <div class="button-group">
                                                         <a href="#" title="Add to Cart">
@@ -65,22 +70,24 @@
                                                 <div class="shop-text-all">
                                                     <div class="title-color fix">
                                                         <div class="shop-title f-left">
-                                                            <h3><a href="#" title="">
+                                                            <h3><a href="{{ url('product') }}/@{{ products.slug }}" title="">
+                                                                @{{ products.name }}
                                                             </a></h3>
                                                         </div>
                                                         <div class="pro-color f-right">
                                                             <ul>
-                                                               <li style="">b</li>
+                                                               <li ng-repeat="(key, colors) in products.details"
+                                                                    ng-style="{'background': colors.color}"
+                                                               >b</li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                     <div class="price-ratting fix">
                                                         <span class="price f-left">
-                                                            <span class="new"> Vnđ</span>
+                                                            <span class="new">@{{ products.price }} Vnđ</span>
                                                         </span>
-                                                        <span class="ratting f-right">
-                                                            <i class="fa fa-star active"></i>
-                                                            <i class="fa fa-star-o"></i>
+                                                        <span class="ratting pull-right" ng-repeat="n in [0, 1, 2, 3, 4]"> 
+                                                            <i class="fa" ng-class=" n < products.start ? 'fa-star' : 'fa-star-o'"></i>
                                                         </span>
                                                     </div>
                                                 </div>                                  

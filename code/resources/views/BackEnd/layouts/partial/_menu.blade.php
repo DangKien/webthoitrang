@@ -35,6 +35,13 @@
 								<span class="menu-title">Sản phẩm </span>
 							</a>
 						</li>
+
+						<li class="{{ request()->is('/*/slider') || request()->is('*/slider') ? 'active active-link' : '' }}">
+							<a href="{{ route('slider') }}">
+								<i class="fa fa-user-circle"></i>
+								<span class="menu-title">Slide Show</span>
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>

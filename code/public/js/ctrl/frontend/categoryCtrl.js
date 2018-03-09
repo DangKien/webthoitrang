@@ -13,7 +13,7 @@ ngApp.controller('categoryCtrl', function($apply, $categoryService, $scope) {
 			var slug      = $scope.data.slug;
 			$categoryService.action.categories(slug).then(function (resp) {
 					$apply(function () {
-						$scope.data.categories = resp.data;
+						$scope.data.categories = resp.data.data;
 						console.log(resp.data);
 					});
 			}, function (error) {
