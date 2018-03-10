@@ -1,4 +1,4 @@
-ngApp.directive('productModal', function($apply, $productService){
+ngApp.directive('productModal', function($apply, $productService, $myLoader){
 	templateUrl = SiteUrl + '/modal/productModal';
 	var link = function (scope) {
 
@@ -24,6 +24,7 @@ ngApp.directive('productModal', function($apply, $productService){
 
 			insertProduct : function () {
 				var params = scope.dataParams();
+				$myLoader.show();
 				$productService.action.insertProduct(params).then( function (resp) {
 						if (resp) {
 							scope.onSave({data : true});
@@ -35,6 +36,7 @@ ngApp.directive('productModal', function($apply, $productService){
 
 			updateProduct: function (idProduct) {
 				var params = scope.dataParams();
+				$myLoader.show();
 				$productService.action.updateProduct(idProduct, params).then( function (resp) {
 						if (resp) {
 							scope.onSave({data : true});
@@ -47,14 +49,12 @@ ngApp.directive('productModal', function($apply, $productService){
 			saveProduct: function () {
 				var params = scope.dataParams();
 				if (!scope.data.idProduct) {
-					if ($(scope.productForm).parsley().validate())
-					{
+					if ($(scope.productForm).parsley().validate()) {
 						scope.actions.insertProduct();
 					}
 				}
 				else {
-					if ($(scope.productForm).parsley().validate())
-					{
+					if ($(scope.productForm).parsley().validate()) {
 						scope.actions.updateProduct(scope.data.idProduct);
 					}
 				}

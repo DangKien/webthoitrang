@@ -1,5 +1,4 @@
-ngApp.controller('sliderCtrl', function($scope,  $sliderService, $apply, $myNotify, $myBootbox){
-
+ngApp.controller('sliderCtrl', function($scope,  $sliderService, $apply, $myNotify, $myBootbox, $myLoader){
 	$scope.chosseSlideModal;
 	$scope.slideForm;
 	$scope.filter = {
@@ -22,6 +21,7 @@ ngApp.controller('sliderCtrl', function($scope,  $sliderService, $apply, $myNoti
 					$scope.data.listSlide = resp.data.data;
 					$scope.data.pageSlide = resp.data;
 					$scope.actions.location(resp.data.data);
+
 				});
 			}, function (error) {
 			});
@@ -70,12 +70,14 @@ ngApp.controller('sliderCtrl', function($scope,  $sliderService, $apply, $myNoti
 			
 			$myBootbox.confirm ('Bạn thật sự muốn xóa slide này?', function (conf) {
 				if (conf) {
-
+					$myLoader.show();
 					$sliderService.action.deleteSlide(idSlide).then(function (resp) {
 						$myNotify.success('Xóa slide thành công.')
 						$scope.data.list();
+						$myLoader.hide();
 					}, function (error) {
 						console.log(error);
+						$myLoader.hide();
 					});
 				}
 			});
@@ -90,8 +92,10 @@ ngApp.controller('sliderCtrl', function($scope,  $sliderService, $apply, $myNoti
 				}
 				$($scope.chosseSlideModal).modal('hide');
 				$scope.data.list();
+				$myLoader.hide();
 			} else {
 				$scope.data.errors = data.errors;
+				$myLoader.hide();
 			}
 		},
 

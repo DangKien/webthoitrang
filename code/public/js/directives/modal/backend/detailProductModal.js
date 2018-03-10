@@ -1,4 +1,4 @@
-ngApp.directive('detailProductModal', function($apply, $productService){
+ngApp.directive('detailProductModal', function($apply, $productService, $myLoader){
 	templateUrl = SiteUrl + '/modal/productDetailModal';
 	var link = function (scope) {
 
@@ -8,7 +8,6 @@ ngApp.directive('detailProductModal', function($apply, $productService){
 			var size     = [];
 
 			angular.forEach(scope.data.checkSize, function(value, key) {
-			
 			  	if (value == true) {
 			  		size.push(key);
 			  	}
@@ -24,6 +23,7 @@ ngApp.directive('detailProductModal', function($apply, $productService){
 
 			insertDetailProduct : function () {
 				var params = scope.dataParams();
+				$myLoader.show();
 				$productService.action.insertDetailProduct(scope.data.idProduct, params).then( function (resp) {
 						if (resp) {
 							scope.onSave({data : true});
@@ -35,6 +35,7 @@ ngApp.directive('detailProductModal', function($apply, $productService){
 
 			updateDetailProduct: function (idDetailProduct) {
 				var params = scope.dataParams();
+				$myLoader.show();
 				$productService.action.updateDetailProduct(idDetailProduct, params).then( function (resp) {
 						if (resp) {
 							scope.onSave({data : true});
@@ -46,14 +47,12 @@ ngApp.directive('detailProductModal', function($apply, $productService){
 
 			saveDetailProduct: function () {
 				if (!scope.data.idDetailProduct) {
-					if ($(scope.productForm).parsley().validate())
-					{
+					if ($(scope.productDetailForm).parsley().validate()) {
 						scope.actions.insertDetailProduct();
 					}
 				}
 				else {
-					if ($(scope.productForm).parsley().validate())
-					{
+					if ($(scope.productDetailForm).parsley().validate()) {
 						scope.actions.updateDetailProduct(scope.data.idDetailProduct);
 					}
 					
@@ -68,7 +67,7 @@ ngApp.directive('detailProductModal', function($apply, $productService){
 		scope: {
 			data: "=productData",
 			onSave: "&productSave",
-			productForm: "=domProductForm",
+			productDetailForm: "=domProductForm",
 			detailProductModal: "=domDetailProductModal",
 		},
 		restrict: 'E',

@@ -36,5 +36,10 @@
             @yield('myJs')
             @includeif ('BackEnd.layouts.partial._footer')
         </div>
+        <div class="modal" id="modalLoader">
+            <div id="loader-wrapper">
+                <div id="loader"></div>
+            </div>
+        </div>
     </body>
 </html>

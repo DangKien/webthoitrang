@@ -1,7 +1,6 @@
-ngApp.directive('cateModal', function($apply, $cateService){
+ngApp.directive('cateModal', function($apply, $cateService, $myLoader){
 	templateUrl = SiteUrl + '/modal/categoryModal';
 	var link = function (scope) {
-
 		scope.dataParams = function () {
 			var name   = scope.data.params.name;
 			var status = scope.data.params.status;
@@ -16,6 +15,7 @@ ngApp.directive('cateModal', function($apply, $cateService){
 
 			insertCate : function () {
 				var params = scope.dataParams();
+				$myLoader.show();
 				$cateService.action.insertCate(params).then( function (resp) {
 						if (resp) {
 							scope.onSave({data : true});
@@ -27,24 +27,23 @@ ngApp.directive('cateModal', function($apply, $cateService){
 
 			updateCate: function (idCate) {
 				var params = scope.dataParams();
+				$myLoader.show();
 				$cateService.action.updateCate(idCate, params).then( function (resp) {
-						if (resp) {
-							scope.onSave({data : true});
-						}
-					}, function (error) {
-						scope.onSave({data : error.data});
-					});
+					if (resp) {
+						scope.onSave({data : true});
+					}
+				}, function (error) {
+					scope.onSave({data : error.data});
+				});
 			},
 
 			saveCate: function () {
 				if (!scope.data.idCate) {
-					if ($(scope.cateForm).parsley().validate())
-					{
+					if ($(scope.cateForm).parsley().validate()) {
 						scope.actions.insertCate();
 					}
 				}else {
-					if ($(scope.cateForm).parsley().validate())
-					{
+					if ($(scope.cateForm).parsley().validate()) {
 						scope.actions.updateCate(scope.data.idCate);
 					}
 					

@@ -1,4 +1,4 @@
-ngApp.directive('sliderModal', function($sliderService, $apply){
+ngApp.directive('sliderModal', function($sliderService, $apply, $myLoader){
 	var url = SiteUrl + "/modal/sliderModal";
 
 	var link = function(scope){
@@ -16,6 +16,7 @@ ngApp.directive('sliderModal', function($sliderService, $apply){
 			insertSlide: function () {
 				if ($(scope.slideForm).parsley().validate()) {
 					var params = scope.actions.paramsSlide();
+					$myLoader.show();
 					$sliderService.action.insertSlide(params).then(function(resp){
 						if (resp) {
 							$apply(function() {
@@ -30,6 +31,7 @@ ngApp.directive('sliderModal', function($sliderService, $apply){
 			updateSlide: function (idSlide) {
 				if ($(scope.slideForm).parsley().validate()) {
 					var params = scope.actions.paramsSlide();
+					$myLoader.show();
 					$sliderService.action.updateSlide(idSlide, params).then(function(resp){
 						if (resp) {
 							$apply(function() {

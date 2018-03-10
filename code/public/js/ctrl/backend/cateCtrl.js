@@ -1,4 +1,4 @@
-ngApp.controller('cateCtrl', function ($apply, $cateService, $scope, changStatus, $conf) {
+ngApp.controller('cateCtrl', function ($apply, $cateService, $scope, changStatus, $conf, $myLoader) {
 	$scope.domCateForm;
 	$scope.domCateModal;
 	$scope.data = {
@@ -110,14 +110,17 @@ ngApp.controller('cateCtrl', function ($apply, $cateService, $scope, changStatus
 		deleteCate: function (idCate) {
 			$conf.confirmDelete ('small', 'Bạn muốn xóa loại sản phẩm này?', function (resp) {
 				if (resp == true){
+					$myLoader.show();
 					$cateService.action.deleteCate(idCate).then(function (resp) {
 						if (resp) {
 							$scope.actions.listCate();
 							$scope.actions.allListCate();
 							$conf.confirmNotifi('success', 'Xóa loại sản phẩm thành công');
+							$myLoader.hide();
 						}
 					}, function (error) {
 							$conf.confirmNotifi('error', 'Xóa loại sản phẩm thất bại', "fa fa-ban");
+							$myLoader.hide();
 					});
 				}
 			});
@@ -159,10 +162,12 @@ ngApp.controller('cateCtrl', function ($apply, $cateService, $scope, changStatus
 					$scope.actions.allListCate();
 					$scope.actions.listCate();
 					$($scope.domCateModal).modal('hide');
+					$myLoader.hide();
 				});
 				
 			} else {
 				$scope.data.errors = data.errors;
+				$myLoader.hide();
 			}
 		},
 	};
