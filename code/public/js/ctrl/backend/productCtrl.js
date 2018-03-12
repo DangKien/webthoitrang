@@ -1,4 +1,4 @@
-ngApp.controller('productCtrl', function ($apply, $productService, $scope, changStatus, $conf) {
+ngApp.controller('productCtrl', function ($apply, $productService, $scope, changStatus, $conf, $myLoader) {
 	$scope.domProductForm;
 	$scope.domProductModal;
 	$scope.data = {
@@ -79,13 +79,16 @@ ngApp.controller('productCtrl', function ($apply, $productService, $scope, chang
 		deleteProduct: function(idProduct) {
             $conf.confirmDelete ('small', 'Bạn muốn xóa sản phẩm này?', function (resp) {
                 if (resp == true){
+                	$myLoader.show();
                     $productService.action.deleteProduct(idProduct).then(function (resp) {
                         if (resp) {
                             $scope.actions.listProduct();
                             $conf.confirmNotifi('success', 'Xóa sản phẩm thành công');
+                            $myLoader.hide();
                         }
                     }, function (error) {
                             $conf.confirmNotifi('error', 'Xóa sản phẩm thất bại', "fa fa-ban");
+                            $myLoader.hide();
                     });
                 }
             });
@@ -102,10 +105,12 @@ ngApp.controller('productCtrl', function ($apply, $productService, $scope, chang
 					$scope.actions.allListCate();
 					$scope.actions.listProduct();
 					$($scope.domProductModal).modal('hide');
+					$myLoader.hide();
 				});
 				
 			} else {
 				$scope.data.errors = data.errors;
+				$myLoader.hide();
 			}
 		},
 	};

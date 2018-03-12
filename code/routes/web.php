@@ -21,13 +21,15 @@ Route::get('/modal/{view}', 'BackEnd\Modal\ModalCtrl@modal');
 Route::group(['prefix'=>'backend'], function (){
 	Route::get('/category', 'BackEnd\Cate\CateCtrl@category')->name('category');
 	Route::get('/product', 'BackEnd\Product\ProductCtrl@main')->name('product');
+	Route::get('/slider', 'BackEnd\Slider\SliderCtrl@slider')->name('slider');
+
+
 	Route::get('/product-main', 'BackEnd\Product\ProductCtrl@product');
 	Route::get('/detail-product', 'BackEnd\Product\ProductCtrl@detailProduct');
 	// Route::get('/product', 'BackEnd\Product\ProductCtrl@product');
 	Route::get('/image', function (){
 		return view('vendor.laravel-filemanager.index');
 	});
-
 
 	Route::resource('users','BackEnd\UserController');
 });
@@ -39,6 +41,8 @@ Route::group(['prefix'=>''], function (){
 	Route::get('/categories/{slug}', 'FrontEnd\Category\CategoryCtrl@index');
 
 	Route::get('/product/{slug}', 'FrontEnd\Product\ProductCtrl@index');
+
+
 });
 
 // backend route rest API
@@ -64,6 +68,13 @@ Route::group(['prefix' => 'rest/backend'], function() {
 	Route::get('promotion', 'BackEnd\Rest\ProductCtrl@getPromotion');
 	Route::get('size', 'BackEnd\Rest\ProductCtrl@getSize');
 
+	// slidershow
+	Route::get('/slider', 'BackEnd\Rest\SliderCtrl@getList');
+    Route::post('/slider', 'BackEnd\Rest\SliderCtrl@getInsert');
+    Route::get('/slider/{id}', 'BackEnd\Rest\SliderCtrl@getEdit');
+	Route::post('/slider/{id}', 'BackEnd\Rest\SliderCtrl@getUpdate');
+	Route::delete('/slider/{id}', 'BackEnd\Rest\SliderCtrl@getDelete');
+
 });
 
 // rest frontend 
@@ -75,3 +86,4 @@ Route::group(['prefix' => 'rest/frontend'], function() {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/category/{id}', 'FrontEnd\Rest\CategoryCtrl@getList'); // lay san pham theo id

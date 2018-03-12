@@ -1,4 +1,4 @@
-ngApp.controller('detailProductCtrl', function ($apply, $productService, $scope, changStatus, $conf, $routeParams) {
+ngApp.controller('detailProductCtrl', function ($apply, $productService, $scope, $myLoader,changStatus, $conf, $routeParams) {
     $scope.domProductForm;
     $scope.domDetailProductModal;
     $scope.data = {
@@ -49,7 +49,7 @@ ngApp.controller('detailProductCtrl', function ($apply, $productService, $scope,
         showModal: function (idDetailProduct) {
             $scope.data.idDetailProduct = idDetailProduct;
             $($scope.domDetailProductModal).modal('show');
-            // $($scope.domCateForm).parsley().reset();
+            $($scope.domProductForm).parsley().reset();
             $scope.data.errors = {};
             if (!idDetailProduct) {
                 $scope.data.checkSize = [];
@@ -76,23 +76,28 @@ ngApp.controller('detailProductCtrl', function ($apply, $productService, $scope,
                 $apply(function () {
                     $scope.actions.listDetailProduct();
                     $($scope.domDetailProductModal).modal('hide');
+                    $myLoader.hide();
                 });
                 
             } else {
                 $scope.data.errors = data.errors;
+                $myLoader.hide();
             }
         },
 
         deleteDetail: function(idProduct) {
             $conf.confirmDelete ('small', 'Bạn muốn chi tiết sản phẩm này?', function (resp) {
                 if (resp == true){
+                    $myLoader.show();
                     $productService.action.deleteDetailProduct(idProduct).then(function (resp) {
                         if (resp) {
                             $scope.actions.listDetailProduct();
                             $conf.confirmNotifi('success', 'Xóa loại chi tiết sản phẩm thành công');
+                            $myLoader.hide();
                         }
                     }, function (error) {
-                            $conf.confirmNotifi('error', 'Xóa loại chi tiết sản phẩm thất bại', "fa fa-ban");
+                        $conf.confirmNotifi('error', 'Xóa loại chi tiết sản phẩm thất bại', "fa fa-ban");
+                        $myLoader.hide();
                     });
                 }
             });

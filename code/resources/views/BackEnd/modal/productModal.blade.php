@@ -67,10 +67,15 @@
 							</div>
 
 							<div class="form-group">
-								<label class=" control-label fix-form-cate" for="price">Giá sản phẩm: </label>
+								<label class=" control-label fix-form-cate" for="price">Giá sản phẩm*: </label>
 								<div>
 									<input required type="text" placeholder="Giá sản phẩm" class="form-control input-sm " 
 										id="price" ng-model = "data.params.price" ng-change="actions.formatPrice(data.params.price)">
+									<p class="text-danger" style="margin-top: 5px;"
+											ng-repeat="er in data.errors.price"
+										>
+									    @{{ er }}
+									</p>
 								</div>
 							</div>
 

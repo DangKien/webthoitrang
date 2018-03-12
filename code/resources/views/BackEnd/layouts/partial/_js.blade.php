@@ -15,6 +15,12 @@
 <script src="{{ url('') }}/js/factory/apply.js"></script>
 <script src="{{ url('') }}/js/factory/changStatus.js"></script>
 <script src="{{ url('') }}/js/factory/conf.js"></script>
+<script src="{{ url('') }}/js/factory/apply.js"></script>
+<script src="{{ url('') }}/js/factory/myBootbox.js"></script>
+<script src="{{ url('') }}/js/factory/myLoader.js"></script>
+<script src="{{ url('') }}/js/factory/myNotify.js"></script>
+<script src="{{ url('') }}/js/factory/myFunc.js"></script>
+
 <script src="{{ url('') }}/js/directives/ngEnter.js"></script>
 <script src="{{ url('') }}/js/directives/ngdom.js"></script>
 <script src="{{ url('') }}/js/directives/mySelectpicker.js"></script>

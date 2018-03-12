@@ -1,5 +1,5 @@
 @extends('BackEnd.layouts.default')
-@section ('title', 'Loại tin')
+@section ('title', 'Chuyên mục sản phẩm')
 @section ('myJs')
     <script src="{{ url('')}}/js/ctrl/backend/cateCtrl.js"></script>
     <script src="{{ url('')}}/js/factory/services/backend/cateService.js"></script>
@@ -50,7 +50,7 @@
 					                   <form class="" ng-enter="actions.listCate()">
 					                   		 <div class="col-sm-6">
 					                        <div class="form-group">
-					                            <label class="control-label">Tên loại tin: </label>
+					                            <label class="control-label">Tên chuyên mục: </label>
 					                            <input ng-model = "data.filter.name" type="text" class="form-control">
 					                        </div>
 					                    </div>
@@ -69,7 +69,7 @@
 					            </div>
 					            <div class="panel-footer text-right">
 					                <button ng-click="actions.listCate()" class="btn btn-info" type="submit">
-					                	<i class="fa fa-search"> Tìm kiếm</i>
+					                	<i class="fa fa-search">Tìm kiếm</i>
 					                </button>
 					            </div>
 					        </form>
@@ -89,11 +89,10 @@
 								<table class="table table-striped">
 									<thead>
 										<tr>
-											<th>Tên loại tin</th>
-											<th>Loại tin cha</th>
-											<th>Tag</th>
-											<th>Đường dẫn</th>
-											<th>Người sửa</th>
+											<th>Tên chuyên mục</th>
+											<th>Chuyên mục cha</th>
+											<th style="max-width: 100px;">Tag</th>
+											<th style="max-width: 350px;">Đường dẫn</th>
 											<th>Thao tác</th>
 										</tr>
 									</thead>
@@ -103,7 +102,6 @@
 											<td> @{{ cate.parent_id }} </td>
 											<td> @{{ cate.tag }} </td>
 											<td> @{{ cate.url_link }} </td>
-											<td> @{{ cate.users.name }} </td>
 											<td> 
 												<button ng-click= "actions.showModal(cate.id)" class="btn btn-default btn-icon btn-circle icon-lg fa fa-edit"></button>
 												<button ng-click= "actions.deleteCate(cate.id)" class="btn btn-danger btn-icon btn-circle icon-lg fa fa-trash"></button>
@@ -112,7 +110,6 @@
 									</tbody>
 								</table>
 							</div>
-
 							<div class="row text-center">
 							   <div class="page-oum">
 							       <div paging
