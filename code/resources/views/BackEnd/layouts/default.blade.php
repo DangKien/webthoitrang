@@ -26,10 +26,10 @@
         <div id="container" class="effect mainnav-lg">
             <div class="boxed">
                 @includeif ('BackEnd.layouts.partial._header')
-
-                @yield('content')
-
                 @includeif ('BackEnd.layouts.partial._menu')
+                <div class="pad-left" style="padding-left: 230px;">
+                    @yield('content')
+                </div>
              </div>
             @includeif ('BackEnd.layouts.partial._default_js')
             @includeif ('BackEnd.layouts.partial._js')
