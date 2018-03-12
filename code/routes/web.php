@@ -27,6 +27,9 @@ Route::group(['prefix'=>'backend'], function (){
 	Route::get('/image', function (){
 		return view('vendor.laravel-filemanager.index');
 	});
+
+
+	Route::resource('users','BackEnd\UserController');
 });
 
 // frontend route
@@ -37,8 +40,6 @@ Route::group(['prefix'=>''], function (){
 
 	Route::get('/product/{slug}', 'FrontEnd\Product\ProductCtrl@index');
 });
-
-
 
 // backend route rest API
 Route::group(['prefix' => 'rest/backend'], function() {
@@ -71,3 +72,6 @@ Route::group(['prefix' => 'rest/frontend'], function() {
     Route::get('/product', 'FrontEnd\Rest\ProductCtrl@getRecord'); // lay 1 san pham
 
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
