@@ -1,4 +1,4 @@
-<footer id="footer">
+<footer id="footer" class="hidden">
 	<div class="show-fixed pull-right">
 		<ul class="footer-list list-inline">
 			<li>
