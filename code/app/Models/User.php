@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use NF\Roles\Contracts\HasRoleAndPermission as HasRoleAndPermissionContract;
+use NF\Roles\Models\Role;
 use NF\Roles\Traits\HasRoleAndPermission;
 
 class User extends Authenticatable implements HasRoleAndPermissionContract, CanResetPassword
@@ -25,7 +26,7 @@ class User extends Authenticatable implements HasRoleAndPermissionContract, CanR
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'email', 'password', 'first_name', 'last_name', 'age', 'phone', 'address', 'description', 'avatar', 'status'
     ];
 
     /**
@@ -36,4 +37,9 @@ class User extends Authenticatable implements HasRoleAndPermissionContract, CanR
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
 }

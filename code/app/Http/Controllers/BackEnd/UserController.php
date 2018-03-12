@@ -5,6 +5,8 @@ namespace App\Http\Controllers\BackEnd;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
 
 class UserController extends Controller
 {
@@ -15,7 +17,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate();
+        $users = User::with('roles')->paginate();
+        // $users = $users->map(function($item){
+        //     $item->name_role = $item->roles[0]->name;
+        //     return $item;
+        // });
         return view('BackEnd.content.user.index', compact('users'));
     }
 
@@ -26,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('BackEnd.content.user.create');
     }
 
     /**
@@ -37,7 +43,28 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'first_name'  => 'required|string|min:2|max:100',
+            'last_name'   => 'required|string|min:2|max:50',
+            'email'       => 'required|email|unique:users|max:255',
+            'avatar'      => 'nullable|image',
+            'password'    => 'required|string|min:6|max:100',
+            'age'         => 'nullable|numeric',
+            'phone'       => 'nullable',
+            'address'     => 'nullable',
+            'description' => 'nullable',
+        ]);
+        $data             = $request->all();
+        $data['password'] = Hash::make($request->get('password'));
+        if ((int) $request->get('status_user')[0] == 0) {
+            $data['status'] = User::STATUS_PENDING;
+        } elseif ((int) $request->get('status_user')[0] == 1) {
+            $data['status'] = User::STATUS_ACTIVE;
+        }
+
+        User::create($data);
+
+        return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
 
     /**
@@ -48,7 +75,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('BackEnd.content.user.show', compact('user'));
     }
 
     /**
@@ -59,7 +87,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('BackEnd.content.user.edit', compact('user'));
     }
 
     /**
@@ -69,9 +98,31 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        request()->validate([
+            'first_name'  => 'required|string|min:2|max:100',
+            'last_name'   => 'required|string|min:2|max:50',
+            'new_password'=> 'nullable|string|min:6|max:100',
+            'email'       => 'exists:email',
+            'avatar'      => 'nullable|image',
+            'age'         => 'nullable|numeric',
+            'phone'       => 'nullable',
+            'address'     => 'nullable',
+            'description' => 'nullable',
+        ]);
+        $data = $request->all();
+        if ($request->has('new_password') && $request->get('new_password') != '') {
+            $data['password'] = Hash::make($request->get('new_password'));
+        }
+        if ((int) $request->get('status_user')[0] == 0) {
+            $data['status'] = User::STATUS_PENDING;
+        } elseif ((int) $request->get('status_user')[0] == 1) {
+            $data['status'] = User::STATUS_ACTIVE;
+        }
+        $user->update($data);
+
+        return redirect()->back()->with('success', 'User updated successfully');
     }
 
     /**
@@ -80,8 +131,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->route('users.index')
+            ->with('success', 'User deleted successfully');
     }
 }

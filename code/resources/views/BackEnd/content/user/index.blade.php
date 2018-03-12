@@ -31,9 +31,10 @@
 	            <th>No</th>
 	            <th>First Name</th>
 	            <th>Last Name</th>
-	            <th>Age</th>
 	            <th>Email</th>
-	            <th width="280px">Action</th>
+	            <th>Status</th>
+	            <th>Role user</th>
+	            <th width="220px">Action</th>
 	        </tr>
 	        @php
 	        	$i = 0;
@@ -44,8 +45,9 @@
 	            <td>{{ ++$i }}</td>
 	            <td>{{ ($user->first_name) ? $user->first_name : '<chưa cập nhật>' }}</td>
 	            <td>{{ ($user->last_name) ? $user->last_name : '<chưa cập nhật>' }}</td>
-	            <td>{{ ($user->age) ? $user->age : '<chưa cập nhật>' }}</td>
 	            <td>{{ $user->email }}</td>
+	            <td>{!! ((int)$user->status == 1) ? '<div class="alert alert-success">Active</div>' : '<div class="alert alert-danger">Deactive</div>' !!}</td>
+	            <td>{{ $user->roles[0]->name }}</td>
 	            <td>
 	                <form action="{{ route('users.destroy',$user->id) }}" method="POST">
 	                    <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
