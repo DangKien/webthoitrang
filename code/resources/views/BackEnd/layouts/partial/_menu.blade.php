@@ -35,11 +35,16 @@
 								<span class="menu-title">Sản phẩm </span>
 							</a>
 						</li>
-
 						<li class="{{ request()->is('/*/slider') || request()->is('*/slider') ? 'active active-link' : '' }}">
 							<a href="{{ route('slider') }}">
 								<i class="fa fa-user-circle"></i>
 								<span class="menu-title">Slide Show</span>
+							</a>
+						</li>
+						<li class="{{ request()->is('/*/user') || request()->is('*/user') ? 'active active-link' : '' }}">
+							<a href="{{ route('users.index') }}">
+								<i class="fa fa-user-circle"></i>
+								<span class="menu-title">Người dùng</span>
 							</a>
 						</li>
 					</ul>

@@ -26,9 +26,7 @@
         <div id="container" class="effect mainnav-lg">
             <div class="boxed">
                 @includeif ('BackEnd.layouts.partial._header')
-
                 @yield('content')
-
                 @includeif ('BackEnd.layouts.partial._menu')
              </div>
             @includeif ('BackEnd.layouts.partial._default_js')

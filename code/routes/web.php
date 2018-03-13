@@ -31,7 +31,7 @@ Route::group(['prefix'=>'backend'], function (){
 		return view('vendor.laravel-filemanager.index');
 	});
 
-
+	Route::resource('users','BackEnd\UserController');
 });
 
 // frontend route
@@ -44,8 +44,6 @@ Route::group(['prefix'=>''], function (){
 
 
 });
-
-
 
 // backend route rest API
 Route::group(['prefix' => 'rest/backend'], function() {
@@ -84,6 +82,8 @@ Route::group(['prefix' => 'rest/frontend'], function() {
     // loại tin
     Route::get('/product', 'FrontEnd\Rest\ProductCtrl@getRecord'); // lay 1 san pham
 
-    Route::get('/category/{id}', 'FrontEnd\Rest\CategoryCtrl@getList'); // lay san pham theo id
-
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/category/{id}', 'FrontEnd\Rest\CategoryCtrl@getList'); // lay san pham theo id
