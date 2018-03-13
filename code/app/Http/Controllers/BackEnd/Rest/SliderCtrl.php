@@ -22,7 +22,9 @@ class SliderCtrl extends Controller
     public function getInsert(SliderModel $sliderModel, Request $request) {
         DB::beginTransaction();
         try {
-            $location_max = DB::table('slides')->max('location');
+            $location_max = DB::table('slides')
+                                ->max('location');
+                                
             if (!$request->hasFile('url_image')) {
                 return response()->json(['message'=>'Đã có lỗi trên hệ thống 1'], 422);
             }
@@ -82,7 +84,7 @@ class SliderCtrl extends Controller
                 DB::rollback();
             }
         }else {
-            return response()->json(['messages' => 'Id không tồn tại'], 422); 
+            return response()->json(['message' => 'Id không tồn tại'], 422); 
         }
     }
 
@@ -136,21 +138,21 @@ class SliderCtrl extends Controller
 
     public function validateInsert($request){
         return $this->validate($request, [
-            'name'               => 'required|unique:category,name',
+            'name'             => 'required|unique:category,name',
             'cate_id'          => 'required',
             ], [
-            'name.required'      => 'Tên tiêu đề không được để trống',
-            'name.unique'        => 'Đã có tên tiêu đề này',
+            'name.required'    => 'Tên tiêu đề không được để trống',
+            'name.unique'      => 'Đã có tên tiêu đề này',
             'cate_id.required' => 'Loại sản phẩm cha không được để trống',
             ]
         );
     }
     public function validateUpdate($request){
         return $this->validate($request, [
-            'name'          => 'required',
-            'cate_id'          => 'required',
+            'name'    => 'required',
+            'cate_id' => 'required',
             ], [
-            'name.required' => 'Tên tiêu đề không được để trống',
+            'name.required'    => 'Tên tiêu đề không được để trống',
             'cate_id.required' => 'Loại sản phẩm cha không được để trống',
             ]
         );
