@@ -36,9 +36,18 @@
                         <div class="tab-menu-sort">
                             <div class="tab-sort">
                                 <label>Sắp xếp : </label>
-                                <select>
-                                    <option value="">Giá sản phẩm(Tăng dần)</option>
-                                    <option value="">Giá sản phẩm(Giảm dần)<i class="fas fa-sort-amount-up"></i></option>
+                                <select ng-change="actions.productSort(data.sortBy)"
+                                    ng-model="data.sortBy"
+                                >
+                                    <option value="">
+                                        Sắp xếp theo
+                                    </option>
+                                    <option value="priceUp">
+                                        Giá sản phẩm(Tăng dần)
+                                    </option>
+                                    <option value="priceDown">
+                                        Giá sản phẩm(Giảm dần)
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -46,8 +55,8 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="grid"> 
                                     <div class="row">
-                                        <div class="col-md-6 col-lg-4 col-sm-6">
-                                            <div class="single-shop" ng-repeat="(key, products) in data.categories">
+                                        <div class="col-md-6 col-lg-4 col-sm-6"  ng-repeat="(key, products) in data.categories | orderObjectBy: 'propertyName':reverse">
+                                            <div class="single-shop">
                                                 <div class="shop-img">
                                                     <a href="{{ url('product') }}/@{{ products.slug }}"><img ng-src="{{ url('../storage/app') }}/@{{ products.url_image }}" alt=""/></a>
                                                     <div class="price-up-down">
@@ -95,7 +104,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="page-pagination text-center">
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="page-pagination text-center mt-50">
                                     <ul>
                                         <li><a class="active" href="#">1</a></li>
                                         <li><a href="#">2</a></li>
@@ -105,7 +116,6 @@
                                         </a></li>
                                     </ul>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>

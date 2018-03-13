@@ -4,6 +4,7 @@ ngApp.controller('categoryCtrl', function($apply, $categoryService, $scope) {
 		slug: slug.trim(),
 		categories: {},
 		detail: {},
+		sortBy: '',
 		filter: function () {
 			var slug      = $scope.data.slug;
 			var params    = $categoryService.data.filterProduct(slug);
@@ -21,6 +22,18 @@ ngApp.controller('categoryCtrl', function($apply, $categoryService, $scope) {
 			})
 		}
 	}
+
+	$scope.actions = {
+		productSort: function (sort) {
+			if (sort == 'priceUp') {
+				$scope.propertyName = 'price';
+				$scope.reverse = true;
+			} else if (sort == 'priceDown')  {
+				$scope.propertyName = 'price';
+				$scope.reverse = false;
+			}
+		},
+	} 
 
 	$scope.data.productDetail();
 });
