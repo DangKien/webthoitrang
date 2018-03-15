@@ -9,6 +9,8 @@ use DB, Storage;
 
 class SliderCtrl extends Controller
 {
+    
+    
     public function getList(SliderModel $sliderModel, Request $request) {
         $perPage = $request->input('perPage', 10);
         $slide    = $sliderModel
@@ -20,6 +22,7 @@ class SliderCtrl extends Controller
 
 
     public function getInsert(SliderModel $sliderModel, Request $request) {
+        $this->validateInsert($request);
         DB::beginTransaction();
         try {
             $location_max = DB::table('slides')
@@ -58,7 +61,7 @@ class SliderCtrl extends Controller
 
     public function getUpdate($id, Request $request, SliderModel $sliderModel) {
         if (isset($id)){
-
+            $this->validateUpdate($request);
             DB::beginTransaction();
             try {
                 $slide = $sliderModel::find($id);
@@ -138,22 +141,20 @@ class SliderCtrl extends Controller
 
     public function validateInsert($request){
         return $this->validate($request, [
-            'name'             => 'required|unique:category,name',
-            'cate_id'          => 'required',
+            'name'             => 'required| unique:slides,name| max: 250',
             ], [
             'name.required'    => 'Tên tiêu đề không được để trống',
+            'name.max'         => 'Tên slide dài khoảng 250 kí tự',
             'name.unique'      => 'Đã có tên tiêu đề này',
-            'cate_id.required' => 'Loại sản phẩm cha không được để trống',
             ]
         );
     }
     public function validateUpdate($request){
         return $this->validate($request, [
-            'name'    => 'required',
-            'cate_id' => 'required',
+            'name'             => 'required| max: 250',
             ], [
             'name.required'    => 'Tên tiêu đề không được để trống',
-            'cate_id.required' => 'Loại sản phẩm cha không được để trống',
+            'name.max'         => 'Tên slide dài khoảng 250 kí tự',
             ]
         );
     }
