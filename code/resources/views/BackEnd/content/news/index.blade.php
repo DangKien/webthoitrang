@@ -9,13 +9,13 @@
 
 	            <div class="pull-left">
 
-	                <h2>User Manager</h2>
+	                <h2>News Manager</h2>
 
 	            </div>
 
 	            <div class="pull-right">
 
-	                <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
+	                <a class="btn btn-success" href="{{ route('news.create') }}"> Create New News</a>
 
 	            </div>
 
@@ -28,30 +28,28 @@
 	    @endif
 	    <table class="table table-bordered">
 	        <tr>
-	            <th>No</th>
-	            <th>First Name</th>
-	            <th>Last Name</th>
-	            <th>Email</th>
+	            <th>#</th>
+	            <th>Tiêu đề</th>
+	            <th>Author</th>
+	            <th>Ngày cập nhật</th>
 	            <th>Status</th>
-	            <th>Role user</th>
 	            <th width="220px">Action</th>
 	        </tr>
+	        @if(!$list_news->isEmpty())
+	        @foreach ($list_news as $key => $item)
 	        @php
-	        	$i = 0;
+	        	$user_name = $item->user->first_name . ' ' . $item->user->last_name;
 	        @endphp
-	        @if(!$users->isEmpty())
-	        @foreach ($users as $user)
 	        <tr>
-	            <td>{{ ++$i }}</td>
-	            <td>{{ ($user->first_name) ? $user->first_name : '<chưa cập nhật>' }}</td>
-	            <td>{{ ($user->last_name) ? $user->last_name : '<chưa cập nhật>' }}</td>
-	            <td>{{ $user->email }}</td>
-	            <td>{!! ((int)$user->status == 1) ? '<div class="alert alert-success">Active</div>' : '<div class="alert alert-danger">Deactive</div>' !!}</td>
-	            <td>{{ $user->roles[0]->name }}</td>
+	            <td>{{ $item->id }}</td>
+	            <td>{{ ($item->title) ? $item->title : '<chưa cập nhật>' }}</td>
+	            <td>{{ $user_name }}</td>
+	            <td>{{ $item->updated_at }}</td>
+	            <td>{!! ((int)$item->status == 1) ? '<div class="alert alert-success">Active</div>' : '<div class="alert alert-danger">Deactive</div>' !!}</td>
 	            <td>
-	                <form action="{{ route('users.destroy',$user->id) }}" method="POST">
-	                    <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
-	                    <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
+	                <form action="{{ route('news.destroy',$item->id) }}" method="POST">
+	                    <a class="btn btn-info" href="{{ route('news.show',$item->id) }}">Show</a>
+	                    <a class="btn btn-primary" href="{{ route('news.edit',$item->id) }}">Edit</a>
 	                    @csrf
 	                    @method('DELETE')
 	                    <button type="submit" class="btn btn-danger">Delete</button>
@@ -62,7 +60,7 @@
 	        @endif
 	    </table>
 
-	    {!! $users->links() !!}
+	    {!! $list_news->links() !!}
 	</div>
 </div>
 @endsection

@@ -5,10 +5,10 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                    <h2>Preview infomation user</h2>
+                    <h2>Xem trước chi tiết tin</h2>
                 </div>
                 <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}"> Edit</a>
+                    <a class="btn btn-primary" href="{{ route('news.edit', $news->id) }}"> Chỉnh sửa</a>
                 </div>
             </div>
         </div>
@@ -26,36 +26,28 @@
         @endif
         <table class="table table-bordered">
         	<tr>
-        		<td>Avatar:</td>
-        		<td><img src="{{ $user->avatar }}" alt=""></td>
+        		<td>Ảnh bài viết:</td>
+        		<td><img src="{{ url('/') . $news->image }}" alt=""></td>
         	</tr>
         	<tr>
-        		<td>First Name:</td>
-        		<td><strong>{{ $user->first_name }}</strong></td>
+        		<td>Tiêu đề:</td>
+        		<td><strong>{{ $news->title }}</strong></td>
         	</tr>
         	<tr>
-        		<td>Last Name:</td>
-        		<td><strong>{{ $user->last_name }}</strong></td>
+        		<td>Slug:</td>
+        		<td><strong>{{ $news->slug }}</strong></td>
         	</tr>
         	<tr>
-        		<td>Email:</td>
-        		<td><strong>{{ $user->email }}</strong></td>
+        		<td>Mô tả ngắn:</td>
+        		<td><strong>{{ $news->excerpt }}</strong></td>
         	</tr>
         	<tr>
-        		<td>Age:</td>
-        		<td><strong>{{ $user->age }}</strong></td>
+        		<td>Nội dung:</td>
+        		<td><strong>{{ $news->content }}</strong></td>
         	</tr>
         	<tr>
-        		<td>Phone:</td>
-        		<td><strong>{{ $user->phone }}</strong></td>
-        	</tr>
-        	<tr>
-        		<td>Description:</td>
-        		<td><strong>{{ $user->description }}</strong></td>
-        	</tr>
-        	<tr>
-        		<td>Status:</td>
-        		<td><strong>{{ ($user->status == 0) ? 'Pending' : 'Active' }}</strong></td>
+        		<td>Trạng thái:</td>
+        		<td><strong>{{ ($news->status == 0) ? 'Pending' : 'Publish' }}</strong></td>
         	</tr>
         </table>
     </div>

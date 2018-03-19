@@ -47,6 +47,12 @@
 								<span class="menu-title">Người dùng</span>
 							</a>
 						</li>
+						<li class="{{ request()->is('/*/news') || request()->is('*/news') ? 'active active-link' : '' }}">
+							<a href="{{ route('news.index') }}">
+								<i class="fa fa-user-circle"></i>
+								<span class="menu-title">Tin tức</span>
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>

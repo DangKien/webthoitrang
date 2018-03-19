@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\News;
 use Illuminate\Auth\Passwords\CanResetPassword as CanResetPasswordTrait;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -41,5 +42,10 @@ class User extends Authenticatable implements HasRoleAndPermissionContract, CanR
     public function roles()
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function news()
+    {
+        return $this->hasMany(News::class);
     }
 }
