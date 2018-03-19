@@ -231,13 +231,14 @@ class ProductCtrl extends Controller
 
     public function validateInsert($request){
         return $this->validate($request, [
-            'name'             => 'required|unique:products,name',
+            'name'             => 'required| unique:products,name| max:250',
             'url_image'        => 'required',
             'cate_id'          => 'required',
             'cate_sale'        => 'required',
-            'price'            => 'required',
+            'price'            => 'required| max:250',
             ], [
             'name.required'             => 'Tên sản phẩm không được để trống',
+            'name.required'             => 'Tên sản phẩm dài khoảng 250 kí tự',
             'name.unique'               => 'Đã có tên tiêu đề này',
             'url_image.required'        => 'Ảnh chính không được để trống',
             'cate_id.required'          => 'Loại sản phẩm không được để trống',
@@ -249,13 +250,14 @@ class ProductCtrl extends Controller
 
     public function validateUpdate($request){
         return $this->validate($request, [
-            'name'             => 'required',
+            'name'             => 'required| max:250',
             'url_image'        => 'required',
             'cate_id'          => 'required',
             'cate_sale'        => 'required',
-            'price'            => 'required',
+            'price'            => 'required| max:250',
             ], [
-            'name.required'             => 'Tên tiêu đề không được để trống',
+            'name.required'             => 'Tên sản phẩm không được để trống',
+            'name.required'             => 'Tên sản phẩm dài khoảng 250 kí tự',
             'name.unique'               => 'Đã có tên tiêu đề này',
             'url_image.required'        => 'Ảnh chính không được để trống',
             'cate_id.required'          => 'Loại sản phẩm không được để trống',
@@ -272,7 +274,6 @@ class ProductCtrl extends Controller
             ], [
             'color.required'      => 'Màu sắc không được để trống',
             'size.required'       => 'Kích thước không được để trống',
-            'quantily.required'   => 'Số lượng không được để trống',
             ]
         );
     }
@@ -284,7 +285,6 @@ class ProductCtrl extends Controller
             ], [
             'color.required'    => 'Màu sắc không được để trống',
             'size.required'     => 'Kích thước không được để trống',
-            'quantily.required' => 'Số lượng không được để trống',
             ]
         );
     }

@@ -1,5 +1,7 @@
 var ngApp = angular.module('ngApp', ['bw.paging', 'ngRoute', 'ngSanitize']);
 
+
+
 ngApp.filter('formatDate', function(dateFilter) {
    var formattedDate = '';
    return function(dt) { 

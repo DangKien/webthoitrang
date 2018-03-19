@@ -43,6 +43,7 @@
                 echo '<li><a href="'.$item['url_link'].'">'.$item['name'].'</a>';
                 showCategories($categories, $item['id'], ++$stt);
                 echo '</li>';
+                $stt = 0;
             }
         }
         else if ($stt == 1){
