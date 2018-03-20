@@ -34,22 +34,30 @@
             @method('PUT')
             <div class="row">
                 <div class="">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Image:</strong>
-                            <input type="file" name="avatar">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Tiêu đề:</strong>
+                                <input type="text" name="title" class="form-control" placeholder="Tiêu đề" value="{{ $news->title }}">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Slug:</strong>
+                                <input type="text" name="slug" class="form-control" placeholder="slug" value="{{ $news->slug }}">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Tiêu đề:</strong>
-                            <input type="text" name="title" class="form-control" placeholder="Tiêu đề" value="{{ $news->title }}">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="col-xs-12 col-sm-4">
+                            <img src="{{ ($news->image != '') ? $news->image : 'https://fakeimg.pl/150x150' }}" alt="{{ $news->title }}" width="100%" height="150px;">
                         </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Slug:</strong>
-                            <input type="text" name="slug" class="form-control" placeholder="slug" value="{{ $news->slug }}">
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="form-group">
+                                <strong>Ảnh tin tức:</strong>
+                                <input type="file" name="file">
+                                <input type="hidden" name="uploadType" value="news">
+                            </div>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
