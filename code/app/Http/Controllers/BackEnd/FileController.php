@@ -22,7 +22,7 @@ class FileController extends Controller
     {
         $data = $request->all();
 
-        if ($request->hasFile('file')) {
+        if ($request->hasFile('file') && $request->file('file') != null) {
             $file           = $request->file('file');
             $origin_name    = $file->getClientOriginalName();
             $file_extension = $file->getClientOriginalExtension();
