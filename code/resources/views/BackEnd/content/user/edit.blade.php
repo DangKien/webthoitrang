@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                    <h2>Edit User</h2>
+                    <h2>Chỉnh sửa người dùng</h2>
                 </div>
                 <div class="pull-right">
                     <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
@@ -14,7 +14,7 @@
         </div>
         @if ($errors->any())
         <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.
+            <strong>Rất tiếc!</strong> Bạn phải nhập đầy đủ dữ liệu đầu vào yêu cầu.
             <br>
             <br>
             <ul>
@@ -29,26 +29,37 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
+        @if ($message = Session::get('error'))
+            <div class="alert alert-error">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
         <form action="{{ route('users.update',$user->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <strong>Avatar:</strong>
-                            <input type="file" name="avatar">
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <strong>Ảnh đại diện:</strong>
+                                <input type="file" name="file">
+                                <input type="hidden" name="uploadType" value="users">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <img src="{{ ($user->avatar != '') ? $user->avatar : 'https://fakeimg.pl/150x150' }}" alt="{{ $user->title }}" width="100%">
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>First Name:</strong>
+                            <strong>Họ Đệm:</strong>
                             <input type="text" name="first_name" class="form-control" placeholder="First Name" value="{{ $user->first_name }}">
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Last Name:</strong>
+                            <strong>Tên:</strong>
                             <input type="text" name="last_name" class="form-control" placeholder="Last Name" value="{{ $user->last_name }}">
                         </div>
                     </div>
@@ -60,44 +71,42 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>New Password:</strong>
+                            <strong>Mật khẩu mới (nếu muốn thay đổi):</strong>
                             <input type="password" name="new_password" class="form-control" placeholder="Enter new password to change">
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 ">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Cập nhật</button>
                     </div>
-                    <br>
-                    <br>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Age:</strong>
+                            <strong>Tuổi:</strong>
                             <input type="number" name="age" min="0" max="100" class="form-control" placeholder="Age" value="{{ $user->age }}">
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Phone:</strong>
+                            <strong>Số điện thoại:</strong>
                             <input type="phone" name="phone" class="form-control" placeholder="Phone" value="{{ $user->phone }}">
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Address:</strong>
+                            <strong>Địa chỉ:</strong>
                             <input type="text" name="address" class="form-control" placeholder="Address" value="{{ $user->address }}">
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Description:</strong>
+                            <strong>Mô tả ngắn:</strong>
                             <textarea class="form-control" placeholder="Description">{{ $user->description }}</textarea>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Status:</strong>
+                            <strong>Trạng thái tài khoản:</strong>
                             <br/>
                             <input type="radio" name="status_user[]" value="1" {{ ((int)$user->status == 1) ? 'checked="true"' : '' }}> Active
                             <br/>

@@ -106,12 +106,20 @@ class UserController extends Controller
             'new_password'=> 'nullable|string|min:6|max:100',
             'email'       => 'exists:email',
             'avatar'      => 'nullable|image',
-            'age'         => 'nullable|numeric',
-            'phone'       => 'nullable',
+            'age'         => 'nullable|numeric|min:10|max:150',
+            'phone'       => 'nullable|min:10|max:13',
             'address'     => 'nullable',
             'description' => 'nullable',
         ]);
         $data = $request->all();
+        $file = new FileController;
+        $path_upload = $file->upload($request);
+        // if($path_upload == false) {
+        //     return redirect()->back()->with('error', 'Can\'t not upload file');
+        // }
+        if($path_upload != null && $path_upload != false) {
+            $data['avatar'] = $path_upload;
+        }
         if ($request->has('new_password') && $request->get('new_password') != '') {
             $data['password'] = Hash::make($request->get('new_password'));
         }
