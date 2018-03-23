@@ -9,13 +9,13 @@
 
 	            <div class="pull-left">
 
-	                <h2>News Manager</h2>
+	                <h2>Quản lý tin tức</h2>
 
 	            </div>
 
 	            <div class="pull-right">
 
-	                <a class="btn btn-success" href="{{ route('news.create') }}"> Create New News</a>
+	                <a class="btn btn-success" href="{{ route('news.create') }}"> Tạo tin mới</a>
 
 	            </div>
 

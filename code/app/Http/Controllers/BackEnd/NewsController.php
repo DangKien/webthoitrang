@@ -44,6 +44,11 @@ class NewsController extends Controller
             'content' => 'nullable',
         ]);
         $data             = $request->all();
+        $file = new FileController;
+        $path_upload = $file->upload($request);
+        if($path_upload != null && $path_upload != false) {
+            $data['image'] = $path_upload;
+        }
         if($request->has('slug')) {
             $slug = $request->get('slug');
             if(empty($slug)) {
@@ -105,10 +110,9 @@ class NewsController extends Controller
         $data = $request->all();
         $file = new FileController;
         $path_upload = $file->upload($request);
-        if(!$path_upload) {
-            return redirect()->back()->with('error', 'Can\'t not upload file');
+        if($path_upload != null && $path_upload != false) {
+            $data['image'] = $path_upload;
         }
-        $data['image'] = $path_upload;
         if($request->has('slug')) {
             $slug = $request->get('slug');
             if(empty($slug)) {

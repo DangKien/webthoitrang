@@ -9,13 +9,13 @@
 
 	            <div class="pull-left">
 
-	                <h2>User Manager</h2>
+	                <h2>Quản lý tài khoản người dùng</h2>
 
 	            </div>
 
 	            <div class="pull-right">
 
-	                <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
+	                <a class="btn btn-success" href="{{ route('users.create') }}"> Tạo người dùng mới</a>
 
 	            </div>
 
@@ -29,12 +29,12 @@
 	    <table class="table table-bordered">
 	        <tr>
 	            <th>No</th>
-	            <th>First Name</th>
-	            <th>Last Name</th>
+	            <th>Tên Họ</th>
+	            <th>Tên</th>
 	            <th>Email</th>
-	            <th>Status</th>
-	            <th>Role user</th>
-	            <th width="220px">Action</th>
+	            <th>Tình trạng</th>
+	            <th>Quyền người dùng</th>
+	            <th width="220px">Hành động</th>
 	        </tr>
 	        @php
 	        	$i = 0;
