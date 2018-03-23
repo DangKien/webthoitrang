@@ -5,7 +5,7 @@ namespace App\Http\Controllers\BackEnd\Rest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\SliderModel;
-use DB, Storage;
+use DB, Storage, Image;
 
 class SliderCtrl extends Controller
 {
@@ -29,16 +29,18 @@ class SliderCtrl extends Controller
                                 ->max('location');
                                 
             if (!$request->hasFile('url_image')) {
-                return response()->json(['message'=>'Đã có lỗi trên hệ thống 1'], 422);
+                return response()->json(['message'=>'Chưa có ảnh'], 422);
+            } else {
+                $path          = $request->url_image->hashName('');
+                $newImageSlide = Image::make($request->url_image)->resize(1349, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                    })->encode('png')->save(public_path('/images/slides/'.$path));
             }
-
-            $url_image              = Storage::putFile('images/slides', $request->url_image);
+            $url_image              = $path;
             $sliderModel->name      = $request->name;
             $sliderModel->url_image = $url_image;
             $sliderModel->location  = $location_max + 1;
-
             $sliderModel->save();
-
             DB::commit();
             return response()->json(['message'=>true], 200);
 
@@ -70,7 +72,10 @@ class SliderCtrl extends Controller
                     $url_image = $slide->url_image;
                 }
                 else {
-                    $url_image        = Storage::putFile('images/slides', $request->url_image);
+                    $url_image     = $request->url_image->hashName('');
+                    $newImageSlide = Image::make($request->url_image)->resize(1349, null, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->encode('png')->save(public_path('/images/slides/'.$url_image));
                 }
                 $slide->name      = $request->name;
                 $slide->url_image = $url_image;

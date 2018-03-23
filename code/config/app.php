@@ -148,7 +148,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-
+    
         /*
          * Package Service Providers...
          */

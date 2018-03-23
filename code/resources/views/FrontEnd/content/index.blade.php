@@ -21,7 +21,7 @@
                                 <div class="col-md-3 col-sm-6 col-xs-12">
                                     <div class="single-shop">
                                         <div class="shop-img">
-                                            <a href="{{ url('product', $product->slug) }}"><img src="{{ url('../storage/app') }}/{{ $product->url_image }}" alt="" /></a>
+                                            <a href="{{ url('product', $product->slug) }}"><img src="{{ url('images/main_prodcut') }}/{{ $product->url_image }}" alt="" /></a>
                                             <div class="price-up-down">
                                                 @if ($product->cate_sale != 0) 
                                                     <span class="sale-new" title="{{ $product->cate_sales->name }} {{ $product->sale_description }}"">
@@ -43,7 +43,7 @@
                                         <div class="shop-text-all">
                                             <div class="title-color fix">
                                                 <div class="shop-title f-left">
-                                                    <h3><a href="{{ url('product') }}/{{ $product->slug.'-'.$product->id }}" title="{{ $product->name }}">
+                                                    <h3><a href="{{ url('product') }}/{{ $product->slug }}" title="{{ $product->name }}">
                                                         {!! \Illuminate\Support\Str::words($product->name, 5,'....')  !!}
                                                     </a></h3>
                                                 </div>
@@ -91,7 +91,7 @@
                                 <div class="col-md-3 col-sm-6 col-xs-12">
                                     <div class="single-shop">
                                         <div class="shop-img">
-                                            <a href="{{ url('product') }}/{{ $product->slug.'-'.$product->id }}"><img src="{{ url('../storage/app') }}/{{ $product->url_image }}" alt="" /></a>
+                                            <a href="{{ url('product') }}/{{ $product->slug }}"><img src="{{ url('images/main_prodcut') }}/{{ $product->url_image }}" alt="" /></a>
                                             <div class="price-up-down">
                                                 @if ($product->cate_sale != 0) 
                                                     <span class="sale-new" title="{{ $product->cate_sales->name }} {{ $product->sale_description }}"">
@@ -110,7 +110,7 @@
                                         <div class="shop-text-all">
                                             <div class="title-color fix">
                                                 <div class="shop-title f-left">
-                                                    <h3><a href="{{ url('product') }}/{{ $product->slug.'-'.$product->id }}" title="{{ $product->name }}">
+                                                    <h3><a href="{{ url('product') }}/{{ $product->slug }}" title="{{ $product->name }}">
                                                         {!! \Illuminate\Support\Str::words($product->name, 5,'....')  !!}
                                                     </a></h3>
                                                 </div>
@@ -157,7 +157,7 @@
                                 <div class="col-md-3 col-sm-6 col-xs-12">
                                     <div class="single-shop">
                                         <div class="shop-img">
-                                            <a href="{{ url('product') }}/{{ $product->slug.'-'.$product->id }}"><img src="{{ url('../storage/app') }}/{{ $product->url_image }}" alt="" /></a>
+                                            <a href="{{ url('product') }}/{{ $product->slug }}"><img src="{{ url('images/main_prodcut') }}/{{ $product->url_image }}" alt="" /></a>
                                             <div class="price-up-down">
                                                 @if ($product->cate_sale != 0) 
                                                     <span class="sale-new" title="{{ $product->cate_sales->name }} {{ $product->sale_description }}">
@@ -175,7 +175,7 @@
                                         <div class="shop-text-all">
                                             <div class="title-color fix">
                                                 <div class="shop-title f-left">
-                                                    <h3><a href="{{ url('product') }}/{{ $product->slug.'-'.$product->id }}" title="{{ $product->name }}">
+                                                    <h3><a href="{{ url('product') }}/{{ $product->slug }}" title="{{ $product->name }}">
                                                         {!! \Illuminate\Support\Str::words($product->name, 5,'....')  !!}
                                                     </a></h3>
                                                 </div>

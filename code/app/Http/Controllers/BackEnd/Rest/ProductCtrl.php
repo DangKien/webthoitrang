@@ -12,7 +12,7 @@ use App\Models\PromotionModel;
 use App\Models\SizeModel;
 use App\MyModel\ProductSizeModel;
 
-use Storage, DB;
+use Storage, DB, Image;
 
 class ProductCtrl extends Controller
 {
@@ -42,7 +42,10 @@ class ProductCtrl extends Controller
 
     	try {
     		if ($request->hasFile('url_image')) {
-    			$url_image     = Storage::putFile('images/main_prodcut', $request->url_image);
+                $url_image     = $request->url_image->hashName('');
+                    $newImageSlide = Image::make($request->url_image)->resize(null, 520, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->encode('png')->save(public_path('/images/main_prodcut/'.$url_image));
     		}
     		$productId = $product->insertGetId([
 				'name'             => $request->name,
@@ -62,7 +65,11 @@ class ProductCtrl extends Controller
                 return response()->json(['message'=>'Đã có lỗi trên hệ thống'], 422);
             } else {
                 foreach ($request->imageDetail as $key => $value){
-                    $url_image_detail   = Storage::putFile('images/product_detail', $value);
+                    $url_image_detail     = $value->hashName('');
+                    $newImageSlide = Image::make($value)->resize(null, 520, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->encode('png')->save(public_path('/images/product_detail/'.$url_image_detail));
+
                     $images             = new ProductImageModel();
                     $images->url_image  = $url_image_detail;
                     $images->product_id = $productId;
@@ -100,7 +107,10 @@ class ProductCtrl extends Controller
             try {
                 $product_update = $product->find($id);
                 if ($request->hasFile('url_image')) {
-                    $url_image     = Storage::putFile('images/main_prodcut', $request->url_image);
+                    $url_image     = $request->url_image->hashName('');
+                    $newImageSlide = Image::make($request->url_image)->resize(null, 520, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->encode('png')->save(public_path('/images/main_prodcut/'.$url_image));
                 } else {
                     $url_image = $product_update->url_image;
                 }

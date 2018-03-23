@@ -21,7 +21,6 @@ ngApp.controller('sliderCtrl', function($scope,  $sliderService, $apply, $myNoti
 					$scope.data.listSlide = resp.data.data;
 					$scope.data.pageSlide = resp.data;
 					$scope.actions.location(resp.data.data);
-
 				});
 			}, function (error) {
 			});
@@ -44,6 +43,7 @@ ngApp.controller('sliderCtrl', function($scope,  $sliderService, $apply, $myNoti
 			$scope.data.idSlide = idSlide;
 			$scope.data.params = {};
 			$("input[name=imageTitle]").val('');
+			$(".image-support").attr("src", " ");
 			$($scope.chosseSlideModal).modal('show');
 			if (idSlide){
 				$scope.data.locationCheck = true;

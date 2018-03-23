@@ -82,9 +82,10 @@ Route::group(['prefix' => 'rest/backend'], function() {
 Route::group(['prefix' => 'rest/frontend'], function() {
     // loại tin
     Route::get('/product', 'FrontEnd\Rest\ProductCtrl@getRecord'); // lay 1 san pham
-
+	// lay san pham theo id
+    Route::get('/category/{id}', 'FrontEnd\Rest\CategoryCtrl@getList'); 
 });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/category/{id}', 'FrontEnd\Rest\CategoryCtrl@getList'); // lay san pham theo id
+// Route::get('/home', 'HomeController@index')->name('home');
+

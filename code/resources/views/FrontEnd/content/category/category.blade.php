@@ -58,7 +58,7 @@
                                         <div class="col-md-6 col-lg-4 col-sm-6"  ng-repeat="(key, products) in data.categories | orderObjectBy: 'propertyName':reverse">
                                             <div class="single-shop">
                                                 <div class="shop-img">
-                                                    <a href="{{ url('product') }}/@{{ products.slug }}"><img ng-src="{{ url('../storage/app') }}/@{{ products.url_image }}" alt=""/></a>
+                                                    <a href="{{ url('product') }}/@{{ products.slug }}"><img ng-src="{{ url('images/main_prodcut') }}/@{{ products.url_image }}" alt=""/></a>
                                                     <div class="price-up-down">
                                                         <span class="sale-new" ng-if="products.cate_sale == 0">
                                                             New
