@@ -127,7 +127,18 @@ class SliderCtrl extends Controller
         if (isset($id) && !empty($id)) {
             DB::beginTransaction();
             try {
-                $cate = $sliderModel::find($id)->delete();
+                $cate = $sliderModel::find($id);
+                $location = $cate->location;
+
+                $slide_locations = SliderModel::where('location', '>', $location)
+                            ->get();
+
+                foreach($slide_locations as $key => $slide_update ) {
+                SliderModel::where('id', '=', $slide_update->id)->update(['location' => $slide_update->location - 1]);
+            }
+
+
+                $cate->delete();
                 DB::commit();
                 return response()->json(['status' => true], 200); 
                 
