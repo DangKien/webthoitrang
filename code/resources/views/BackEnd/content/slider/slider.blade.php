@@ -43,7 +43,7 @@
 						<tr ng-repeat="(key, slide) in data.listSlide">
 							<td>@{{ slide.name }}</td>
 							<td>
-								<img ng-src="{{ url('../storage/app/') }}/@{{ slide.url_image }}" style="width: 150px; height: 150px" class="img-responsive"  alt="">
+								<img ng-src="{{ url('images/slides') }}/@{{ slide.url_image }}" style="width: 150px; height: 150px" class="img-responsive"  alt="">
 							</td>
 							<td> @{{ slide.url_slide }} </td>
 							<td>

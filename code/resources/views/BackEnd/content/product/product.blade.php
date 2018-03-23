@@ -93,7 +93,7 @@
 									<tr class="width-fix-table" ng-repeat="(key, product) in data.listProduct">
 										<td class="width-100"> @{{ product.name }} </td>
 										<td> @{{ product.cate_id }} </td>
-										<td> <img ng-src=" {{ url('../storage/app') }}/@{{ product.url_image }}" alt="" style="width: 100px; height: 100px"> </td>
+										<td> <img ng-src=" {{ url('images/main_prodcut/') }}/@{{ product.url_image }}" alt="" style="width: 100px; height: 100px"> </td>
 										<td class="width-80"> @{{ product.price }} </td>
 										<td class="width-250"> <span ng-bind-html="product.description"></span> </td>
 										<td class="width-80"> @{{ product.tag }} </td>

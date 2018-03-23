@@ -13,6 +13,7 @@ ngApp.controller('sliderCtrl', function($scope,  $sliderService, $apply, $myNoti
 		pagePostMenu: {},
 		listPostAllMenu: {},
 		locationCheck: false,
+		errors: {},
 		list: function(){
 			var textSreach = $scope.filter.textSreach;
 			var params = $sliderService.data.list(textSreach, $scope.data.pageSlide.current_page, 10);
@@ -21,7 +22,6 @@ ngApp.controller('sliderCtrl', function($scope,  $sliderService, $apply, $myNoti
 					$scope.data.listSlide = resp.data.data;
 					$scope.data.pageSlide = resp.data;
 					$scope.actions.location(resp.data.data);
-
 				});
 			}, function (error) {
 			});
@@ -43,7 +43,10 @@ ngApp.controller('sliderCtrl', function($scope,  $sliderService, $apply, $myNoti
 		showModal: function(idSlide) {
 			$scope.data.idSlide = idSlide;
 			$scope.data.params = {};
+			$scope.data.errors = {};
+			$($scope.slideForm).parsley().reset();
 			$("input[name=imageTitle]").val('');
+			$(".image-support").attr("src", " ");
 			$($scope.chosseSlideModal).modal('show');
 			if (idSlide){
 				$scope.data.locationCheck = true;

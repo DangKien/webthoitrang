@@ -28,12 +28,12 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="productmain">
                             <div class="large-img">
-                                <img src="{{ url('../storage/app') }}/@{{ data.productRecord.url_image }}" alt="" style="height: 550px;" />
+                                <img ng-src="{{ url('images/main_prodcut') }}/@{{ data.productRecord.url_image }}" alt="" style="height: 550px;" />
                             </div>
                         </div>
                         <div ng-repeat="(key, images) in data.productRecord.images" class="tab-pane" id="product@{{ images.id }}">
                             <div class="large-img">
-                                <img ng-src="{{ url('../storage/app') }}/@{{ images.url_image }}" alt="" style="height: 550px;" />
+                                <img ng-src="{{ url('images/product_detail') }}/@{{ images.url_image }}" alt="" style="height: 550px;" />
                             </div>                          
                         </div>
                     </div>
@@ -41,12 +41,12 @@
                     <div class="details-tab owl-carousel">
                         <div class="active">
                             <a href="#productmain" data-toggle="tab">
-                                <img ng-src="{{ url('../storage/app') }}/@{{ data.productRecord.url_image }}" alt="" style="height: 190px;"  />
+                                <img ng-src="{{ url('images/main_prodcut') }}/@{{ data.productRecord.url_image }}" alt="" style="height: 190px;"  />
                             </a>
                         </div>
                         <div owl-carousel-item ng-repeat="(key, images) in data.productRecord.images">
                             <a href="#product@{{ images.id }}" data-toggle="tab" >
-                                <img ng-src="{{ url('../storage/app') }}/@{{ images.url_image }}" alt="" style="height: 190px;" />
+                                <img ng-src="{{ url('images/product_detail') }}/@{{ images.url_image }}" alt="" style="height: 190px;" />
                             </a>
                         </div>
                     </div>	

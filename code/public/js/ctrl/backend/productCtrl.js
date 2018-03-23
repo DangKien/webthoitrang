@@ -60,6 +60,8 @@ ngApp.controller('productCtrl', function ($apply, $productService, $scope, chang
 			$scope.data.idProduct = idProduct;
 			$($scope.domProductModal).modal('show');
 			$scope.actions.listPromotion();
+			$(".image-support").attr("src", " ");
+			$('#images').html(" ");
 			$($scope.domProductForm).parsley().reset();
 			$scope.data.errors = {};
 			$scope.data.params = {};

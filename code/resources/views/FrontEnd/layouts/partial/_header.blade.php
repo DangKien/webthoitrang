@@ -6,7 +6,7 @@
 				    <div class="header-to-info">
 				        <ul>
 				            <li class="for-none"><i class="fa fa-envelope"></i> Mail: <span><a href="#">demoiaan@gmail.com</a></span></li>
-				            <li><i class="fa fa-phone"></i> Call support free: <span>(800) 0123 456 789</span></li>
+				            <li><i class="fa fa-phone"></i> Liên hệ: <span>0123 456 789</span></li>
 				        </ul>
 				    </div>
 				</div>
@@ -17,19 +17,10 @@
                                 <i class="pe-7s-add-user"></i>
                             </a>
                             <div class="currence-user-page">
-                                <div class="currence">
-                                    <h4>Currency: </h4>
-                                    <ul>
-                                        <li><a href="#">USD</a></li>
-                                        <li><a href="#">EUR</a></li>
-                                    </ul>
-                                </div>
                                 <div class="user-page">
                                     <ul>
-                                        <li><a href="wishlist.html"><i class="pe-7s-like"></i> My Wishlist</a></li>
-                                        <li><a href="checkout.html"><i class="pe-7s-check"></i> Checkout</a></li>
-                                        <li><a href="login.html"><i class="pe-7s-next-2"></i> Sign In</a></li>
-                                        <li><a href="register.html"><i class="pe-7s-add-user"></i> Create an account</a></li>
+                                        <li><a href="login.html"><i class="pe-7s-next-2"></i> Đăng nhập</a></li>
+                                        <li><a href="register.html"><i class="pe-7s-add-user"></i> Đăng kí</a></li>
                                     </ul>
                                 </div>
                             </div>

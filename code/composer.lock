@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9e45cf5df4aa466f24cb3f6c3d619133",
+    "content-hash": "3d37ecf6834c4c0748ad5c1577e79fd7",
     "packages": [
         {
             "name": "codersvn/roles",
