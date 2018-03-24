@@ -1,0 +1,57 @@
+bower install --save jszip
+bower install --save datatables.net-dt
+bower install --save datatables.net-buttons-dt
+bower install --save datatables.net-colreorder-dt
+bower install --save datatables.net-fixedcolumns-dt
+bower install --save datatables.net-fixedheader-dt
+bower install --save datatables.net-responsive-dt
+bower install --save datatables.net-rowgroup-dt
+bower install --save datatables.net-rowreorder-dt
+bower install --save datatables.net-scroller-dt
+bower install --save datatables.net-select-dt
+
+=======================================
+
+yarn add jszip
+yarn add datatables.net-dt
+yarn add datatables.net-buttons-dt
+yarn add datatables.net-colreorder-dt
+yarn add datatables.net-fixedcolumns-dt
+yarn add datatables.net-fixedheader-dt
+yarn add datatables.net-responsive-dt
+yarn add datatables.net-rowgroup-dt
+yarn add datatables.net-rowreorder-dt
+yarn add datatables.net-scroller-dt
+yarn add datatables.net-select-dt
+
+======================================
+
+npm install --save jszip
+npm install --save datatables.net-dt
+npm install --save datatables.net-buttons-dt
+npm install --save datatables.net-colreorder-dt
+npm install --save datatables.net-fixedcolumns-dt
+npm install --save datatables.net-fixedheader-dt
+npm install --save datatables.net-responsive-dt
+npm install --save datatables.net-rowgroup-dt
+npm install --save datatables.net-rowreorder-dt
+npm install --save datatables.net-scroller-dt
+npm install --save datatables.net-select-dt
+
+require( 'jszip' );
+require( 'datatables.net-dt' )();
+require( 'datatables.net-buttons-dt' )();
+require( 'datatables.net-buttons/js/buttons.flash.js' )();
+require( 'datatables.net-buttons/js/buttons.html5.js' )();
+require( 'datatables.net-buttons/js/buttons.print.js' )();
+require( 'datatables.net-colreorder-dt' )();
+require( 'datatables.net-fixedcolumns-dt' )();
+require( 'datatables.net-fixedheader-dt' )();
+require( 'datatables.net-responsive-dt' )();
+require( 'datatables.net-rowgroup-dt' )();
+require( 'datatables.net-rowreorder-dt' )();
+require( 'datatables.net-scroller-dt' )();
+require( 'datatables.net-select-dt' )();
+
+var $  = require( 'jquery' );
+var dt = require( 'datatables.net' )( window, $ );

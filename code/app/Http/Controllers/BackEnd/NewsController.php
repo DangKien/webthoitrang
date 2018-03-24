@@ -13,9 +13,17 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $list_news = News::orderBy('id', "DESC")->paginate(6);
+        $news = new News();
+        // if ($request->has('s')) {
+        //     $keyword = $request->get('s');
+        //     $news    = $news->where('title', 'LIKE', '%' . $keyword . '%');
+        //     $news    = $news->orWhere('slug', 'LIKE', '%' . $keyword . '%');
+        // }
+        $news      = $news->orderBy('id', "DESC");
+        // $list_news = $news->paginate(6);
+        $list_news = $news->get();
         return view('BackEnd.content.news.index', compact('list_news'));
     }
 
@@ -43,15 +51,15 @@ class NewsController extends Controller
             'excerpt' => 'nullable',
             'content' => 'nullable',
         ]);
-        $data             = $request->all();
-        $file = new FileController;
+        $data        = $request->all();
+        $file        = new FileController;
         $path_upload = $file->upload($request);
-        if($path_upload != null && $path_upload != false) {
+        if ($path_upload != null && $path_upload != false) {
             $data['image'] = $path_upload;
         }
-        if($request->has('slug')) {
+        if ($request->has('slug')) {
             $slug = $request->get('slug');
-            if(empty($slug)) {
+            if (empty($slug)) {
                 $data['slug'] = str_slug($request->get('title'));
             } else {
                 $data['slug'] = str_slug($slug);
@@ -107,15 +115,15 @@ class NewsController extends Controller
             'excerpt' => 'nullable',
             'content' => 'nullable',
         ]);
-        $data = $request->all();
-        $file = new FileController;
+        $data        = $request->all();
+        $file        = new FileController;
         $path_upload = $file->upload($request);
-        if($path_upload != null && $path_upload != false) {
+        if ($path_upload != null && $path_upload != false) {
             $data['image'] = $path_upload;
         }
-        if($request->has('slug')) {
+        if ($request->has('slug')) {
             $slug = $request->get('slug');
-            if(empty($slug)) {
+            if (empty($slug)) {
                 $data['slug'] = str_slug($request->get('title'));
             } else {
                 $data['slug'] = str_slug($slug);

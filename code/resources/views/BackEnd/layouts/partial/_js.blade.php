@@ -33,4 +33,9 @@
 <script src="{{ url('') }}/js/directives/insertFile.js"></script>
 <script src="{{ url('') }}/js/myJs.js"></script>
 
-
+<script src="{{ url('') }}/assets/js/DataTables/datatables.js"></script>
+<script src="{{ url('') }}/assets/js/DataTables/Buttons-1.5.1/js/dataTables.buttons.min.js"></script>
+<script src="{{ url('') }}/assets/js/DataTables/Buttons-1.5.1/js/buttons.flash.min.js"></script>
+<script src="{{ url('') }}/assets/js/DataTables/JSZip-2.5.0/jszip.min.js"></script>
+<script src="{{ url('') }}/assets/js/DataTables/Buttons-1.5.1/js/buttons.html5.min.js"></script>
+<script src="{{ url('') }}/assets/js/DataTables/Buttons-1.5.1/js/buttons.print.min.js"></script>
