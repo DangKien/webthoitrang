@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
         $faker->addProvider(new Faker\Provider\Internet($faker));
 
         $adminRole    = Role::find(1);
-        $contentRole  = Role::find(2);
+        // $contentRole  = Role::find(2);
         $customerRole = Role::find(3);
 
         $users = [
@@ -33,13 +33,13 @@ class UsersTableSeeder extends Seeder
                 'role'       => 'adminRole',
                 'active'     => 1,
             ],
-            'content'  => [
-                'first_name' => 'Admin',
-                'last_name'  => '',
-                'email'      => 'content@webthoitrang.com',
-                'role'       => 'contentRole',
-                'active'     => 1,
-            ],
+            // 'content'  => [
+            //     'first_name' => 'Admin',
+            //     'last_name'  => '',
+            //     'email'      => 'content@webthoitrang.com',
+            //     'role'       => 'contentRole',
+            //     'active'     => 1,
+            // ],
             'customer' => [
                 'first_name' => 'Customer',
                 'last_name'  => '',
@@ -49,14 +49,14 @@ class UsersTableSeeder extends Seeder
             ],
         ];
 
-        for ($i = 1; $i < 15; $i++) {
-            $key         = 'student' . $i;
-            $first_name  = 'Student ' . $i;
+        for ($i = 1; $i < 20; $i++) {
+            $key         = 'customer' . $i;
+            $first_name  = 'Customer ' . $i;
             $users[$key] = [
                 'first_name' => $first_name,
                 'last_name'  => '',
                 'email'      => $key . '@webthoitrang.com',
-                'role'       => 'contentRole',
+                'role'       => 'customerRole',
                 'active'     => 1,
             ];
         }
@@ -74,49 +74,49 @@ class UsersTableSeeder extends Seeder
             ], $user_data);
 
             $user->status      = User::STATUS_ACTIVE;
-            $user->description = 'nothing';
+            $user->description = 'this is desciption default';
             $user->save();
             $user->attachRole(${$item['role']});
         }
 
-        for ($i = 0; $i < 5; $i++) {
-            $gender = 'male';
-            $email  = $faker->email();
+        // for ($i = 0; $i < 5; $i++) {
+        //     $gender = 'male';
+        //     $email  = $faker->email();
 
-            $user_data = [
-                'email'      => $email,
-                'first_name' => $faker->firstName($gender),
-                'last_name'  => $faker->lastName($gender),
-                'password'   => Hash::make('secret'),
-            ];
+        //     $user_data = [
+        //         'email'      => $email,
+        //         'first_name' => $faker->firstName($gender),
+        //         'last_name'  => $faker->lastName($gender),
+        //         'password'   => Hash::make('secret'),
+        //     ];
 
-            $user = User::updateOrCreate([
-                'email' => $email,
-            ], $user_data);
+        //     $user = User::updateOrCreate([
+        //         'email' => $email,
+        //     ], $user_data);
 
-            $user->status = User::STATUS_ACTIVE;
-            $user->save();
-            $user->attachRole($contentRole);
-        }
+        //     $user->status = User::STATUS_ACTIVE;
+        //     $user->save();
+        //     $user->attachRole($contentRole);
+        // }
 
-        for ($i = 0; $i < 20; $i++) {
-            $gender = 'male';
-            $email  = $faker->email();
+        // for ($i = 0; $i < 20; $i++) {
+        //     $gender = 'male';
+        //     $email  = $faker->email();
 
-            $user_data = [
-                'email'      => $email,
-                'first_name' => $faker->firstName($gender),
-                'last_name'  => $faker->lastName($gender),
-                'password'   => Hash::make('secret'),
-            ];
+        //     $user_data = [
+        //         'email'      => $email,
+        //         'first_name' => $faker->firstName($gender),
+        //         'last_name'  => $faker->lastName($gender),
+        //         'password'   => Hash::make('secret'),
+        //     ];
 
-            $user = User::updateOrCreate([
-                'email' => $email,
-            ], $user_data);
+        //     $user = User::updateOrCreate([
+        //         'email' => $email,
+        //     ], $user_data);
 
-            $user->status = User::STATUS_ACTIVE;
-            $user->save();
-            $user->attachRole($customerRole);
-        }
+        //     $user->status = User::STATUS_ACTIVE;
+        //     $user->save();
+        //     $user->attachRole($customerRole);
+        // }
     }
 }
