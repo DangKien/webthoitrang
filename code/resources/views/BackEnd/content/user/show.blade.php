@@ -5,16 +5,16 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                    <h2>Preview infomation user</h2>
+                    <h2>Chi tiết thông tin người dùng</h2>
                 </div>
                 <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}"> Edit</a>
+                    <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}"> Chỉnh sửa</a>
                 </div>
             </div>
         </div>
         @if ($errors->any())
         <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.
+            <strong>Rất tiếc!</strong> Có lỗi xảy ra với dữ liệu đầu vào.
             <br>
             <br>
             <ul>
@@ -26,15 +26,15 @@
         @endif
         <table class="table table-bordered">
         	<tr>
-        		<td>Avatar:</td>
-        		<td><img src="{{ $user->avatar }}" alt=""></td>
+        		<td>Ảnh đại diện:</td>
+        		<td><img src="{{ ($user->avatar != '') ? $user->avatar : 'https://fakeimg.pl/150x150' }}" alt="{{ $user->title }}" width="150px" height="150px"></td>
         	</tr>
         	<tr>
-        		<td>First Name:</td>
+        		<td>Tên Họ:</td>
         		<td><strong>{{ $user->first_name }}</strong></td>
         	</tr>
         	<tr>
-        		<td>Last Name:</td>
+        		<td>Tên:</td>
         		<td><strong>{{ $user->last_name }}</strong></td>
         	</tr>
         	<tr>
@@ -42,20 +42,20 @@
         		<td><strong>{{ $user->email }}</strong></td>
         	</tr>
         	<tr>
-        		<td>Age:</td>
+        		<td>Tuổi:</td>
         		<td><strong>{{ $user->age }}</strong></td>
         	</tr>
         	<tr>
-        		<td>Phone:</td>
+        		<td>Số điện thoại:</td>
         		<td><strong>{{ $user->phone }}</strong></td>
         	</tr>
         	<tr>
-        		<td>Description:</td>
+        		<td>Mô tả:</td>
         		<td><strong>{{ $user->description }}</strong></td>
         	</tr>
         	<tr>
-        		<td>Status:</td>
-        		<td><strong>{{ ($user->status == 0) ? 'Pending' : 'Active' }}</strong></td>
+        		<td>Trạng thái tài khoản:</td>
+        		<td><strong>{{ ($user->status == 0) ? 'Đang chờ' : 'Kích hoạt' }}</strong></td>
         	</tr>
         </table>
     </div>

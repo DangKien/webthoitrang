@@ -55,6 +55,11 @@ class UserController extends Controller
             'description' => 'nullable',
         ]);
         $data             = $request->all();
+        $file = new FileController;
+        $path_upload = $file->upload($request);
+        if($path_upload != null && $path_upload != false) {
+            $data['avatar'] = $path_upload;
+        }
         $data['password'] = Hash::make($request->get('password'));
         if ((int) $request->get('status_user')[0] == 0) {
             $data['status'] = User::STATUS_PENDING;

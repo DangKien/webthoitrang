@@ -14,7 +14,7 @@
         </div>
         @if ($errors->any())
         <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.
+            <strong>Rất tiếc!</strong> Có lỗi xảy ra với dữ liệu đầu vào.
             <br>
             <br>
             <ul>
@@ -27,7 +27,7 @@
         <table class="table table-bordered">
         	<tr>
         		<td>Ảnh bài viết:</td>
-        		<td><img src="{{ url('/') . $news->image }}" alt=""></td>
+        		<td><img src="{{ ($news->image != '') ? $news->image : 'https://fakeimg.pl/150x150' }}" alt="{{ $news->title }}" width="150px" height="150px;"></td>
         	</tr>
         	<tr>
         		<td>Tiêu đề:</td>
@@ -47,7 +47,7 @@
         	</tr>
         	<tr>
         		<td>Trạng thái:</td>
-        		<td><strong>{{ ($news->status == 0) ? 'Pending' : 'Publish' }}</strong></td>
+        		<td><strong>{{ ($news->status == 0) ? 'Đang chờ' : 'Công khai' }}</strong></td>
         	</tr>
         </table>
     </div>

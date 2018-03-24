@@ -5,16 +5,16 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                    <h2>Add New Product</h2>
+                    <h2>Thêm sản phẩm mới</h2>
                 </div>
                 <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+                    <a class="btn btn-primary" href="{{ route('users.index') }}"> Trở lại</a>
                 </div>
             </div>
         </div>
         @if ($errors->any())
         <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.
+            <strong>Rất tiếc!</strong> Có lỗi xảy ra với đầu vào dữ liệu của bạn.
             <br>
             <br>
             <ul>
@@ -29,20 +29,26 @@
             <div class="row">
             	<div class="col-xs-12 col-sm-6 col-md-6">
 	                <div class="col-xs-12 col-sm-12 col-md-12">
-	                    <div class="form-group">
-	                        <strong>Avatar:</strong>
-	                        <input type="file" name="avatar">
-	                    </div>
+	                    <div class="col-xs-12 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <strong>Ảnh đại diện:</strong>
+                                <input type="file" name="file">
+                                <input type="hidden" name="uploadType" value="users">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6">
+                            <img src="{{ 'https://fakeimg.pl/150x150' }}" alt="" width="100%">
+                        </div>
 	                </div>
 	                <div class="col-xs-12 col-sm-12 col-md-12">
 	                    <div class="form-group">
-	                        <strong>First Name:</strong>
+	                        <strong>Họ:</strong>
 	                        <input type="text" name="first_name" class="form-control" placeholder="First Name">
 	                    </div>
 	                </div>
 	                <div class="col-xs-12 col-sm-12 col-md-12">
 	                    <div class="form-group">
-	                        <strong>Last Name:</strong>
+	                        <strong>Tên:</strong>
 	                        <input type="text" name="last_name" class="form-control" placeholder="Last Name">
 	                    </div>
 	                </div>
@@ -54,12 +60,12 @@
 	                </div>
 	                <div class="col-xs-12 col-sm-12 col-md-12">
 	                    <div class="form-group">
-	                        <strong>Password:</strong>
+	                        <strong>Mật khẩu:</strong>
 	                        <input type="password" name="password" class="form-control" placeholder="Password">
 	                    </div>
 	                </div>
 	                <div class="col-xs-12 col-sm-12 col-md-12 ">
-	                    <button type="submit" class="btn btn-primary">Submit</button>
+	                    <button type="submit" class="btn btn-primary">Tạo</button>
 	                </div>
 	                <br>
 	                <br>
@@ -67,35 +73,35 @@
             	<div class="col-xs-12 col-sm-6 col-md-6">
 	                <div class="col-xs-12 col-sm-12 col-md-12">
 	                    <div class="form-group">
-	                        <strong>Age:</strong>
+	                        <strong>Tuổi:</strong>
 	                        <input type="number" name="age" min="0" max="100" class="form-control" placeholder="Age">
 	                    </div>
 	                </div>
 	                <div class="col-xs-12 col-sm-12 col-md-12">
 	                    <div class="form-group">
-	                        <strong>Phone:</strong>
+	                        <strong>Số điện thoại:</strong>
 	                        <input type="phone" name="phone" class="form-control" placeholder="Phone">
 	                    </div>
 	                </div>
 	                <div class="col-xs-12 col-sm-12 col-md-12">
 	                    <div class="form-group">
-	                        <strong>Address:</strong>
+	                        <strong>Địa chỉ:</strong>
 	                        <input type="text" name="address" class="form-control" placeholder="Address">
 	                    </div>
 	                </div>
 	                <div class="col-xs-12 col-sm-12 col-md-12">
 	                    <div class="form-group">
-	                        <strong>Description:</strong>
+	                        <strong>Mô tả:</strong>
 	                        <textarea class="form-control" placeholder="Description"></textarea>
 	                    </div>
 	                </div>
 	                <div class="col-xs-12 col-sm-12 col-md-12">
 	                    <div class="form-group">
-	                        <strong>Status:</strong>
+	                        <strong>Trạng thái:</strong>
 	                        <br/>
-	                        <input type="radio" name="status_user[]" value="1" checked="true"> Active
+	                        <input type="radio" name="status_user[]" value="1" checked="true"> Hoạt động
 	                        <br/>
-	                        <input type="radio" name="status_user[]" value="0"> Deactive
+	                        <input type="radio" name="status_user[]" value="0"> Không hoạt động
 	                    </div>
 	                </div>
             	</div>
