@@ -53,6 +53,12 @@
 								<span class="menu-title">Tin tức</span>
 							</a>
 						</li>
+						<li class="{{ request()->is('/*/orders') || request()->is('*/orders') ? 'active active-link' : '' }}">
+							<a href="{{ route('orders.index') }}">
+								<i class="fa fa-user-circle"></i>
+								<span class="menu-title">Đơn hàng</span>
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>

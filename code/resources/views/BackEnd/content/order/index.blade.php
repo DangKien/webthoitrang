@@ -6,19 +6,12 @@
 	<div class="col-md-12 col-wrap-user">
 		<div class="row">
 	        <div class="col-lg-12 margin-tb">
-
 	            <div class="pull-left">
-
-	                <h2>Quản lý tài khoản người dùng</h2>
-
+	                <h2>Quản lý đơn hàng</h2>
 	            </div>
-
 	            <div class="pull-right">
-
-	                <a class="btn btn-success" href="{{ route('users.create') }}"> Tạo người dùng mới</a>
-
+	                <a class="btn btn-success" href="{{ route('users.create') }}">Thống kê</a>
 	            </div>
-
 	        </div>
 	    </div>
 	    @if ($message = Session::get('success'))
@@ -30,12 +23,12 @@
 	    	<thead>
 		        <tr>
 		            <th>No</th>
-		            <th>Tên Họ</th>
-		            <th>Tên</th>
-		            <th>Email</th>
+		            <th>Đơn hàng</th>
+		            <th>Tổng cộng</th>
+		            <th>Địa chỉ giao hàng</th>
+		            <th>Ngày</th>
 		            <th>Tình trạng</th>
-		            <th>Quyền người dùng</th>
-		            <th width="220px">Hành động</th>
+		            <th width="200px">Hành động</th>
 		        </tr>
 		    </thead>
 		    <tbody>

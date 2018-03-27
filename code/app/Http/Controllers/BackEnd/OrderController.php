@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\BackEnd;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -14,7 +15,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = new Order();
+        $orders      = $orders->orderBy('id', "DESC");
+        $list_orders = $orders->get();
+        return view('BackEnd.content.orders.index', compact('list_orders'));
     }
 
     /**
