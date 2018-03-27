@@ -23,8 +23,9 @@ ngApp.controller('categoryCtrl', function($apply, $categoryService, $scope) {
 			var params = $categoryService.data.filterProduct(page);
 			$categoryService.action.categories(slug, params).then(function (resp) {
 				$apply(function () {
-					$scope.data.categories   = resp.data.data;
-					$scope.data.pageCategory = resp.data;
+					$scope.data.categories = resp.data.data;
+					$scope.data.pageCategory    = resp.data;
+
 				});
 			}, function (error) {
 

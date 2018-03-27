@@ -25,7 +25,7 @@ class ProductCtrl extends Controller
         return response()->json([ 
                                     'detail'     =>$result_detail, 
                                     'product'    =>$result,
-                                    'categories' =>$result_breadcrumd,
+                                    'categories' =>$result_breadcrumd
                                 ]);
     }
 
