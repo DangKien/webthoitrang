@@ -56,6 +56,7 @@ class ProductCtrl extends Controller
 				'sale_description' => $request->sale_description,
 				'cate_sale'        => $request->cate_sale,
                 'price'            => $request->price,
+                'code_product'      => $request->codeProduct,
 				'tag'              => trim($request->tag, ','),
 				'created_at'       => Date('Y-m-d H:i:s'),
 				'updated_at'       => Date('Y-m-d H:i:s')

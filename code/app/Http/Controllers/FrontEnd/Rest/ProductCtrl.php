@@ -27,7 +27,7 @@ class ProductCtrl extends Controller
     	return response()->json([ 
                                     'detail'     =>$result_detail, 
                                     'product'    =>$result,
-                                    'categories' =>$result_breadcrumd
+                                    'categories' =>$result_breadcrumd,
                                 ]);
     }
 
@@ -43,6 +43,21 @@ class ProductCtrl extends Controller
             }
         }
         return $cate;
+    }
+
+    public function getProductInvole($id, ProductModel $product, Request $request, ProductDetailModel $detail, CategoryModel $categoryModel) {
+        $result =   $product->where('slug', $id)
+                            ->first();
+        $data   =   $product->where('cate_id', $result->cate_id)
+                            ->with('cates')
+                            ->with('images')
+                            ->with('details')
+                            ->with('cate_sales')
+                            ->limit(4)
+                            ->orderBy("order", "desc")
+                            ->get();
+
+        return response()->json($data);
     }
 
 }

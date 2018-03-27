@@ -3,7 +3,6 @@
 @section ('myJs')
 	<script>
 		var slug = "@if (isset($slug)) {{ $slug }} @endif";
-
 	</script>
     <script src="{{ url('js/ctrl/frontend') }}/productDetailCtrl.js"></script>
 	<script src="{{ url('/js/factory/services/frontend') }}/productDetailService.js"></script>
@@ -121,6 +120,98 @@
                         </ul>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row mt-80">
+            <div class="col-md-12">
+                <div class="single-product-dec-area">
+                    <div class="container">
+                        <div class="single-product-dec-tab">
+                            <ul role="tablist">
+                                <li class="active">
+                                    <a href="#description" data-toggle="tab">
+                                        Mô tả sản phẩm
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="single-product-dec pb-100">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="description" ng-bind-html="data.productRecord.description">
+                                </div>
+                            </div>
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-50">
+            <div class="col-md-12">
+                <div class="features-tab pb-100">
+                    <div class="home-2-tab">
+                        <ul role="tablist">
+                            <li class="active">
+                                <a href="#dresses" data-toggle="tab">
+                                    Sản phẩm liên quan
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="dresses">
+                            <div class="row">
+                                <div class="col-md-4 col-lg-3 col-sm-6" ng-repeat="(key, products) in data.productInvole">
+                                    <div class="single-shop">
+                                        <div class="shop-img">
+                                            <a href="{{ url('product') }}/@{{ products.slug }}"><img ng-src="{{ url('images/main_prodcut') }}/@{{ products.url_image }}" alt=""/></a>
+                                            <div class="price-up-down">
+                                                <span class="sale-new" ng-if="products.cate_sale == 0">
+                                                    New
+                                                </span>
+
+                                                <span class="sale-new" ng-if="products.cate_sale != 0">
+                                                    @{{ products.sales.name }}
+                                                </span>
+
+                                            </div>
+                                            <div class="button-group">
+                                                <a href="#" title="Add to Cart">
+                                                    <i class="pe-7s-cart"></i>
+                                                        Thêm vào giỏ hàng
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="shop-text-all">
+                                            <div class="title-color fix">
+                                                <div class="shop-title f-left">
+                                                    <h3><a href="{{ url('product') }}/@{{ products.slug }}" title="">
+                                                        @{{ products.name }}
+                                                    </a></h3>
+                                                </div>
+                                                <div class="pro-color f-right">
+                                                    <ul>
+                                                       <li ng-repeat="(key, colors) in products.details"
+                                                            ng-style="{'background': colors.color}"
+                                                       >b</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="price-ratting fix">
+                                                <span class="price f-left">
+                                                    <span class="new">@{{ products.price }} Vnđ</span>
+                                                </span>
+                                                <span class="ratting pull-right" ng-repeat="n in [0, 1, 2, 3, 4]"> 
+                                                    <i class="fa" ng-class=" n < products.start ? 'fa-star' : 'fa-star-o'"></i>
+                                                </span>
+                                            </div>
+                                        </div>                                  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
             </div>
         </div>
     </div>

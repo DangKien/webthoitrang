@@ -80,6 +80,7 @@
 							<table class="table table-striped">
 								<thead>
 									<tr>
+										<th>Mã sản phẩm</th>
 										<th>Tên sản phẩm</th>
 										<th>Loại</th>
 										<th>Ảnh</th>
@@ -91,6 +92,7 @@
 								</thead>
 								<tbody>
 									<tr class="width-fix-table" ng-repeat="(key, product) in data.listProduct">
+										<td class="width-100"> @{{ product.code_product }} </td>
 										<td class="width-100"> @{{ product.name }} </td>
 										<td> @{{ product.cate_id }} </td>
 										<td> <img ng-src=" {{ url('images/main_prodcut/') }}/@{{ product.url_image }}" alt="" style="width: 100px; height: 100px"> </td>

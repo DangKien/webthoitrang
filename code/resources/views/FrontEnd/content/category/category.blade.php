@@ -12,7 +12,7 @@
 <div class="shop-page-area ptb-10" ng-controller="categoryCtrl">
     <div class="container">
         <div class="text-center pt-20">
-            <h2>@if (isset($slug)) {{ $slug }} @endif</h2>
+            <h2>@if (isset($slug)) {{ $name->name }} @endif</h2>
         </div>
         <div class="row">
             <div class="col-md-3">
@@ -106,16 +106,16 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                            <div class="page-pagination text-center mt-50">
-                                    <ul>
-                                        <li><a class="active" href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#"><i class="fa fa-angle-double-right"></i>
-                                        </a></li>
-                                    </ul>
-                                </div>
+                            <div class="row text-center page-pagination mt-50">
+                               <div class="">
+                                   <div paging
+                                       page          ="data.pageCategory.current_page"
+                                       page-size     ="data.pageCategory.per_page"
+                                       total         ="data.pageCategory.total"
+                                       paging-action ="data.changePage(page)">
+                                   </div>
+                               </div>
+                            </div>  
                         </div>
                     </div>
                 </div>

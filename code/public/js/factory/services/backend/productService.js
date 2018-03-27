@@ -7,7 +7,7 @@ ngApp.factory('$productService', function ($http, $httpParamSerializer){
 	};
 
 	service.data = function (name, cate_id, cate_sale, sale_description, url_image, tag, description, price,
-							multiImage) {
+							codeProduct, multiImage) {
 		var params = new FormData();
 		params.append('name', name || '');
 		params.append('cate_id', cate_id || '');
@@ -17,6 +17,7 @@ ngApp.factory('$productService', function ($http, $httpParamSerializer){
 		params.append('tag', tag || '');
 		params.append('description', description || '');
 		params.append('price', price || '');
+		params.append('codeProduct', codeProduct || '');
 		angular.forEach(multiImage, function(image, key){
 			params.append('imageDetail[]', image);
 		});
