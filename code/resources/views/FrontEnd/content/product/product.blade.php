@@ -1,11 +1,11 @@
 @extends('FrontEnd.layouts.default')
 @section ('title', 'Chi tiết sản phẩm')
 @section ('myJs')
-	<script>
-		var slug = "@if (isset($slug)) {{ $slug }} @endif";
-	</script>
+    <script>
+        var slug = "@if (isset($slug)) {{ $slug }} @endif";
+    </script>
     <script src="{{ url('js/ctrl/frontend') }}/productDetailCtrl.js"></script>
-	<script src="{{ url('/js/factory/services/frontend') }}/productDetailService.js"></script>
+    <script src="{{ url('/js/factory/services/frontend') }}/productDetailService.js"></script>
 @endsection
 @section ('content')
 
@@ -48,7 +48,7 @@
                                 <img ng-src="{{ url('images/product_detail') }}/@{{ images.url_image }}" alt="" style="height: 190px;" />
                             </a>
                         </div>
-                    </div>	
+                    </div>  
                 </div>
             </div>
             <div class="col-md-7">
@@ -84,7 +84,7 @@
                         </div>
                         <div class="pro-quality">
                             <p>Quantity:</p>
-						<input value="1" type="number">
+                        <input value="1" type="number">
                         </div>
                         <div class="single-pro-cart">
                             <a href="#" title="Add to Cart">
