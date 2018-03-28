@@ -21,96 +21,135 @@ class OrdersTableSeeder extends Seeder
         $faker->addProvider(new Faker\Provider\Internet($faker));
 
         $images = [
-            url('assets/images/demo/posts/demo1.jpg'),
-            url('assets/images/demo/posts/demo2.jpg'),
-            url('assets/images/demo/posts/demo3.jpg'),
-            url('assets/images/demo/posts/demo4.jpg'),
-            url('assets/images/demo/posts/demo5.jpg'),
+            'assets/images/demo/posts/demo1.jpg',
+            'assets/images/demo/posts/demo2.jpg',
+            'assets/images/demo/posts/demo3.jpg',
+            'assets/images/demo/posts/demo4.jpg',
+            'assets/images/demo/posts/demo5.jpg',
         ];
 
         $data = [
             [
-                'info_order'  => json_encode([
+                'data'        => json_encode([
                     [
-                        'id'        => 1,
-                        'name'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
-                        'url_image' => $faker->randomElement($images),
-                        'quantity'  => 1,
-                        'price'     => 130000,
+                        'product'  => [
+                            'id'        => 1,
+                            'name'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
+                            'url_image' => $faker->randomElement($images),
+                            'price'     => 130000,
+                        ],
+                        'quantity' => 1,
                     ],
                     [
-                        'id'        => 2,
-                        'name'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
-                        'url_image' => $faker->randomElement($images),
-                        'quantity'  => 2,
-                        'price'     => 150000,
+                        'product'  => [
+                            'id'        => 2,
+                            'name'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
+                            'url_image' => $faker->randomElement($images),
+                            'price'     => 150000,
+                        ],
+                        'quantity' => 2,
                     ],
                     [
-                        'id'        => 3,
-                        'name'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
-                        'url_image' => $faker->randomElement($images),
-                        'quantity'  => 1,
-                        'price'     => 170000,
+                        'product'  => [
+                            'id'        => 3,
+                            'name'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
+                            'url_image' => $faker->randomElement($images),
+                            'price'     => 170000,
+                        ],
+                        'quantity' => 1,
                     ], [
-                        'id'        => 4,
-                        'name'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
-                        'url_image' => $faker->randomElement($images),
-                        'quantity'  => 2,
-                        'price'     => 300000,
+                        'product'  => [
+                            'id'        => 4,
+                            'name'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
+                            'url_image' => $faker->randomElement($images),
+                            'price'     => 300000,
+                        ],
+                        'quantity' => 2,
                     ],
                 ]),
+                'address'     => $faker->address,
                 'total'       => 900000,
                 'total_order' => 900000,
                 'status'      => Order::STATUS_PROCCESSING,
                 'user_id'     => 1,
             ],
             [
-                'info_order'  => json_encode([
+                'data'        => json_encode([
                     [
-                        'id'        => 1,
-                        'name'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
-                        'url_image' => $faker->randomElement($images),
-                        'quantity'  => 2,
-                        'price'     => 130000,
+                        'product'  => [
+                            'id'        => 1,
+                            'name'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
+                            'url_image' => $faker->randomElement($images),
+                            'price'     => 130000,
+                        ],
+                        'quantity' => 2,
                     ],
                     [
-                        'id'        => 6,
-                        'name'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
-                        'url_image' => $faker->randomElement($images),
-                        'quantity'  => 2,
-                        'price'     => 150000,
+                        'product'  => [
+                            'id'        => 6,
+                            'name'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
+                            'url_image' => $faker->randomElement($images),
+                            'price'     => 150000,
+                        ],
+                        'quantity' => 2,
                     ],
                     [
-                        'id'        => 9,
-                        'name'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
-                        'url_image' => $faker->randomElement($images),
-                        'quantity'  => 2,
-                        'price'     => 170000,
+                        'product'  => [
+                            'id'        => 9,
+                            'name'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
+                            'url_image' => $faker->randomElement($images),
+                            'price'     => 170000,
+                        ],
+                        'quantity' => 2,
                     ], [
-                        'id'        => 11,
-                        'name'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
-                        'url_image' => $faker->randomElement($images),
-                        'quantity'  => 2,
-                        'price'     => 150000,
+                        'product'  => [
+                            'id'        => 11,
+                            'name'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
+                            'url_image' => $faker->randomElement($images),
+                            'price'     => 150000,
+                        ],
+                        'quantity' => 2,
                     ],
                 ]),
+                'address'     => $faker->address,
                 'total'       => 1200000,
                 'total_order' => 1200000,
                 'status'      => Order::STATUS_PROCCESSING,
                 'user_id'     => 2,
             ],
             [
-                'info_order'  => json_encode([
+                'data'        => json_encode([
                     [
-                        'id'        => 1,
-                        'name'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
-                        'url_image' => $faker->randomElement($images),
-                        'quantity'  => 1,
-                        'price'     => 130000,
+                        'product'  => [
+                            'id'        => 1,
+                            'name'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
+                            'url_image' => $faker->randomElement($images),
+                            'price'     => 130000,
+                        ],
+                        'quantity' => 1,
                     ],
                 ]),
+                'address'     => $faker->address,
                 'total'       => 130000,
                 'total_order' => 130000,
+                'status'      => Order::STATUS_PROCCESSING,
+                'user_id'     => 3,
+            ],
+            [
+                'data'        => json_encode([
+                    [
+                        'product'  => [
+                            'id'        => 1,
+                            'name'      => $faker->sentence($nbWords = 5, $variableNbWords = true),
+                            'url_image' => $faker->randomElement($images),
+                            'price'     => 140000,
+                        ],
+                        'quantity' => 2,
+                    ],
+                ]),
+                'address'     => $faker->address,
+                'total'       => 280000,
+                'total_order' => 280000,
                 'status'      => Order::STATUS_PROCCESSING,
                 'user_id'     => 3,
             ],

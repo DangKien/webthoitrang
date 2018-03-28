@@ -16,7 +16,8 @@ class CreateOrderTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->text('info_order');
+            $table->text('data');
+            $table->text('address');
             $table->float('total', 0);
             $table->float('total_order', 0);
             $table->integer('status')->default(0)->comment("0: processing, 1: completed, 2: pending payment, 3: cancel, 4: refund");

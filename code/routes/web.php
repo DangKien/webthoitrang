@@ -33,6 +33,7 @@ Route::group(['prefix'=>'backend'], function (){
 
 	Route::resource('users','BackEnd\UserController');
 	Route::resource('news','BackEnd\NewsController');
+	Route::resource('orders','BackEnd\OrderController');
 });
 
 // frontend route
