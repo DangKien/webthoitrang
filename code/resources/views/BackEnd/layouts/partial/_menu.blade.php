@@ -59,6 +59,12 @@
 								<span class="menu-title">Đơn hàng</span>
 							</a>
 						</li>
+						<li class="{{ request()->is('/*/statistic') || request()->is('*/statistic') ? 'active active-link' : '' }}">
+							<a href="{{ route('statistic.index') }}">
+								<i class="fa fa-user-circle"></i>
+								<span class="menu-title">Thống kê</span>
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>
