@@ -1,5 +1,5 @@
 @extends('BackEnd.layouts.default')
-@section ('title', 'Quản lý người dùng')
+@section ('title', 'Quản lý đơn hàng')
 @section('content')
 <div id="content-container">
 	<br>
@@ -35,6 +35,26 @@
 		        @php
 		        	$i = 0;
 		        @endphp
+		        @if(!empty($orders->toArray()))
+			        @foreach($orders as $item) 
+			        	<tr>
+			        		<td>{{ ++$i }}</td>
+			        		<td><a href="{{ route('orders.show',$item->id) }}">#<strong style="color: green;">{{ $item->id }}</strong> bởi <strong style="color: green;">{{ $item->customer_email }}</strong></a></td>
+			        		<td>{{ $item->total_order }}</td>
+			        		<td>{{ $item->address }}</td>
+			        		<td>{{ $item->created_at }}</td>
+			        		<td>{{ $item->status }}</td>
+			        		<td>
+				                <form action="{{ route('orders.destroy',$item->id) }}" method="POST">
+				                    <a class="btn btn-info" href="{{ route('orders.show',$item->id) }}">Show</a>
+				                    @csrf
+				                    @method('DELETE')
+				                    <button type="submit" class="btn btn-danger">Delete</button>
+				                </form>
+				            </td>
+			        	</tr>
+			        @endforeach
+		        @endif
 		    </tbody>
 	    </table>
 

@@ -21,11 +21,11 @@ class OrdersTableSeeder extends Seeder
         $faker->addProvider(new Faker\Provider\Internet($faker));
 
         $images = [
-            url('assets/images/demo/posts/demo1.jpg'),
-            url('assets/images/demo/posts/demo2.jpg'),
-            url('assets/images/demo/posts/demo3.jpg'),
-            url('assets/images/demo/posts/demo4.jpg'),
-            url('assets/images/demo/posts/demo5.jpg'),
+            'assets/images/demo/posts/demo1.jpg',
+            'assets/images/demo/posts/demo2.jpg',
+            'assets/images/demo/posts/demo3.jpg',
+            'assets/images/demo/posts/demo4.jpg',
+            'assets/images/demo/posts/demo5.jpg',
         ];
 
         $data = [
