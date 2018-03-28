@@ -26,9 +26,9 @@
                             </div>
 				        </div>
 				        <div class="header-search f-right">
-				            <form action="" method="GET">
+				            <form action="{{ url('search') }}" method="GET">
 				                <div class="search-input-button">
-				                    <input class="" placeholder="Tìm kiếm" type="search">
+				                    <input name="freeText" placeholder="Tìm kiếm" type="search">
 				                    <button class="search-button" type="submit">
                                         <i class="pe-7s-search"></i>
                                     </button>

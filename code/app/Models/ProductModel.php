@@ -25,6 +25,14 @@ class ProductModel extends MyModel
         return $this->hasOne('App\Models\PromotionModel', 'id', 'cate_sale');
     }
 
+    public function filterName($param) {
+        if (!empty($param))
+        {
+            $this->setFunctionCond('where', ['name', 'like', '%'.$param.'%']);
+        }
+        return $this;
+    }
+
     public static function getProductCategory($idCategory, $limit) {
     	$product =  self::where('cate_id', $idCategory)
     					->limit($limit)

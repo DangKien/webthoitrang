@@ -120,10 +120,10 @@ class ProductCtrl extends Controller
                 $product_update->description      = $request->description;
                 $product_update->slug             = sanitizeTitle($request->name);
                 $product_update->cate_id          = $request->cate_id;
+                $product_update->price            = $request->price;
                 $product_update->sale_description = $request->sale_description;
                 $product_update->cate_sale        = $request->cate_sale;
                 $product_update->tag              = trim($request->tag, ',');
-                
                 $product_update->save();
                 DB::commit();
                 return response()->json(['status'=>true], 200);
@@ -262,7 +262,6 @@ class ProductCtrl extends Controller
     public function validateUpdate($request){
         return $this->validate($request, [
             'name'             => 'required| max:250',
-            'url_image'        => 'required',
             'cate_id'          => 'required',
             'cate_sale'        => 'required',
             'price'            => 'required| max:250',

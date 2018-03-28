@@ -44,7 +44,7 @@ Route::group(['prefix'=>''], function (){
 
 	Route::get('/product/{slug}', 'FrontEnd\Product\ProductCtrl@index');
 
-
+	Route::get('/search', 'FrontEnd\Search\SearchCtrl@index');
 });
 
 // backend route rest API
@@ -87,6 +87,9 @@ Route::group(['prefix' => 'rest/frontend'], function() {
     Route::get('/category/{id}', 'FrontEnd\Rest\CategoryCtrl@getList'); 
     // lay san pham theo id
     Route::get('/productInvole/{id}', 'FrontEnd\Rest\ProductCtrl@getProductInvole'); 
+
+    // lay san pham theo id
+    Route::get('/search', 'FrontEnd\Rest\SearchCtrl@getList'); 
 });
 Auth::routes();
 
