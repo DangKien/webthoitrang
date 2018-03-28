@@ -17,6 +17,11 @@ ngApp.factory('$productDetailService', function ($http, $httpParamSerializer){
         return $http.get(url);
 	};
 
+	service.action.productInvole = function (filter) {
+		var url = SiteUrl + "/rest/frontend/productInvole/" + filter;
+        return $http.get(url);
+	};
+
 	
 	return service;
 })

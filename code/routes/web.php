@@ -85,6 +85,8 @@ Route::group(['prefix' => 'rest/frontend'], function() {
     Route::get('/product', 'FrontEnd\Rest\ProductCtrl@getRecord'); // lay 1 san pham
 	// lay san pham theo id
     Route::get('/category/{id}', 'FrontEnd\Rest\CategoryCtrl@getList'); 
+    // lay san pham theo id
+    Route::get('/productInvole/{id}', 'FrontEnd\Rest\ProductCtrl@getProductInvole'); 
 });
 Auth::routes();
 

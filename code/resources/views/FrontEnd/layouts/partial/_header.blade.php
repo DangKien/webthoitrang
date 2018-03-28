@@ -26,9 +26,9 @@
                             </div>
 				        </div>
 				        <div class="header-search f-right">
-				            <form action="#">
+				            <form action="" method="GET">
 				                <div class="search-input-button">
-				                    <input class="" placeholder="Search" type="search">
+				                    <input class="" placeholder="Tìm kiếm" type="search">
 				                    <button class="search-button" type="submit">
                                         <i class="pe-7s-search"></i>
                                     </button>

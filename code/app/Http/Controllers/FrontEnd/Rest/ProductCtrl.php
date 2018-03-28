@@ -12,27 +12,21 @@ class ProductCtrl extends Controller
 {
     public function getRecord(ProductModel $product, Request $request, ProductDetailModel $detail,
                             CategoryModel $categoryModel) {
-    	$result =   $product->where('slug', $request->slug)
-    						->with('cates')
-    						->with('images')
-    						->with('details')
-    						->with('cate_sales')
-    						->first();
+        $result =   $product->where('slug', $request->slug)
+                            ->with('cates')
+                            ->with('images')
+                            ->with('details')
+                            ->with('cate_sales')
+                            ->first();
         $categories = $categoryModel::select('name', 'id', 'parent_id', 'slug')->get();
         $parent_id  = $result->cate_id;
         $result_breadcrumd = $this->_arrayCategory($categories, $parent_id);
-
-    	$result_detail = $detail->getDetail($result->id);
-
-    	return response()->json([ 
+        $result_detail = $detail->getDetail($result->id);
+        return response()->json([ 
                                     'detail'     =>$result_detail, 
                                     'product'    =>$result,
                                     'categories' =>$result_breadcrumd
                                 ]);
-    }
-
-    public function getDetailrecord(ProductDetailModel $detail) {
-
     }
 
     public function _arrayCategory ($data, $parent_id) {
@@ -43,6 +37,20 @@ class ProductCtrl extends Controller
             }
         }
         return $cate;
+    }
+
+    public function getProductInvole($id, ProductModel $product, Request $request, ProductDetailModel $detail, CategoryModel $categoryModel) {
+        $result =   $product->where('slug', $id)
+                            ->first();
+        $data   =   $product->where('cate_id', $result->cate_id)
+                            ->with('cates')
+                            ->with('images')
+                            ->with('details')
+                            ->with('cate_sales')
+                            ->limit(4)
+                            ->orderBy("order", "desc")
+                            ->get();
+        return response()->json($data);
     }
 
 }

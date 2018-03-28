@@ -6,14 +6,14 @@ ngApp.factory('$categoryService', function ($http, $httpParamSerializer){
 		filter: {},
 	};
 
-	service.data.filterProduct = function (slug) {
+	service.data.filterProduct = function (page) {
 		return {
-			'slug': slug,
+			page: page || 1,
 		}
 	};
 
-	service.action.categories = function (params) {
-		var url = SiteUrl + "/rest/frontend/category/" + params;
+	service.action.categories = function (params, data) {
+		var url = SiteUrl + "/rest/frontend/category/" + params + "?" + $httpParamSerializer(data);
         return $http.get(url);
 	};
 

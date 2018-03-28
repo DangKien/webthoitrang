@@ -30,6 +30,19 @@
 								</div>
 							</div>
 
+							<div class="form-group" ng-if="data.show">
+								<label class="control-label fix-form-cate" for="name">Mã sản phẩm*: </label>
+								<div>
+									<input required type="text" placeholder="Tên loại tin" class="form-control input-sm"
+										   id="name" ng-model = "data.params.code_product">
+									<p class="text-danger" style="margin-top: 5px;"
+										ng-repeat="er in data.errors.code_product"
+									>
+									    @{{ er }}
+									</p>
+								</div>
+							</div>
+
 							<div class="form-group">
 								<label class="control-label fix-form-cate" for="idCate">Loại sản phẩm*: </label>
 								<div>

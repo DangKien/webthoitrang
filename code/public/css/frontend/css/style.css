@@ -22,6 +22,30 @@
     text-align: center;
     width: 27px;
 }
+.pagination>.active>a {
+    background-color: #333;
+    color: #fff;
+}
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus{
+    background-color: #333;
+    color: #fff;
+    padding-left: 11px;
+    padding-top: 10px;
+    line-height: 9px;
+    height: 30px;
+    width: 30px;
+    border: 1px solid #333;
+    display: inline-block;
+}
+.pagination>li:last-child>a, .pagination>li:last-child>span {
+    padding-left: 11px;
+    padding-top: 10px;
+    line-height: 9px;
+    height: 30px;
+    width: 30px;
+    border: 1px solid #333;
+    display: inline-block;
+}
 .breadcrumb {
     padding: 8px 0px;
     margin-bottom: 5px;
@@ -31,6 +55,30 @@
     font-size: 13px;
 }
 
+.pagination>li:first-child>a, .pagination>li:first-child>span{
+    margin-left: 0;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    padding-left: 11px;
+    padding-top: 10px;
+    line-height: 9px;
+    height: 30px;
+    width: 30px;
+    border: 1px solid #333;
+    display: inline-block;
+
+}
+.pagination>li:last-child>a, .pagination>li:last-child>span{
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    padding-left: 11px;
+    padding-top: 10px;
+    line-height: 9px;
+    height: 30px;
+    width: 30px;
+    border: 1px solid #333;
+    display: inline-block;
+}
 .user > a {
     color: #fff;
     font-size: 31px;
