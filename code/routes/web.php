@@ -22,6 +22,7 @@ Route::group(['prefix'=>'backend'], function (){
 	Route::get('/category', 'BackEnd\Cate\CateCtrl@category')->name('category');
 	Route::get('/product', 'BackEnd\Product\ProductCtrl@main')->name('product');
 	Route::get('/slider', 'BackEnd\Slider\SliderCtrl@slider')->name('slider');
+	Route::get('/contact', 'BackEnd\Contact\ContactCtrl@index');
 
 
 	Route::get('/product-main', 'BackEnd\Product\ProductCtrl@product');
@@ -46,6 +47,11 @@ Route::group(['prefix'=>''], function (){
 	Route::get('/product/{slug}', 'FrontEnd\Product\ProductCtrl@index');
 
 	Route::get('/search', 'FrontEnd\Search\SearchCtrl@index');
+
+	Route::get('/contact', 'FrontEnd\Contact\ContactCtrl@index');
+	Route::post('/contact', 'FrontEnd\Contact\ContactCtrl@message');
+
+
 });
 
 // backend route rest API
