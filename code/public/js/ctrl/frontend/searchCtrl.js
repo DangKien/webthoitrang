@@ -2,7 +2,7 @@ ngApp.controller('searchCtrl', function($apply, $searchService, $scope) {
 		
 	$scope.data = {
 		freeText: freeText.trim(),
-		categories: {},
+		categories: [],
 		detail: {},
 		pageCategory:{},
 		sortBy: '',
@@ -22,14 +22,29 @@ ngApp.controller('searchCtrl', function($apply, $searchService, $scope) {
 			var params = $scope.data.filter();
 			$searchService.action.search(params).then(function (resp) {
 				$apply(function () {
-					$scope.data.categories = resp.data.data;
+					$scope.data.categories.push(resp.data.data);
 					$scope.data.pageCategory    = resp.data;
 
 				});
 			}, function (error) {
 
 			})
-		}
+		},
+		loadMore: function() {
+			if ($scope.data.pageCategory.total > $scope.data.categories.length
+				&& $scope.data.pageCategory.current_page < $scope.data.pageCategory.last_page) {
+				$scope.data.pageCategory.current_page  = $scope.data.pageCategory.current_page + 1;
+				var params = $scope.data.filter();
+				$searchService.action.search(params).then(function (resp) {
+					$apply(function () {
+						console.log($scope.data.categories);
+						$scope.data.pageCategory = resp.data;
+					});
+				}, function (error) {
+
+				})
+			}
+		},
 	}
 
 	$scope.actions = {

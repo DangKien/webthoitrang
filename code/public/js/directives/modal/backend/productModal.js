@@ -13,8 +13,14 @@ ngApp.directive('productModal', function($apply, $productService, $myLoader){
 			var multiImage       = scope.data.params.multiImage;
 			var price            = scope.data.params.price;
 			var codeProduct      = scope.data.params.code_product;
+			var status           = scope.data.params.status;
+			var made_in          = scope.data.params.made_in;
+			var trade            = scope.data.params.trade;
+			var material         = scope.data.params.material;
+
 			var params = $productService.data(name, cate_id, cate_sale, sale_description, url_image, tag, description, price,
-						codeProduct, multiImage);
+						codeProduct, material, made_in, trade, status, multiImage);
+
 			return params;
 	};
 

@@ -30,7 +30,22 @@ ngApp.controller('categoryCtrl', function($apply, $categoryService, $scope) {
 			}, function (error) {
 
 			})
-		}
+		},
+		loadMore: function() {
+			if ($scope.data.pageCategory.total > $scope.data.categories.length
+				&& $scope.data.pageCategory.current_page < $scope.data.pageCategory.last_page) {
+				$scope.data.pageCategory.current_page  = $scope.data.pageCategory.current_page + 1;
+				var params = $scope.data.filter();
+				$searchService.action.search(params).then(function (resp) {
+					$apply(function () {
+						console.log($scope.data.categories);
+						$scope.data.pageCategory = resp.data;
+					});
+				}, function (error) {
+
+				})
+			}
+		},
 	}
 
 	$scope.actions = {

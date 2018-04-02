@@ -119,7 +119,4 @@
                 </div>
             </div>
         </div>
-        <div class="contact-area-all">
-            <div id="ian"></div>
-        </div>
 @endsection

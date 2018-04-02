@@ -17,7 +17,7 @@
                  Trang chủ</a>
             </li>
             <li ng-repeat="(key, value) in data.categories">
-                <a href="{{ url('categories') }}/@{{ value.slug }}"> @{{ value.name }} </a>
+                <a href="{{ url('categories') }}/@{{ value.slug }}"> @{{ value.name }}</a>
             </li>
         </ol>
         <div class="row">
@@ -54,21 +54,30 @@
             <div class="col-md-7">
                 <div class="single-product-content">
                     <div class="single-product-dec pb-30  for-pro-border">
-                        <h2>@{{ data.productRecord.name  }}</h2>
+                        <h2>@{{ data.productRecord.name  }} - @{{ data.productRecord.code_product }}</h2>
                         <span class="ratting" ng-repeat="n in [0, 1, 2, 3, 4]"> 
                             <i class="fa" ng-class=" n < data.productRecord.start ? 'fa-star' : 'fa-star-o'"></i>
                         </span>
                         <h3>Giá: @{{ data.productRecord.price }}</h3>
-                        <p ng-bind-html="data.productRecord.description"></p>
+                        <br>
+                        <h5>Chất liệu:  @{{ data.productRecord.material }}</h5>
+                        <br>
+                        <h5>Xuất xứ:  @{{ data.productRecord.made_in }}</h5>
+                        <br>
+                        <h5>Thương hiệu:  @{{ (data.productRecord.trade == "undefined") ? "Không có" : data.productRecord.trade }}</h5>
                     </div>
                     <div class="single-cart-color for-pro-border">
-                        <p>availability : 
-                            <span>
+                        <p>Trạng thái : 
+                            <span ng-if = "(data.productRecord.status == '0')">
                                 Còn hàng
                             </span>
+                            <span ng-if = "(data.productRecord.status == 1)">
+                                Còn hàng
+                            </span>
+
                         </p>
                         <div class="pro-color pro-color-style-2">
-                            <p>color :</p>
+                            <p>Màu sản phẩm :</p>
                             <ul>
                                 <li ng-repeat="(key, detail) in data.productRecord.details"
                                     style="background: @{{ detail.color }}"
@@ -76,20 +85,20 @@
                             </ul>
                         </div>
                         <div class="pro-color-size mb-30">
-                            <p>size :</p>
+                            <p>Kích thước :</p>
                             <ul>
                                 <li ng-repeat="(key, detailSize) in data.detail[data.key].sizes"
                                 > <a href="">@{{ detailSize.name }}</a> </li>
                             </ul>
                         </div>
                         <div class="pro-quality">
-                            <p>Quantity:</p>
+                            <p>Số lượng:</p>
                         <input value="1" type="number">
                         </div>
                         <div class="single-pro-cart">
                             <a href="#" title="Add to Cart">
                                 <i class="pe-7s-cart"></i>
-                                add to cart
+                                Cho vào giỏ
                             </a>
                         </div>
                     </div>

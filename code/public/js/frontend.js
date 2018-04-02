@@ -1,4 +1,4 @@
-var ngApp = angular.module('ngApp', ['bw.paging', 'ngSanitize']);
+var ngApp = angular.module('ngApp', ['bw.paging', 'ngSanitize', 'infinite-scroll']);
 
 ngApp.filter('orderObjectBy', function() {
   return function(items, field, reverse) {

@@ -4,29 +4,28 @@
             <div class="row">
                 <div class="col-md-3 col-sm-4">
                     <div class="footer-widget mb-30">
-                        <div class="footer-logo">
-                            <a href="index.html">
-                                <img src="assets/img/logo/logo-black.png" alt="">
-                            </a>
+                        <div class="footer-title">
+                            <h3>Thanh toán</h3>
                         </div>
                         <div class="widget-info">
                             <p>
                                 <i class="pe-7s-map-marker"> </i>
-                                <span>
-                                    184 Main Rd E, St Albans
-                                    <br>
-                                    <span class="location">VIC 3021, Australia</span>
-                                </span>
+                                <span>Cs 1: Cổng trường Sư phạm</span>
+                                <br>
+                                <br>
+                                <i class="pe-7s-map-marker"> </i>
+                                <span >Cs 2: Cổng trường thương mại</span>
+                                
                             </p>
                             <p>
                                 <i class="pe-7s-mail"></i>
                                 <span>
-                                    <a href="mailto:contact@company.com">contact@company.com</a>
+                                    <a>Email: quanaomoi@gmail.com</a>
                                 </span>
                             </p>
                             <p>
                                 <i class="pe-7s-call"></i>
-                                <span>+001 2233 456 </span>
+                                <span>092345678 </span>
                             </p>
                         </div>
                         <div class="footer-social">
@@ -40,53 +39,39 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 hidden-sm">
+                <div class="col-md-3 hidden-sm">
                     <div class="footer-widget mb-30">
                         <div class="footer-title">
-                            <h3>Categories</h3>
+                            <h3>Loại sản phẩm</h3>
                         </div>
                         <div class="widget-text">
                             <ul>
-                                <li><a href="#"> Clothing</a></li>
-                                <li><a href="#">Shoes </a></li>
-                                <li><a href="#">bags </a></li>
-                                <li><a href="#">Watches </a></li>
-                                <li><a href="#">Jewelry </a></li>
-                                <li><a href="#"> Clothing</a></li>
+                                @php 
+                                    $categories = App\Models\CategoryModel::listCategories();
+                                @endphp
+                                 @foreach ($categories as $key => $category) 
+                                    @if ($category['parent_id'] == 0) 
+                                    <li><a href="{{ $category['url_link'] }}">{{ $category['name'] }}</a></li>
+                                    @endif
+                                @endforeach
+                                <li><a href="contact.html">Tin tức</a></li>
+                                <li><a href="{{ url('/contact') }}">Liên hệ</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 col-sm-2">
+                <div class="col-md-3 col-sm-2">
                     <div class="footer-widget mb-30">
                         <div class="footer-title">
-                            <h3>services</h3>
+                            <h3>Dịch vụ</h3>
                         </div>
                         <div class="widget-text">
                             <ul>
-                                <li><a href="#">About Us </a></li>
-                                <li><a href="#">Returns </a></li>
-                                <li><a href="#">Shipping </a></li>
-                                <li><a href="#">Track Orders </a></li>
-                                <li><a href="#">Contact Us  </a></li>
-                                <li><a href="#">Returns </a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 col-sm-3">
-                    <div class="footer-widget mb-30">
-                        <div class="footer-title">
-                            <h3>Quick Links</h3>
-                        </div>
-                        <div class="widget-text">
-                            <ul>
-                                <li><a href="#">Login </a></li>
-                                <li><a href="#">register </a></li>
-                                <li><a href="#">Wishlist </a></li>
-                                <li><a href="#">My Cart</a></li>
-                                <li><a href="#">Checkout </a></li>
-                                <li><a href="#">register </a></li>
+                                <li>Chuyển phát nhanh Viettel</li>
+                                <li>Giao hàng nhanh</li>
+                                <li>Giao hàng tiết kiệm</li>
+                                <li>VietNam Post</li>
+                                <li>Ninja van</li>
                             </ul>
                         </div>
                     </div>
@@ -94,16 +79,16 @@
                 <div class="col-md-3 col-sm-3">
                     <div class="footer-widget mb-30">
                         <div class="footer-title">
-                            <h3>Company</h3>
+                            <h3>Thanh toán</h3>
                         </div>
                         <div class="widget-text">
                             <ul>
-                                <li><a href="#">Return Policy </a></li>
-                                <li><a href="#">Privacy Policy </a></li>
-                                <li><a href="#">Product Warranty </a></li>
-                                <li><a href="#">Forum</a></li>
-                                <li><a href="#">Order Tracking </a></li>
-                                <li><a href="#">Privacy Policy </a></li>
+                                <li><a href="#">The Visa </a></li>
+                                <li><a href="#">JCB </a></li>
+                                <li><a href="#">VP Bank </a></li>
+                                <li><a href="#">TP Bank</a></li>
+                                <li><a href="#">Master Card </a></li>
+                                <li><a href="#">BIDV </a></li>
                             </ul>
                         </div>
                     </div>
@@ -115,8 +100,8 @@
                 <div class="col-md-6 col-sm-6">
                     <div class="copyright">
                         <p>
-                            Copyright © 2017
-                            <a href="#">ianthemes</a>
+                            Copyright © 2018
+                            <a href="#">Đặng Kiên</a>
                             . All Rights Reserved.
                         </p>
                     </div>

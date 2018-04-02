@@ -48,18 +48,22 @@ class ProductCtrl extends Controller
                         })->encode('png')->save(public_path('/images/main_prodcut/'.$url_image));
     		}
     		$productId = $product->insertGetId([
-				'name'             => $request->name,
-				'url_image'        => $url_image,
-				'description'      => $request->description,
-				'slug'             => sanitizeTitle($request->name),
-				'cate_id'          => $request->cate_id,
-				'sale_description' => $request->sale_description,
-				'cate_sale'        => $request->cate_sale,
+                'name'             => $request->name,
+                'url_image'        => $url_image,
+                'description'      => $request->description,
+                'slug'             => sanitizeTitle($request->name),
+                'cate_id'          => $request->cate_id,
+                'sale_description' => $request->sale_description,
+                'cate_sale'        => $request->cate_sale,
                 'price'            => $request->price,
-                'code_product'      => $request->codeProduct,
-				'tag'              => trim($request->tag, ','),
-				'created_at'       => Date('Y-m-d H:i:s'),
-				'updated_at'       => Date('Y-m-d H:i:s')
+                'code_product'     => $request->codeProduct,
+                'material'         => $request->material,
+                'made_in'          => $request->made_in,
+                'trade'            => $request->trade,
+                'status'           => $request->status,
+                'tag'              => trim($request->tag, ','),
+                'created_at'       => Date('Y-m-d H:i:s'),
+                'updated_at'       => Date('Y-m-d H:i:s')
     		]);
 
             if (empty($request->imageDetail)) {
@@ -123,6 +127,10 @@ class ProductCtrl extends Controller
                 $product_update->price            = $request->price;
                 $product_update->sale_description = $request->sale_description;
                 $product_update->cate_sale        = $request->cate_sale;
+                $product_update->material         = $request->material;
+                $product_update->made_in          = $request->made_in;
+                $product_update->trade            = $request->trade;
+                $product_update->status           = $request->status;
                 $product_update->tag              = trim($request->tag, ',');
                 $product_update->save();
                 DB::commit();
@@ -242,37 +250,51 @@ class ProductCtrl extends Controller
 
     public function validateInsert($request){
         return $this->validate($request, [
-            'name'             => 'required| unique:products,name| max:250',
-            'url_image'        => 'required',
-            'cate_id'          => 'required',
-            'cate_sale'        => 'required',
-            'price'            => 'required| max:250',
+            'name'      => 'required| unique:products,name| max:250',
+            'url_image' => 'required',
+            'cate_id'   => 'required',
+            'cate_sale' => 'required',
+            'price'     => 'required| max:250',
+            'material'  => 'required',
+            'made_in'   => 'required',
+            'status'    => 'required',
             ], [
-            'name.required'             => 'Tên sản phẩm không được để trống',
-            'name.required'             => 'Tên sản phẩm dài khoảng 250 kí tự',
-            'name.unique'               => 'Đã có tên tiêu đề này',
-            'url_image.required'        => 'Ảnh chính không được để trống',
-            'cate_id.required'          => 'Loại sản phẩm không được để trống',
-            'cate_sale.required'        => 'Loại khuyến mãi không được để trống',
-            'price.required'            => 'Giá sản phẩm không được để trống',
+            'name.required'      => 'Tên sản phẩm không được để trống',
+            'name.required'      => 'Tên sản phẩm dài khoảng 250 kí tự',
+            'name.unique'        => 'Đã có tên tiêu đề này',
+            'url_image.required' => 'Ảnh chính không được để trống',
+            'cate_id.required'   => 'Loại sản phẩm không được để trống',
+            'cate_sale.required' => 'Loại khuyến mãi không được để trống',
+            'price.required'     => 'Giá sản phẩm không được để trống',
+            'url_image.required' => 'Ảnh chính không được để trống',
+            'material.required'  => 'Chất liệu không được để trống',
+            'made_in.required'   => 'Nơi sản xuất không được để trống',
+            'status.required'    => 'Trạng thái hàng không được để trống',
             ]
         );
     }
 
     public function validateUpdate($request){
         return $this->validate($request, [
-            'name'             => 'required| max:250',
-            'cate_id'          => 'required',
-            'cate_sale'        => 'required',
-            'price'            => 'required| max:250',
+            'name'      => 'required| max:250',
+            'cate_id'   => 'required',
+            'cate_sale' => 'required',
+            'price'     => 'required| max:250',
+            'material'  => 'required',
+            'made_in'   => 'required',
+            'status'    => 'required',
             ], [
-            'name.required'             => 'Tên sản phẩm không được để trống',
-            'name.required'             => 'Tên sản phẩm dài khoảng 250 kí tự',
-            'name.unique'               => 'Đã có tên tiêu đề này',
-            'url_image.required'        => 'Ảnh chính không được để trống',
-            'cate_id.required'          => 'Loại sản phẩm không được để trống',
-            'cate_sale.required'        => 'Loại khuyến mãi không được để trống',
-            'price.required'            => 'Giá sản phẩm không được để trống',
+            'name.required'      => 'Tên sản phẩm không được để trống',
+            'name.required'      => 'Tên sản phẩm dài khoảng 250 kí tự',
+            'name.unique'        => 'Đã có tên tiêu đề này',
+            'url_image.required' => 'Ảnh chính không được để trống',
+            'cate_id.required'   => 'Loại sản phẩm không được để trống',
+            'cate_sale.required' => 'Loại khuyến mãi không được để trống',
+            'price.required'     => 'Giá sản phẩm không được để trống',
+            'url_image.required' => 'Ảnh chính không được để trống',
+            'material.required'  => 'Chất liệu không được để trống',
+            'made_in.required'   => 'Nơi sản xuất không được để trống',
+            'status.required'    => 'Trạng thái hàng không được để trống',
             ]
         );
     }

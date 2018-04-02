@@ -13,4 +13,5 @@
 <!-- <script src="lib/home.js" type="text/javascript"></script> -->
 <script src="{{ url('js/frontend/js') }}/plugins.js"></script>
 <script src="{{ url('js/frontend/js') }}/main.js"></script>       
-<script src="{{ url('js/frontend/js') }}/style.js"></script>   
+<script src="{{ url('js/frontend/js') }}/style.js"></script>      
+ 

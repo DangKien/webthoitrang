@@ -12,7 +12,10 @@
     outline: 0;
     box-shadow: 0 0 0 0.4rem rgba(0,123,255,.25)
 }
-
+.control-label {
+    font-weight: 600;
+    font-size: 13px;
+}
 .search-nc {
 	padding-bottom: 20px;
 	margin-right: 5px;

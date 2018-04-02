@@ -4,6 +4,8 @@
     <script>
         var freeText = '@if (isset($freeText)) {{ $freeText }} @endif';
     </script>
+
+    <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
     <script src="{{ url('js/ctrl/frontend') }}/searchCtrl.js"></script>
     <script src="{{ url('/js/factory/services/frontend') }}/searchService.js"></script>
 @endsection
@@ -30,7 +32,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9" infinite-scroll='data.loadMore()' infinite-scroll-distance='2'>
                 <div class="blog-wrapper shop-page-mrg">
                     <div class="tab-menu-product">
                         <div class="tab-menu-sort">
@@ -53,9 +55,40 @@
                         </div>
                         <div class="tab-product">
                             <div class="tab-content">
-                                <div class="tab-pane active" id="grid"> 
+                                <div class="tab-pane active" id="grid">
+                                    <form class="form-horizontal">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-4 control-label">Tên sản phẩm</label>
+                                                <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="inputEmail3" placeholder="Tên sản phẩm">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                    <label for="inputPassword3" class="col-sm-4 control-label">Giá sản phẩm</label>
+                                                    <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="inputPassword3" placeholder="Giá sản phẩm">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="col-sm-4 control-label">Tên sản phẩm</label>
+                                                <div class="col-sm-8">
+                                                <input type="text" class="form-control" id="inputEmail3" placeholder="Tên sản phẩm">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                    <label for="inputPassword3" class="col-sm-4 control-label">Giá sản phẩm</label>
+                                                    <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="inputPassword3" placeholder="Giá sản phẩm">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form> 
                                     <div class="row">
-                                        <div class="col-md-6 col-lg-4 col-sm-6"  ng-repeat="(key, products) in data.categories | orderObjectBy: 'propertyName':reverse">
+                                        <div ng-repeat="(key, value) in data.categories">
+                                            <div class="col-md-6 col-lg-4 col-sm-6"  ng-repeat="(key, products) in value | orderObjectBy: 'propertyName':reverse">
                                             <div class="single-shop">
                                                 <div class="shop-img">
                                                     <a href="{{ url('product') }}/@{{ products.slug }}"><img ng-src="{{ url('images/main_prodcut') }}/@{{ products.url_image }}" alt=""/></a>
@@ -102,11 +135,12 @@
                                                 </div>                                  
                                             </div>
                                         </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                            <div class="row text-center page-pagination mt-50">
+                            <!-- <div class="row text-center page-pagination mt-50">
                                <div class="">
                                    <div paging
                                        page          ="data.pageCategory.current_page"
@@ -115,7 +149,7 @@
                                        paging-action ="data.changePage(page)">
                                    </div>
                                </div>
-                            </div>  
+                            </div>  --> 
                         </div>
                     </div>
                 </div>
