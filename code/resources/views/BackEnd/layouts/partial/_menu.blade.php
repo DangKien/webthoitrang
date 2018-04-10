@@ -41,6 +41,14 @@
 								<span class="menu-title">Slide Show</span>
 							</a>
 						</li>
+
+						<li class="{{ request()->is('/*/contact') || request()->is('*/contact') ? 'active active-link' : '' }}">
+							<a href="{{ route('contact') }}">
+								<i class="fa fa-user-circle"></i>
+								<span class="menu-title">Liên hệ</span>
+							</a>
+						</li>
+
 						<li class="{{ request()->is('/*/user') || request()->is('*/user') ? 'active active-link' : '' }}">
 							<a href="{{ route('users.index') }}">
 								<i class="fa fa-user-circle"></i>

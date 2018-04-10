@@ -15,14 +15,20 @@ Route::get('/', function () {
     return view('BackEnd.layouts.default');
 });
 
+Route::get('/logout', 'Auth\LoginController@logout');
+
+
 Route::get('/modal/{view}', 'BackEnd\Modal\ModalCtrl@modal');
 
+Route::post('backend/login', 'Auth\LoginController@login');
+Route::get('backend/login', 'Auth\LoginController@showLoginForm')->name('login');
 
-Route::group(['prefix'=>'backend'], function (){
+Route::group(['prefix'=>'backend', "middleware"=>"auth"], function (){
+
 	Route::get('/category', 'BackEnd\Cate\CateCtrl@category')->name('category');
 	Route::get('/product', 'BackEnd\Product\ProductCtrl@main')->name('product');
 	Route::get('/slider', 'BackEnd\Slider\SliderCtrl@slider')->name('slider');
-	Route::get('/contact', 'BackEnd\Contact\ContactCtrl@index');
+	Route::get('/contact', 'BackEnd\Contact\ContactCtrl@index')->name("contact");
 
 
 	Route::get('/product-main', 'BackEnd\Product\ProductCtrl@product');
@@ -98,7 +104,6 @@ Route::group(['prefix' => 'rest/frontend'], function() {
     // lay san pham theo id
     Route::get('/search', 'FrontEnd\Rest\SearchCtrl@getList'); 
 });
-Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 

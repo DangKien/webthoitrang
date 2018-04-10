@@ -38,7 +38,8 @@
 								<span class="pull-right">
 									<img class="img-circle img-user media-object" src="{{ url('') }}/Nifty/img/av1.png" alt="Profile Picture">
 								</span>
-								<div class="username hidden-xs">@if (Auth::check()) {{ Auth::user()->name }} @endif</div>
+								<div class="username hidden-xs">
+									@if (Auth::check()) {{ Auth::user()->first_name." ".Auth::user()->last_name }} @endif</div>
 							</a>
 
 
@@ -48,7 +49,7 @@
 								<ul class="head-list">
 								<!-- Dropdown footer -->
 								<div class="pad-all text-right">
-									<a href="" class="btn btn-primary">
+									<a href=" {{ url('logout') }}" class="btn btn-primary">
 										<i class="fa fa-sign-out fa-fw"></i> Đăng Xuất
 									</a>
 								</div>
