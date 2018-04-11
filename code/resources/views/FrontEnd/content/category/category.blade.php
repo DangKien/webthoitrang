@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9" infinite-scroll='data.loadMore()' infinite-scroll-distance='2'>
+            <div class="col-md-9" infinite-scroll='data.loadMore()' infinite-scroll-distance='0'>
                 <div class="blog-wrapper shop-page-mrg">
                     <div class="tab-menu-product">
                         <div class="tab-menu-sort">

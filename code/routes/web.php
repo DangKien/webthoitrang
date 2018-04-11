@@ -57,6 +57,9 @@ Route::group(['prefix'=>''], function (){
 	Route::get('/contact', 'FrontEnd\Contact\ContactCtrl@index');
 	Route::post('/contact', 'FrontEnd\Contact\ContactCtrl@message');
 
+	Route::get('news', 'FrontEnd\News\NewCtrl@index');
+	Route::get('news/{slug}', 'FrontEnd\News\NewCtrl@getDetail');
+
 
 });
 
@@ -103,6 +106,9 @@ Route::group(['prefix' => 'rest/frontend'], function() {
 
     // lay san pham theo id
     Route::get('/search', 'FrontEnd\Rest\SearchCtrl@getList'); 
+
+       // lay tin tuc theo id
+    Route::get('news', 'FrontEnd\Rest\NewCtrl@getList');
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');

@@ -1,4 +1,4 @@
-ngApp.controller('categoryCtrl', function($apply, $categoryService, $scope) {
+ngApp.controller('categoryCtrl', function($apply, $categoryService, $scope, $myLoader) {
 		
 	$scope.data = {
 		slug: slug.trim(),
@@ -7,8 +7,9 @@ ngApp.controller('categoryCtrl', function($apply, $categoryService, $scope) {
 		pageCategory:{},
 		sortBy: '',
 		filter: function () {
-			var slug      = $scope.data.slug;
-			var params    = $categoryService.data.filterProduct(slug);
+			var slug   = $scope.data.slug;
+			var page   = $scope.data.pageCategory.current_page;
+			var params = $categoryService.data.filterProduct(page);
 			return params;
 		},
 
@@ -18,6 +19,7 @@ ngApp.controller('categoryCtrl', function($apply, $categoryService, $scope) {
 		},
 
 		productDetail: function () {
+			$myLoader.show();
 			var slug   = $scope.data.slug;
 			var page   = $scope.data.pageCategory.current_page;
 			var params = $categoryService.data.filterProduct(page);
@@ -25,10 +27,11 @@ ngApp.controller('categoryCtrl', function($apply, $categoryService, $scope) {
 				$apply(function () {
 					$scope.data.categories = resp.data.data;
 					$scope.data.pageCategory    = resp.data;
+					$myLoader.hide();
 
 				});
 			}, function (error) {
-
+				$myLoader.hide();
 			})
 		},
 		loadMore: function() {
@@ -36,13 +39,15 @@ ngApp.controller('categoryCtrl', function($apply, $categoryService, $scope) {
 				&& $scope.data.pageCategory.current_page < $scope.data.pageCategory.last_page) {
 				$scope.data.pageCategory.current_page  = $scope.data.pageCategory.current_page + 1;
 				var params = $scope.data.filter();
+				$myLoader.show();
 				$searchService.action.search(params).then(function (resp) {
 					$apply(function () {
 						console.log($scope.data.categories);
 						$scope.data.pageCategory = resp.data;
+						$myLoader.hide();
 					});
 				}, function (error) {
-
+					$myLoader.hide();
 				})
 			}
 		},

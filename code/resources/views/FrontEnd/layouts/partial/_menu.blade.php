@@ -11,7 +11,7 @@
                                     $categories = App\Models\CategoryModel::listCategories();
                             		showCategories($categories);
                             	?>
-	                            <li><a href="contact.html">Tin tức</a></li>
+	                            <li><a href="{{ url('/news') }}">Tin tức</a></li>
                                 <li><a href="{{ url('/contact') }}">Liên hệ</a></li>
                             </ul>
                         </nav>

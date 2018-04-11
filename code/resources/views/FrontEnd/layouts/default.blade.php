@@ -23,7 +23,11 @@
             @includeif ('FrontEnd.layouts.partial._default_js')
             @includeif ('FrontEnd.layouts.partial._js')
             @yield('myJs')
-            
+        </div>
+        <div class="modal" id="modalLoader">
+            <div id="loader-wrapper">
+                <div id="loader"></div>
+            </div>
         </div>
     </body>
 </html>

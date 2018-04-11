@@ -7,3 +7,4 @@
 <script src="{{ url('') }}/js/directives/myDatePicker.js"></script>
 
 <script src="{{ url('') }}/js/myJs.js"></script>
+<script src="{{ url('') }}/js/factory/myLoader.js"></script>
