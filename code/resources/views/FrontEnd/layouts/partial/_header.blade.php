@@ -5,7 +5,7 @@
 				<div class="col-lg-6 col-md-7 col-sm-6 hidden-xs">
 				    <div class="header-to-info">
 				        <ul>
-				            <li class="for-none"><i class="fa fa-envelope"></i> Mail: <span><a href="#">demoiaan@gmail.com</a></span></li>
+				            <li class="for-none"><i class="fa fa-envelope"></i> Mail: <span><a href="#">demoiaan@gmail.com {{ Auth::guard('customer')->check() }}</a></span></li>
 				            <li><i class="fa fa-phone"></i> Liên hệ: <span>0123 456 789</span></li>
 				        </ul>
 				    </div>
@@ -14,13 +14,26 @@
 				    <div class="user-search">
 				        <div class="user f-right">
 				            <a href="#">
-                                <i class="pe-7s-add-user"></i>
+                                	@if (!Auth::guard('customer')->check() )
+                                		<i class="pe-7s-add-user">
+                                	@else 
+                                		<span style="color:#fff; font-size: 17px;">{{ Auth::guard('customer')->user()->first_name." ".Auth::guard('customer')->user()->last_name }} </span>
+                                		
+                                	@endif
+                                </i>
                             </a>
                             <div class="currence-user-page">
                                 <div class="user-page">
                                     <ul>
-                                        <li><a href="login.html"><i class="pe-7s-next-2"></i> Đăng nhập</a></li>
-                                        <li><a href="register.html"><i class="pe-7s-add-user"></i> Đăng kí</a></li>
+                                    	@if (!Auth::guard('customer')->check() ) 
+                                        <li><a href="{{ url('login') }}"><i class="pe-7s-next-2"></i> Đăng nhập</a></li>
+                                        <li><a href="{{ url('register') }}"><i class="pe-7s-add-user"></i> Đăng kí</a></li>
+                                        @else 
+                                        	<li><a href="{{ route('customer') }}">
+                                        		<i class="fa fa-user"></i> Thông tin tài khoản</a></li>
+                                        	<li><i class="fa fa-shopping-cart"></i> Sản phẩm đã đặt</li>
+                                        	<li><a href="{{ route('logout.frontend') }}"><i class="pe-7s-add-user"></i> Đăng xuất</a></li>
+                                        @endif
                                     </ul>
                                 </div>
                             </div>

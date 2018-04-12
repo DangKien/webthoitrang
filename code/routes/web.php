@@ -60,6 +60,17 @@ Route::group(['prefix'=>''], function (){
 	Route::get('news', 'FrontEnd\News\NewCtrl@index');
 	Route::get('news/{slug}', 'FrontEnd\News\NewCtrl@getDetail');
 
+	Route::get('customer', 'FrontEnd\Customer\CustomerCtrl@index')->name('customer');
+	Route::post('customer', 'FrontEnd\Customer\CustomerCtrl@updateAccount');
+	Route::put('customer', 'FrontEnd\Customer\CustomerCtrl@changePass');
+
+	Route::get('login', 'FrontEnd\Login\LoginController@showLoginForm')->name('login.frontend');
+	Route::post('login', 'FrontEnd\Login\LoginController@todoLogin');
+
+	Route::get('register', 'FrontEnd\Login\LoginController@showRegisterForm')->name('register.frontend');
+	Route::post('register', 'FrontEnd\Login\LoginController@postRegister');
+
+	Route::get('logout-font', 'FrontEnd\Login\LoginController@logout')->name('logout.frontend');
 
 });
 
