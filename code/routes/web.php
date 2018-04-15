@@ -55,9 +55,11 @@ Route::group(['prefix'=>''], function (){
 	Route::get('/search', 'FrontEnd\Search\SearchCtrl@index');
 
 	Route::get('/carts', 'FrontEnd\Cart\CartCtrl@index');
-
+	Route::get('/checkout', 'FrontEnd\Cart\CartCtrl@checkout');
 	Route::get('/contact', 'FrontEnd\Contact\ContactCtrl@index');
 	Route::post('/contact', 'FrontEnd\Contact\ContactCtrl@message');
+
+	
 
 	Route::get('news', 'FrontEnd\News\NewCtrl@index');
 	Route::get('news/{slug}', 'FrontEnd\News\NewCtrl@getDetail');
@@ -126,6 +128,7 @@ Route::group(['prefix' => 'rest/frontend'], function() {
     // Cho sản phẩm vào giỏ
     Route::post('add-cart/{id}', 'FrontEnd\Rest\CartCtrl@addCart');
     Route::post('delete-cart/{id}', 'FrontEnd\Rest\CartCtrl@deleteCart');
+    Route::post('update-cart/{id}', 'FrontEnd\Rest\CartCtrl@updateCart');
 
     // Lấy sản phẩm
     Route::get('cart', 'FrontEnd\Rest\CartCtrl@getCart');
@@ -133,3 +136,9 @@ Route::group(['prefix' => 'rest/frontend'], function() {
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
+
+Route::get('redirect-fb', 'FrontEnd\SocialAuthCtrl@redirectFb');
+Route::get('callback-fb', 'FrontEnd\SocialAuthCtrl@callbackFb');
+
+Route::get('redirect-gg', 'FrontEnd\SocialAuthCtrl@redirectGG');
+Route::get('callback-gg', 'FrontEnd\SocialAuthCtrl@callbackGG');

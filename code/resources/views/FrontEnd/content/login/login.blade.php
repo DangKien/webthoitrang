@@ -37,10 +37,10 @@
                                     <button class="login-btn" type="submit">Đăng nhập</button>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <button class="login-btn" type="button">Facebook</button>
+                                            <a href="{{ url('redirect-fb') }}"><button class="login-btn" type="button">Facebook</button></a>
                                         </div>
                                         <div class="col-md-6">
-                                            <button class="login-btn" type="button">Google++</button>
+                                             <a href="{{ url('redirect-gg') }}"><button class="login-btn" type="button">Google++</button> </a>
                                         </div>
                                     </div>
                                 </div>

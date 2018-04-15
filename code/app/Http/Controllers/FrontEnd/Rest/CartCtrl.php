@@ -34,8 +34,14 @@ class CartCtrl extends Controller
                                  "cartTotal"=> Cart::subtotal()]);
     }
 
+    public function updateCart($rowId, Request $request){
+        Cart::update($rowId, $request->qty);
+        return response()->json(["status" => true], 200);
+    }
+
     public function deleteCart($rowId) {
         Cart::remove($rowId);
+        return response()->json(["status" => true], 200);
     }
 
 }

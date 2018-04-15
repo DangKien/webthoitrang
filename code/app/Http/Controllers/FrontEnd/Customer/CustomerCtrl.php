@@ -48,7 +48,7 @@ class CustomerCtrl extends Controller
         if(Hash::check($request->password, $passwordOld)) {
             DB::beginTransaction();
             try {
-                $customer->password = $request->newPassword;
+                $customer->password = Hash::make($request->newPassword);
                 $customer->save();
                 DB::commit();
                 return redirect()->route('customer');

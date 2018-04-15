@@ -33,7 +33,7 @@
                                             <span class="cart-price">@{{ value.qty }} x @{{ value.price }} vnđ</span>
                                         </div>
                                         <div class="cart-del">
-                                            <i class="pe-7s-close-circle"></i>
+                                            <i ng-click="deleteCart(value.rowId)" class="pe-7s-close-circle"></i>
                                         </div>
                                     </div>
                                 </li>
