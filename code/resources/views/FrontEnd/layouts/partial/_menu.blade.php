@@ -17,20 +17,20 @@
                         </nav>
                     </div>
 	            </div>
-	            <div class="col-md-3 col-sm-3 col-xs-4">
+	            <div class="col-md-3 col-sm-3 col-xs-4"  ng-controller="cartCtrl">
 	                <div class="cart-menu">
 	                    <div class="shopping-cart pull-right">
                             <a class="top-cart" href="cart.html"><i class="pe-7s-cart"></i></a>
-                            <span>01</span>
+                            <span>@{{ cartItems.cartCount }} </span>
                             <ul>
-                                <li>
+                                <li ng-repeat="(key, value) in cartItems.cartItems">
                                     <div class="cart-img-price">
                                         <div class="cart-img">
-                                            <a href="#"><img src="assets/img/cart/1.jpg" alt="" /></a>
+                                            <a href="{{ url('product') }}/@{{ value.options.slug }}"><img style="width: 70px; height: 70px;" ng-src="{{ url('images/main_prodcut/') }}//@{{  value.options.image }}" alt="" /></a>
                                         </div>
                                         <div class="cart-content">
-                                            <h3><a href="#">product title</a> </h3>
-                                            <span class="cart-price">1 x $ 299.00</span>
+                                            <h3><a href="{{ url('product') }}/@{{ value.options.slug }}">@{{ value.name }}</a> </h3>
+                                            <span class="cart-price">@{{ value.qty }} x @{{ value.price }} vnđ</span>
                                         </div>
                                         <div class="cart-del">
                                             <i class="pe-7s-close-circle"></i>
@@ -39,14 +39,14 @@
                                 </li>
                                 <li>
                                     <p class="total">
-                                        Subtotal:
-                                        <span>$299.00</span>
+                                        Total:
+                                        <span>@{{ cartItems.cartTotal }} vnđ</span>
                                     </p>
                                 </li>
                                 <li>
                                     <p class="buttons">
-                                        <a class="my-cart" href="#">View Cart</a>
-                                        <a class="checkout" href="#">Checkout</a>
+                                        <a class="my-cart" href="{{ url('carts') }}">Giỏ hàng</a>
+                                         <a class="checkout" href="{{ url('') }}">Thanh toán</a>
                                     </p>
                                 </li>
                             </ul>							
