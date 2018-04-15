@@ -23,5 +23,7 @@ ngApp.factory('$productDetailService', function ($http, $httpParamSerializer){
 	};
 
 	
+
+	
 	return service;
 })

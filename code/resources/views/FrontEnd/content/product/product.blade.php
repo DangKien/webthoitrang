@@ -95,8 +95,8 @@
                             <p>Số lượng:</p>
                         <input value="1" type="number">
                         </div>
-                        <div class="single-pro-cart">
-                            <a href="#" title="Add to Cart">
+                        <div class="single-pro-cart" ng-click="actions.addCart(data.productRecord.id)">
+                            <a title="Add to Cart">
                                 <i class="pe-7s-cart"></i>
                                 Cho vào giỏ
                             </a>

@@ -33,12 +33,6 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                            <div class="button-group">
-                                                <a href="#" title="Add to Cart">
-                                                    <i class="pe-7s-cart"></i>
-                                                        Thêm vào giỏ hàng
-                                                </a>
-                                            </div>
                                         </div>
                                         <div class="shop-text-all">
                                             <div class="title-color fix">
@@ -100,12 +94,6 @@
                                                 @endif
                                                 
                                             </div>
-                                            <div class="button-group">
-                                                <a href="#" title="Add to Cart">
-                                                    <i class="pe-7s-cart"></i>
-                                                        Thêm vào giỏ hàng 
-                                                </a>
-                                            </div>
                                         </div>
                                         <div class="shop-text-all">
                                             <div class="title-color fix">
@@ -165,12 +153,7 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                            <div class="button-group">
-                                                <a href="#" title="Add to Cart">
-                                                    <i class="pe-7s-cart"></i>
-                                                        Thêm vào giỏ hàng
-                                                </a>
-                                            </div>
+                                           
                                         </div>
                                         <div class="shop-text-all">
                                             <div class="title-color fix">

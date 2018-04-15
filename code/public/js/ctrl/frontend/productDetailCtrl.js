@@ -1,4 +1,4 @@
-ngApp.controller('productDetailCtrl', function($apply, $productDetailService, $scope) {
+ngApp.controller('productDetailCtrl', function($apply, $productDetailService, $scope, $cartService, $rootScope) {
 		
 	$scope.data = {
 		slug: slug.trim(),
@@ -36,6 +36,18 @@ ngApp.controller('productDetailCtrl', function($apply, $productDetailService, $s
 			})
 		}
 	}
+
+	$scope.actions = {
+		addCart: function ($id){
+			$cartService.action.addCart($id).then(function(resp) {
+				$rootScope.getCartItems();
+			}, function (error){
+				console.log(error);
+			});
+		},
+	}
+
+	
 	$scope.data.productInvole();
 	$scope.data.productDetail();
 });
