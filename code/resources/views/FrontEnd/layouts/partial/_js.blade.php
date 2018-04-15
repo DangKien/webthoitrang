@@ -8,3 +8,6 @@
 
 <script src="{{ url('') }}/js/myJs.js"></script>
 <script src="{{ url('') }}/js/factory/myLoader.js"></script>
+
+<script src="{{ url('js/ctrl/frontend') }}/cartCtrl.js"></script>
+<script src="{{ url('/js/factory/services/frontend') }}/cartService.js"></script>
