@@ -30,6 +30,9 @@ Route::group(['prefix'=>'backend', "middleware"=>"auth"], function (){
 	Route::get('/slider', 'BackEnd\Slider\SliderCtrl@slider')->name('slider');
 	Route::get('/contact', 'BackEnd\Contact\ContactCtrl@index')->name("contact");
 
+	Route::get('comment', 'BackEnd\Comment\CommentCtrl@comment')->name('comment');
+	Route::get('delete-comment/{id}', 'BackEnd\Comment\CommentCtrl@deleteComment');
+	Route::get('approval-comment/{id}', 'BackEnd\Comment\CommentCtrl@approvalComment');
 
 	Route::get('/product-main', 'BackEnd\Product\ProductCtrl@product');
 	Route::get('/detail-product', 'BackEnd\Product\ProductCtrl@detailProduct');
@@ -59,7 +62,8 @@ Route::group(['prefix'=>''], function (){
 	Route::get('/contact', 'FrontEnd\Contact\ContactCtrl@index');
 	Route::post('/contact', 'FrontEnd\Contact\ContactCtrl@message');
 
-	
+	Route::get('/comment', 'FrontEnd\Contact\ContactCtrl@list');
+	Route::post('/comment/{id}', 'FrontEnd\Comment\CommentCtrl@postComment');
 
 	Route::get('news', 'FrontEnd\News\NewCtrl@index');
 	Route::get('news/{slug}', 'FrontEnd\News\NewCtrl@getDetail');
@@ -107,6 +111,8 @@ Route::group(['prefix' => 'rest/backend'], function() {
     Route::get('/slider/{id}', 'BackEnd\Rest\SliderCtrl@getEdit');
 	Route::post('/slider/{id}', 'BackEnd\Rest\SliderCtrl@getUpdate');
 	Route::delete('/slider/{id}', 'BackEnd\Rest\SliderCtrl@getDelete');
+
+	Route::get('comment', 'BackEnd\Rest\CommentCtrl@getList');
 
 });
 

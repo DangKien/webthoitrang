@@ -243,10 +243,10 @@
                 <div class="row">
                     <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 ">
                         <div class="subscribe-from text-center">
-                            <h3>subscribe to our newsletter</h3>
+                            <h3>Đăng kí Email để nhận thông tin giảm giá mới nhất</h3>
                             <form action="#">
-                                <input placeholder="Enter your Email address" type="email">
-                                <button type="submit">Subscribe</button>
+                                <input placeholder="Nhập email của bạn" type="email">
+                                <button type="submit">Đăng kí</button>
                             </form>
                         </div>
                     </div>

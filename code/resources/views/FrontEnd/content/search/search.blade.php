@@ -56,36 +56,6 @@
                         <div class="tab-product">
                             <div class="tab-content">
                                 <div class="tab-pane active" id="grid">
-                                    <form class="form-horizontal">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="inputEmail3" class="col-sm-4 control-label">Tên sản phẩm</label>
-                                                <div class="col-sm-8">
-                                                <input type="text" class="form-control" id="inputEmail3" placeholder="Tên sản phẩm">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                    <label for="inputPassword3" class="col-sm-4 control-label">Giá sản phẩm</label>
-                                                    <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="inputPassword3" placeholder="Giá sản phẩm">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="inputEmail3" class="col-sm-4 control-label">Tên sản phẩm</label>
-                                                <div class="col-sm-8">
-                                                <input type="text" class="form-control" id="inputEmail3" placeholder="Tên sản phẩm">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                    <label for="inputPassword3" class="col-sm-4 control-label">Giá sản phẩm</label>
-                                                    <div class="col-sm-8">
-                                                    <input type="text" class="form-control" id="inputPassword3" placeholder="Giá sản phẩm">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form> 
                                     <div class="row">
                                         <div ng-repeat="(key, value) in data.categories">
                                             <div class="col-md-6 col-lg-4 col-sm-6"  ng-repeat="(key, products) in value | orderObjectBy: 'propertyName':reverse">
