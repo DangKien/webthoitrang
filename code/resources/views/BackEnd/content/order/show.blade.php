@@ -101,7 +101,7 @@
                         @foreach($data as $item)
                             <tr>
                                 <th>
-                                    <span style="width: 70px; height: 70px"><img src="{!!  url($item->product->url_image) !!}" width="70px" height="70px"></span>
+                                    <span style="width: 70px; height: 70px"><img src="{!!  url('images/main_prodcut', $item->product->url_image) !!}" width="70px" height="70px"></span>
                                     <span>{{ $item->product->name }}</span>
                                 </th>
                                 <th>{{ $item->product->price }}</th>
