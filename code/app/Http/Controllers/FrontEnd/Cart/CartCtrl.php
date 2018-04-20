@@ -17,7 +17,7 @@ class CartCtrl extends Controller
     	if (Auth::guard('customer')->check()) {
     		if (Cart::count() != 0){
                 if (!empty(Auth::guard('customer')->user()->address)
-                && !empty(Auth::guard('customer')->user()->phone)){
+                && !empty(Auth::guard('customer')->user()->phone)) {
                     DB::beginTransaction();
                     try {
                         $order->user_id     = Auth::guard('customer')->user()->id;
@@ -47,17 +47,12 @@ class CartCtrl extends Controller
                         DB::rollback();
                     }
                 } else {
-                    
+                    return redirect()->route('login.frontend');
                 }
-    public function checkout() {
-    	if (Auth::guard('customer')->check()) {
-    		if (Cart::count() != 0){
-
-    		} else {
-    			return redirect()->back();
-    		}
-    	} else {
-    		return redirect()->route('login.frontend');
-    	}
+            }
+        } else {
+            return redirect()->route('login.frontend');
+        }
     }
+   
 }

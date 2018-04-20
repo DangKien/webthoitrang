@@ -29,7 +29,7 @@ class CategoryCtrl extends Controller
                             ->with('details')
                             ->with('images')
                             ->with('cate_sales')
-                            ->paginate(12);
+                            ->paginate(6);
 
     	return response()->json($result);
     }

@@ -24,10 +24,16 @@
                                             <a href="{{ url('product', $product->slug) }}"><img src="{{ url('images/main_prodcut') }}/{{ $product->url_image }}" alt="" /></a>
                                             <div class="price-up-down">
                                                 @if ($product->cate_sale != 0) 
-                                                    <span class="sale-new" title="{{ $product->cate_sales->name }} {{ $product->sale_description }}"">
-                                                    {{ $product->cate_sales->name }} - {!! \Illuminate\Support\Str::words($product->sale_description, 3,'....')  !!}
+                                                    @if ($product->cate_sale == 1) 
+                                                        <span class="sale-new" title="{{ $product->cate_sales->name }} {{ $product->sale_description }}"">
+                                                        {{ $product->cate_sales->name }} - {!! \Illuminate\Support\Str::words($product->sale_description, 3,'....')  !!}
+                                                    @else if ($product->cate_sale == 2)
+                                                        <span class="sale-new" title="Mới">
+                                                            Tặng kèm
+                                                        </span>
+                                                    @endif
                                                 </span>
-                                                @else
+                                                @else 
                                                     <span class="sale-new" title="Mới">
                                                         Mới
                                                     </span>
@@ -87,10 +93,16 @@
                                         <div class="shop-img">
                                             <a href="{{ url('product') }}/{{ $product->slug }}"><img src="{{ url('images/main_prodcut') }}/{{ $product->url_image }}" alt="" /></a>
                                             <div class="price-up-down">
-                                                @if ($product->cate_sale != 0) 
+                                               @if ($product->cate_sale != 0) 
+                                                    @if ($product->cate_sale == 1) 
                                                     <span class="sale-new" title="{{ $product->cate_sales->name }} {{ $product->sale_description }}"">
                                                     {{ $product->cate_sales->name }} - {!! \Illuminate\Support\Str::words($product->sale_description, 3,'....')  !!}
-                                                </span>
+                                                    @else if ($product->cate_sale == 2)
+                                                        <span class="sale-new" title="Mới">
+                                                            Tặng kèm
+                                                        </span>
+                                                    @endif
+                                                    </span>
                                                 @endif
                                                 
                                             </div>
