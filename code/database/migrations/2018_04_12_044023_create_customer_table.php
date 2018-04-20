@@ -24,8 +24,8 @@ class CreateCustomerTable extends Migration
             $table->string('password')->nullable();
             $table->text('address')->nullable();
             $table->text('node')->nullable();
-            $table->string('provider');
-            $table->string('provider_id');
+            $table->string('provider')->nullable();
+            $table->string('provider_id')->nullable();
             $table->rememberToken();
             $table->timestamps();    
         });

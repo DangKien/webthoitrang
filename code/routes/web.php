@@ -29,6 +29,7 @@ Route::group(['prefix'=>'backend', "middleware"=>"auth"], function (){
 	Route::get('/product', 'BackEnd\Product\ProductCtrl@main')->name('product');
 	Route::get('/slider', 'BackEnd\Slider\SliderCtrl@slider')->name('slider');
 	Route::get('/contact', 'BackEnd\Contact\ContactCtrl@index')->name("contact");
+	Route::get('/customer', 'BackEnd\Contact\ContactCtrl@customer')->name("customer.backend");
 
 	Route::get('comment', 'BackEnd\Comment\CommentCtrl@comment')->name('comment');
 	Route::get('delete-comment/{id}', 'BackEnd\Comment\CommentCtrl@deleteComment');
@@ -45,6 +46,7 @@ Route::group(['prefix'=>'backend', "middleware"=>"auth"], function (){
 	Route::resource('news','BackEnd\NewsController');
 	Route::resource('orders','BackEnd\OrderController');
 	Route::resource('statistic','BackEnd\StatisticController');
+
 });
 
 // frontend route

@@ -28,6 +28,12 @@
 								<span class="menu-title">Loại sản phẩm </span>
 							</a>
 						</li>
+						<li class="{{ request()->is('/*/customer') || request()->is('*/customer') ? 'active active-link' : '' }}">
+							<a href="{{ route('customer.backend') }}">
+								<i class="fa fa-user-circle"></i>
+								<span class="menu-title">Khách hàng </span>
+							</a>
+						</li>
 
 						<li class="{{ request()->is('/*/product') || request()->is('*/product') ? 'active active-link' : '' }}">
 							<a href="{{ route('product') }}">
