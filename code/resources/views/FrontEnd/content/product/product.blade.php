@@ -69,7 +69,7 @@
                     <div class="single-cart-color for-pro-border">
                         <p>Trạng thái : 
                             <span ng-if = "(data.productRecord.status == '0')">
-                                Còn hàng
+                                Hết hàng
                             </span>
                             <span ng-if = "(data.productRecord.status == 1)">
                                 Còn hàng
@@ -80,7 +80,7 @@
                             <p>Màu sản phẩm :</p>
                             <ul>
                                 <li ng-repeat="(key, detail) in data.productRecord.details"
-                                    style="background: @{{ detail.color }}"
+                                    style="background: @{{ detail.color }}" ng-click="actions.changeColor(detail.id)"
                                 ></li>
                             </ul>
                         </div>
@@ -91,12 +91,20 @@
                                 > <a href="">@{{ detailSize.name }}</a> </li>
                             </ul>
                         </div>
-                        <div class="pro-quality">
-                            <p>Số lượng:</p>
-                        <input value="1" type="number">
+                        <div class="pro-color-size mb-30" ng-if="data.productRecord.cate != 0">
+                            <p>Khuyến mãi :</p>
+                            <br>
+                            <p class="pl-20 mt-20">
+                                @{{ data.productRecord.cate_sales.name }}: 
+                                <span ng-bind-html="data.productRecord.sale_description"></span>
+                            </p>
                         </div>
-                        <div class="single-pro-cart">
-                            <a href="#" title="Add to Cart">
+                        <!-- <div class="pro-quality">
+                            <p>Số lượng:</p>
+                        <input value="1" type="number"> -->
+                       <!--  </div> -->
+                        <div style="cursor: pointer;" class="single-pro-cart" ng-click="actions.addCart(data.productRecord.id)">
+                            <a title="Add to Cart">
                                 <i class="pe-7s-cart"></i>
                                 Cho vào giỏ
                             </a>

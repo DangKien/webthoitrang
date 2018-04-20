@@ -54,44 +54,77 @@
                                     </div>
                                 </div>
                                 <div class="news-details-bottom mtb-60">
+                                    <?php 
+                                        $commentModel = new App\Models\CommentModel();
+                                        $comments = $commentModel->listComment($new->id);
+                                    ?>
                                     <h3 class="leave-comment-text">Bình luận</h3>
                                     <div class="blog-top">
-                                        <div class="news-allreply">
-                                            <a href="#"><img src="" alt=""></a>
-                                        </div>
+                                        @foreach($comments as $key => $comment)
                                         <div class="blog-img-details">
                                             <div class="blog-title">
                                                 <div class="blog-title-1">
-                                                    <h3>kavin smith</h3>
-                                                    <span>14 february, 2017 at 7 : 00 pm</span>
+                                                    <h3>{{ $comment->name }}</h3>
+                                                    <span>{{ $comment->created_at }}</span>
                                                 </div>
                                             </div>
-                                            <p class="p-border">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore i aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo cons. Duis aute irure dolor in reprehenderit in </p>
+                                            <p class="p-border">{{ $comment->content}} </p>
                                         </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="leave-comment">
                                     <h3 class="leave-comment-text">Viết bình luận</h3>
-                                    <form action="#">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="leave-form">
-                                                    <input placeholder="Name*" type="text">
+                                    @if (!Auth::guard('customer')->check())
+                                        <form action="{{ url('comment', $new->id) }}" method="post">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="leave-form">
+                                                        <input name="name" placeholder="Tên của bạn*" type="text">
+                                                        @if ($errors->has('name'))
+                                                            <div class="text-left text-danger mtb-15" style="margin-top: 5px;">
+                                                                <strong>{{ $errors->first('name') }}</strong>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="leave-form">
+                                                        <input name="email" placeholder="Địa chỉ mail*" type="text">
+                                                        @if ($errors->has('email'))
+                                                            <div class="text-left text-danger mtb-15" style="margin-top: 5px;">
+                                                                <strong>{{ $errors->first('email') }}</strong>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="text-leave">
+                                                        <textarea name="content" placeholder="Nội dung*"></textarea>
+                                                        @if ($errors->has('content'))
+                                                            <div class="text-left text-danger mtb-15" style="margin-top: 5px;">
+                                                                <strong>{{ $errors->first('content') }}</strong>
+                                                            </div>
+                                                        @endif
+                                                        <button class="submit" type="submit">Gửi bình luận</button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="leave-form">
-                                                    <input placeholder="Email*" type="text">
+                                        </form>
+                                    @else
+                                        <form action="{{ url('comment', $new->id) }}" method="post">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="text-leave">
+                                                        <textarea name="content" placeholder="Nội dung*"></textarea>
+                                                        <button class="submit" type="submit">Gửi bình luận</button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
-                                                <div class="text-leave">
-                                                    <textarea placeholder="Comment*"></textarea>
-                                                    <button class="submit" type="submit">Gửi bình luận</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>

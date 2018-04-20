@@ -17,6 +17,15 @@ ngApp.factory('$categoryService', function ($http, $httpParamSerializer){
         return $http.get(url);
 	};
 
+	service.action.addCart = function (params) {
+		var url = SiteUrl + "/rest/frontend/add-cart/" + params;
+        return $http.post(url);
+	};
+
+	service.action.getCart = function () {
+		var url = SiteUrl + "/rest/frontend/cart/" ;
+        return $http.get(url);
+	};
 	
 	return service;
 })

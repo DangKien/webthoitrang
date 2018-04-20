@@ -18,6 +18,11 @@ ngApp.factory('$cartService', function ($http, $httpParamSerializer){
 		var url = SiteUrl + "/rest/frontend/delete-cart/" + params ;
         return $http.post(url);
 	};
+
+	service.action.updateCart = function (params, data) {
+		var url = SiteUrl + "/rest/frontend/update-cart/" + params ;
+        return $http.post(url, data);
+	};
 	
 	return service;
 })

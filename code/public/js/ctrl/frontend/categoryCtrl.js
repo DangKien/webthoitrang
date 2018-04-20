@@ -1,4 +1,4 @@
-ngApp.controller('categoryCtrl', function($apply, $categoryService, $scope, $myLoader) {
+ngApp.controller('categoryCtrl', function($apply, $categoryService, $rootScope, $scope, $myLoader) {
 		
 	$scope.data = {
 		slug: slug.trim(),
@@ -63,7 +63,14 @@ ngApp.controller('categoryCtrl', function($apply, $categoryService, $scope, $myL
 				$scope.reverse = false;
 			}
 		},
-	} 
 
+		addCart: function ($id){
+			$categoryService.action.addCart($id).then(function(resp) {
+				$rootScope.getCartItems();
+			}, function (error){
+				console.log(error);
+			});
+		},
+	} 
 	$scope.data.productDetail();
 });

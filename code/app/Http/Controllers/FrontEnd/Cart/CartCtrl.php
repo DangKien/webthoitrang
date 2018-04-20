@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Auth, Cart, DB;
 
-
 class CartCtrl extends Controller
 {
     public function index() {
@@ -50,6 +49,10 @@ class CartCtrl extends Controller
                 } else {
                     
                 }
+    public function checkout() {
+    	if (Auth::guard('customer')->check()) {
+    		if (Cart::count() != 0){
+
     		} else {
     			return redirect()->back();
     		}

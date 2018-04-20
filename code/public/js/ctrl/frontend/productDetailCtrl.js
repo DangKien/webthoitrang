@@ -1,4 +1,4 @@
-ngApp.controller('productDetailCtrl', function($apply, $productDetailService, $scope) {
+ngApp.controller('productDetailCtrl', function($apply, $productDetailService, $scope, $cartService, $rootScope) {
 		
 	$scope.data = {
 		slug: slug.trim(),
@@ -19,6 +19,7 @@ ngApp.controller('productDetailCtrl', function($apply, $productDetailService, $s
 					$scope.data.productRecord = resp.data.product;
 					$scope.data.detail = resp.data.detail;
 					$scope.data.categories = resp.data.categories;
+					console.log(resp.data);
 				});
 			}, function (error) {
 
@@ -36,6 +37,27 @@ ngApp.controller('productDetailCtrl', function($apply, $productDetailService, $s
 			})
 		}
 	}
+
+	$scope.actions = {
+		addCart: function ($id){
+			$cartService.action.addCart($id).then(function(resp) {
+				$rootScope.getCartItems();
+			}, function (error){
+				console.log(error);
+			});
+		},
+		changeColor: function ($idColor) {
+			angular.forEach($scope.data.detail, function(value, key){
+				if (value.id == $idColor) {
+					$apply(function () {
+						$scope.data.key = key;
+					});
+				}
+			});
+		}
+	}
+
+	
 	$scope.data.productInvole();
 	$scope.data.productDetail();
 });

@@ -33,12 +33,6 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                            <div class="button-group">
-                                                <a href="#" title="Add to Cart">
-                                                    <i class="pe-7s-cart"></i>
-                                                        Thêm vào giỏ hàng
-                                                </a>
-                                            </div>
                                         </div>
                                         <div class="shop-text-all">
                                             <div class="title-color fix">
@@ -100,12 +94,6 @@
                                                 @endif
                                                 
                                             </div>
-                                            <div class="button-group">
-                                                <a href="#" title="Add to Cart">
-                                                    <i class="pe-7s-cart"></i>
-                                                        Thêm vào giỏ hàng 
-                                                </a>
-                                            </div>
                                         </div>
                                         <div class="shop-text-all">
                                             <div class="title-color fix">
@@ -165,12 +153,7 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                            <div class="button-group">
-                                                <a href="#" title="Add to Cart">
-                                                    <i class="pe-7s-cart"></i>
-                                                        Thêm vào giỏ hàng
-                                                </a>
-                                            </div>
+                                           
                                         </div>
                                         <div class="shop-text-all">
                                             <div class="title-color fix">
@@ -260,10 +243,10 @@
                 <div class="row">
                     <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 ">
                         <div class="subscribe-from text-center">
-                            <h3>subscribe to our newsletter</h3>
+                            <h3>Đăng kí Email để nhận thông tin giảm giá mới nhất</h3>
                             <form action="#">
-                                <input placeholder="Enter your Email address" type="email">
-                                <button type="submit">Subscribe</button>
+                                <input placeholder="Nhập email của bạn" type="email">
+                                <button type="submit">Đăng kí</button>
                             </form>
                         </div>
                     </div>

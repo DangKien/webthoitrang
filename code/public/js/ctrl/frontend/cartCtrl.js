@@ -1,10 +1,8 @@
 ngApp.controller('cartCtrl', function($apply, $cartService, $rootScope, $scope, $myLoader) {
-		
-	
+
 	$rootScope.getCartItems = function (){
 		$cartService.action.getCart().then(function(resp) {
 			$rootScope.cartItems = resp.data;
-			console.log($rootScope.cartItems);
 		}, function (error){
 			console.log(error);
 		});
@@ -15,6 +13,14 @@ ngApp.controller('cartCtrl', function($apply, $cartService, $rootScope, $scope, 
 			$rootScope.getCartItems();
 		}, function (error){
 			console.log(error);
+		});
+	}
+
+	$scope.updateCart = function ($id, qty) {
+		$cartService.action.updateCart($id, {'qty': qty}).then(function (resp){
+			$rootScope.getCartItems();
+		}, function (error) {
+
 		});
 	}
 

@@ -60,19 +60,18 @@
                                                 <div class="shop-img">
                                                     <a href="{{ url('product') }}/@{{ products.slug }}"><img ng-src="{{ url('images/main_prodcut') }}/@{{ products.url_image }}" alt=""/></a>
                                                     <div class="price-up-down">
-                                                        <span class="sale-new" ng-if="products.cate_sale == 0">
-                                                            New
-                                                        </span>
-
                                                         <span class="sale-new" ng-if="products.cate_sale != 0">
-                                                            @{{ products.sales.name }}
+                                                         @{{ products.cate_sales.name }} - @{{ products.sale_description }}
                                                         </span>
 
+                                                        <span class="sale-new" ng-if="products.cate_sale == 0">
+                                                            Mới
+                                                        </span>
                                                     </div>
-                                                    <div class="button-group">
-                                                        <a href="#" title="Add to Cart">
+                                                    <div style="cursor: pointer;" class="button-group" ng-click="actions.addCart(products.id)">
+                                                        <a  title="Add to Cart">
                                                             <i class="pe-7s-cart"></i>
-                                                                Thêm vào giỏ hàng
+                                                                Thêm vào giỏ hàng 
                                                         </a>
                                                     </div>
                                                 </div>
