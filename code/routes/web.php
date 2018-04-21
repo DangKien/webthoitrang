@@ -151,3 +151,4 @@ Route::get('callback-fb', 'FrontEnd\SocialAuthCtrl@callbackFb');
 
 Route::get('redirect-gg', 'FrontEnd\SocialAuthCtrl@redirectGG');
 Route::get('callback-gg', 'FrontEnd\SocialAuthCtrl@callbackGG');
+
