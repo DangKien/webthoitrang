@@ -28,6 +28,42 @@
 								<i class="fa fa-navicon fa-lg"></i>
 							</a>
 						</li>
+						<li class="dropdown" ng-controller="cartCtrl">
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle">
+								<i class="fa fa-bell fa-lg"></i>
+								<span class="badge badge-header badge-danger">@{{ countOrder }}</span>
+							</a>
+
+							<!--Notification dropdown menu-->
+							<div class="dropdown-menu dropdown-menu-md with-arrow">
+								<div class="pad-all bord-btm">
+									<p class="text-lg text-muted text-thin mar-no">Bạn có @{{ countOrder }} đơn hàng mới.</p>
+								</div>
+								<div class="nano scrollable has-scrollbar" style="height: 0px;">
+									<div class="nano-content" tabindex="0" style="right: -17px;">
+										<ul class="head-list">
+											<!-- Dropdown list-->
+											<li ng-repeat="(key, order) in dataOrder">
+												<a href="#" class="media">
+													<div class="media-body">
+														<div class="text-nowrap">@{{ order.user.first_name + " " + order.user.last_name  }} - Đã đặt một đơn hàng</div>
+														<small class="text-muted">@{{ order.total }} - VNĐ</small>
+													</div>
+												</a>
+											</li>
+										</ul>
+									</div>
+								<div class="nano-pane" style="display: none;"><div class="nano-slider" style="height: 20px; transform: translate(0px, 0px);"></div></div></div>
+
+								<!--Dropdown footer-->
+								<div class="pad-all bord-top">
+									<a href="#" class="btn-link text-dark box-block">
+										<i class="fa fa-angle-right fa-lg pull-right"></i>Show All Notifications
+									</a>
+								</div>
+							</div>
+						</li>
+
 					</ul>
 					<ul class="nav navbar-top-links pull-right">
 

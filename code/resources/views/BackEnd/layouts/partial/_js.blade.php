@@ -31,6 +31,7 @@
 <script src="{{ url('') }}/js/directives/uploadMultiImage.js"></script>
 <script src="{{ url('') }}/js/directives/fileModel.js"></script>
 <script src="{{ url('') }}/js/directives/insertFile.js"></script>
+<script src="{{ url('') }}/js/ctrl/backend/cartCtrl.js"></script>
 <!-- <script src="{{ url('') }}/js/myJs.js"></script> -->
 
 <script src="{{ url('') }}/assets/js/DataTables/datatables.js"></script>

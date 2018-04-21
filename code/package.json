@@ -30,6 +30,9 @@
         "datatables.net-rowreorder-dt": "^1.2.3",
         "datatables.net-scroller-dt": "^1.4.4",
         "datatables.net-select-dt": "^1.2.5",
-        "jszip": "^3.1.5"
+        "express": "^4.16.3",
+        "jszip": "^3.1.5",
+        "redis": "^2.8.0",
+        "socket.io": "^2.1.0"
     }
 }

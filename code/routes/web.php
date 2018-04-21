@@ -115,6 +115,7 @@ Route::group(['prefix' => 'rest/backend'], function() {
 	Route::delete('/slider/{id}', 'BackEnd\Rest\SliderCtrl@getDelete');
 
 	Route::get('comment', 'BackEnd\Rest\CommentCtrl@getList');
+	Route::get('order', 'BackEnd\OrderController@getListOrder');
 
 });
 

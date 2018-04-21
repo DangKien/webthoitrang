@@ -21,13 +21,4 @@ ngApp.factory('$socketIo', function($rootScope, $apply){
 	        }
 	    };
 	return socketIo;
-	// $service = {
-	// 	on: function (eventName, callback) {
-	// 		socket.on(eventName, function(message) {
-	// 			$apply(function () {
-
-	// 			});
-	// 		})
-	// 	}
-	// };
 });

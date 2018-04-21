@@ -127,4 +127,10 @@ class OrderController extends Controller
         return redirect()->route('orders.index')
             ->with('success', 'Order deleted successfully');
     }
+
+    public function getListOrder() {
+        $order = Order::where('status', 0)->with('user')->orderBy('id','desc')->get();
+
+        return response()->json($order);
+    }
 }
