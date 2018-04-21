@@ -54,7 +54,9 @@ class LoginController extends Controller
             $customer->remember_token = $request->_token;
             $customer->save();
             DB::commit();
-            return redirect()->route('login.frontend');
+
+            Auth::guard('customer')->login($customer);
+            return redirect()->route('home');
         } catch (Exception $e) {
             DB::rollback();
         }

@@ -27,7 +27,7 @@
                                                     @if ($product->cate_sale == 1) 
                                                         <span class="sale-new" title="{{ $product->cate_sales->name }} {{ $product->sale_description }}"">
                                                         {{ $product->cate_sales->name }} - {!! \Illuminate\Support\Str::words($product->sale_description, 3,'....')  !!}
-                                                    @else if ($product->cate_sale == 2)
+                                                    @elseif ($product->cate_sale == 2)
                                                         <span class="sale-new" title="Mới">
                                                             Tặng kèm
                                                         </span>
