@@ -20,7 +20,7 @@
 	            <div class="col-md-3 col-sm-3 col-xs-4"  ng-controller="cartCtrl">
 	                <div class="cart-menu">
 	                    <div class="shopping-cart pull-right">
-                            <a class="top-cart" href="cart.html"><i class="pe-7s-cart"></i></a>
+                            <a class="top-cart" href="{{ url('carts') }}"><i class="pe-7s-cart"></i></a>
                             <span>@{{ cartItems.cartCount }} </span>
                             <ul>
                                 <li ng-repeat="(key, value) in cartItems.cartItems">

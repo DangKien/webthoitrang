@@ -29,7 +29,7 @@
                     <div class="col-md-8 col-lg-9">
                         <div class="blog-wrapper">
                             <div class="single-blog">
-                                <a href="#"><img style="height: 489px; width: 870px;" src="{{ url('') }}/{!! $new->image !!}" alt=""></a>
+                                <a href="#"><img style="height: 489px; width: 870px;" src="{!! $new->image !!}" alt=""></a>
                                 <div class="blog-details-text mt-20">
                                     <h3>{{ $new->title }}</h3>
                                     <div class="post-info">

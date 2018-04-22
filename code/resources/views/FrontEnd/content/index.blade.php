@@ -206,6 +206,48 @@
             </div>
         </div>
     </div>
+    
+    @php
+        $news = App\Models\News::news();
+    @endphp
+    <div class="blog-area pt-70 pb-70">
+        <div class="container">
+            <div class="section-title text-center mb-50">
+                <h2> Tin tức thời trang <i class="fa fa-pencil"></i></h2>
+            </div>
+            <div class="row">
+                @foreach ($news as $new)
+                <div class="col-md-4 col-sm-6">
+                    <div class="blog-details mb-30">
+                        <div class="blog-img" style="height: 250px; overflow: hidden;">
+                            <a href="{{ url('news') }}/@{{ new.slug }}">
+                                <img ng-src="{{ $new->image }}" alt="{{ $new->title }}"></a>
+                            <div class="blog-quick-view">
+                                <a href="blog-details.html">
+                                    <i class="pe-7s-link"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="blog-meta" style="height: 250px">
+                            <h4><a href="{{ url('news') }}/@{{ new.slug }}">
+                                {{ $new->title }}
+                            </a></h4>
+                            <ul class="meta">
+                                <li>Người viết bài: <a href="#">{{ $new->user->first_name . " " . $new->user->last_name}} </a>
+                                </li>
+                                <li>Đăng bài ngày: {{ $new->created_at }}</li>
+                            </ul>
+                            <div style="height: 50px; overflow: hidden; margin-top: 20px" > 
+                                <p>{{ $new->excerpt }}</p>
+                            </div>
+                            <a href="{{ url('news', $new->slug ) }}">Đọc thêm<i class="fa fa-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
 
     <div class="service-area pt-100 pb-70 clearfix">
             <div class="container">

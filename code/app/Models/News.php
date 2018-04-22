@@ -27,4 +27,8 @@ class News extends MyModel
     {
         return $this->belongsTo(User::class);
     }
+
+    public static function news() {
+        return self::orderBy('id', 'desc')->limit(3)->with('user')->get();
+    }
 }
