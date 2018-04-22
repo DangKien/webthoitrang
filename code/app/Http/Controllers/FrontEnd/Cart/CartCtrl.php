@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Auth, Cart, DB;
+use App\Models\ProductModel;
 use App\Libs\EventSocket;
 
 class CartCtrl extends Controller
@@ -21,9 +22,11 @@ class CartCtrl extends Controller
                 && !empty(Auth::guard('customer')->user()->phone)) {
                     DB::beginTransaction();
                     try {
-                        $order->user_id     = Auth::guard('customer')->user()->id;
                         $data = array();
                         foreach (Cart::content() as $key => $value) {
+                            $productCount = ProductModel::find($value->id);
+                            $orderCount = $productCount->order;
+                            $productCount->order = $orderCount + $value->qty; 
                             $product_order = 
                                 [
                                 'product'  => [
@@ -34,7 +37,9 @@ class CartCtrl extends Controller
                                 ],
                                 'quantity' => $value->qty ];
                             array_push($data, $product_order);
+                            $productCount->save();
                         }
+                        $order->user_id     = Auth::guard('customer')->user()->id;
                         $order->data        = json_encode($data);
                         $order->total       = Cart::subtotal();
                         $order->total_order = Cart::subtotal();

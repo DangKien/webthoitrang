@@ -17,10 +17,8 @@ ngApp.directive('productModal', function($apply, $productService, $myLoader){
 			var made_in          = scope.data.params.made_in;
 			var trade            = scope.data.params.trade;
 			var material         = scope.data.params.material;
-
 			var params = $productService.data(name, cate_id, cate_sale, sale_description, url_image, tag, description, price,
 						codeProduct, material, made_in, trade, status, multiImage);
-
 			return params;
 	};
 

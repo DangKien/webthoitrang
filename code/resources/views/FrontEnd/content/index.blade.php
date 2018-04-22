@@ -220,7 +220,7 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="blog-details mb-30">
                         <div class="blog-img" style="height: 250px; overflow: hidden;">
-                            <a href="{{ url('news') }}/@{{ new.slug }}">
+                            <a href="{{ url('news') }}/{{ $new->slug }}">
                                 <img ng-src="{{ $new->image }}" alt="{{ $new->title }}"></a>
                             <div class="blog-quick-view">
                                 <a href="blog-details.html">

@@ -86,7 +86,7 @@
         else if ($stt == 1){
             echo '<div class="sidebar-list mtb-20"><ul>';
             foreach ($cate_child as $key => $item) {
-                echo '<li><a href="'.$item['url_link'].'">'.$item['name'].'</a>';
+                echo '<li>-<a href="'.$item['url_link'].'">'.$item['name'].'</a>';
                 showCategoriesLeft($categories, $slug_f, $item['id'], ++$stt);
                 echo '</li>';
             }
@@ -94,7 +94,7 @@
         } else {
             echo '<div class="sidebar-list ml-20"><ul>';
             foreach ($cate_child as $key => $item) {
-                echo '<li><a href="'.$item['url_link'].'">'.$item['name'].'</a>';
+                echo '<li>-<a href="'.$item['url_link'].'">'.$item['name'].'</a>';
                 showCategoriesLeft($categories, $slug_f, $item['id'], ++$stt);
                 echo '</li>';
             }

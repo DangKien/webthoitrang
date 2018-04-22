@@ -104,9 +104,17 @@
 									<div class="col-sm-5 pull-right">
 										<div class="form-group">
 											<label class=" control-label fix-form-cate" for="sale_description">Mô tả khuyến mãi: </label>
-											<div>
-												<input type="text" placeholder="Mô tả khuyến mãi" class="form-control input-sm " 
-												id="sale_description" ng-model = "data.params.sale_description">
+											<div class="form-group">
+												<label class=" control-label fix-form-cate" for="tag">Tag: </label>
+												<div>
+													<input type="text" placeholder="tag 1, tag 2,..." class="form-control input-sm " 
+													id="tag" ng-model = "data.params.tag">
+													<p class="text-danger" style="margin-top: 5px;"
+														ng-repeat="er in data.errors.tag"
+													>
+													    @{{ er }}
+													</p>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -190,18 +198,6 @@
 							</div>
 							<div class="col-sm-12">
 								<div class="form-group">
-									<label class=" control-label fix-form-cate" for="tag">Tag: </label>
-									<div>
-										<input type="text" placeholder="tag 1, tag 2,..." class="form-control input-sm " 
-										id="tag" ng-model = "data.params.tag">
-										<p class="text-danger" style="margin-top: 5px;"
-											ng-repeat="er in data.errors.tag"
-										>
-										    @{{ er }}
-										</p>
-									</div>
-								</div>
-								<div class="form-group">
 									<label class="col-sm-3 control-label" for="demo-is-inputsmall">Trạng thái: </label>
 									<div class="col-sm-8 text-left padding-top-7">
 										<label style="margin-bottom: 10px;" class="form-normal">
@@ -229,6 +225,17 @@
 										<textarea ng-model="data.params.description" class="my-ckeditor" name="description"></textarea>
 										<p class="text-danger" style="margin-top: 5px;"
 											ng-repeat="er in data.errors.description"
+										>
+										    @{{ er }}
+										</p>
+									</div>
+								</div>
+								<div class="form-group">
+									<label required class="control-label " for="sale_description">Mô tả khuyến mãi: </label>
+									<div>
+										<textarea ng-model="data.params.sale_description" class="my-ckeditor" name="sale_description" id="sale_description"></textarea>
+										<p class="text-danger" style="margin-top: 5px;"
+											ng-repeat="er in data.errors.sale_description"
 										>
 										    @{{ er }}
 										</p>

@@ -119,6 +119,12 @@ class ProductCtrl extends Controller
                 } else {
                     $url_image = $product_update->url_image;
                 }
+                if (empty($request->status)){
+                    $status =  $product_update->status;
+                } else{
+                    $status = $request->status;
+                }
+
                 $product_update->name             = $request->name;
                 $product_update->url_image        = $url_image;
                 $product_update->description      = $request->description;
@@ -130,7 +136,7 @@ class ProductCtrl extends Controller
                 $product_update->material         = $request->material;
                 $product_update->made_in          = $request->made_in;
                 $product_update->trade            = $request->trade;
-                $product_update->status           = $request->status;
+                $product_update->status           = $status;
                 $product_update->tag              = trim($request->tag, ',');
                 $product_update->save();
                 DB::commit();
@@ -282,7 +288,6 @@ class ProductCtrl extends Controller
             'price'     => 'required| max:250',
             'material'  => 'required',
             'made_in'   => 'required',
-            'status'    => 'required',
             ], [
             'name.required'      => 'Tên sản phẩm không được để trống',
             'name.required'      => 'Tên sản phẩm dài khoảng 250 kí tự',
